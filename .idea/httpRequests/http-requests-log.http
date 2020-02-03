@@ -1,0 +1,22 @@
+POST http://sweetstechnologies.local/mmc-200-ajax?name=name&surname=surname&email=email@email.com&phone=89887404772
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-01-29T034800.419.html
+
+###
+
+POST http://sweetstechnologies.local/mmc-200?name=name&surname=surname&email=email@email.com&phone=89887404772
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-01-29T034734.405.html
+
+###
+
+POST http://http//sweetstechnologies.local/mmc-200?name=name&surname=surname&email=email@email.com&phone=89887404772
+Accept: */*
+Cache-Control: no-cache
+
+###
+
