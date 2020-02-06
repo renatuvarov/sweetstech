@@ -14254,7 +14254,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
 
   (function () {
     var isScrolling = false;
-    var items = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-product-item');
+    var items = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-animated-item');
     window.addEventListener("scroll", throttleScroll, false);
 
     function throttleScroll() {
@@ -14276,7 +14276,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       items.each(function () {
         var item = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
-        if (item.hasClass('product-item--active')) {
+        if (item.hasClass('animated-item--active')) {
           return;
         }
 
@@ -14285,7 +14285,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
         var bottom = elementBoundary.bottom;
 
         if (top >= 0 && bottom - 80 <= window.innerHeight) {
-          item.addClass('product-item--active');
+          item.addClass('animated-item--active');
         }
       });
     }
@@ -14293,8 +14293,16 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     makeVisible();
   })();
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-form-accept').on('change', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-form-btn').attr('disabled', !jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is(':checked'));
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.form').on('submit', function (e) {
     e.preventDefault();
+
+    if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-form-accept').is(':checked')) {
+      return;
+    }
+
     var $form = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.form-invalid').remove();
     var $btn = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-form-btn');
@@ -14372,6 +14380,35 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-to-top').removeClass('opacity');
     }
   });
+
+  (function () {
+    var bg = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-contacts-bg');
+    var contacts = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-contacts');
+
+    var visible = function visible() {
+      // Все позиции элемента
+      var targetPosition = {
+        top: window.pageYOffset + contacts[0].getBoundingClientRect().top,
+        bottom: window.pageYOffset + contacts[0].getBoundingClientRect().bottom
+      },
+          // Получаем позиции окна
+      windowPosition = {
+        top: window.pageYOffset,
+        bottom: window.pageYOffset + document.documentElement.clientHeight
+      };
+
+      if (targetPosition.bottom > windowPosition.top && targetPosition.top < windowPosition.bottom) {
+        var value = window.pageYOffset / -50 + 30;
+        value = value >= 0 ? 0 : value;
+        value = value <= -35 ? -35 : value;
+        bg.css({
+          "transform": "translate3d(0, " + value + "%, 0)"
+        });
+      }
+    };
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('scroll', visible);
+  })();
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('load', function () {
   var height = Math.ceil(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.owl-stage-outer').outerHeight(false) / 2) - Math.ceil(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.owl-nav').outerHeight(false) / 2);

@@ -3,22 +3,27 @@
         <h3 class="form-title">MMC-200</h3>
         @csrf
         <div class="input_wrapper">
-            <label for="name" class="form-label js-form-label">Имя</label>
-            <input type="text" id="name" name="name" class="form-input js-form-input">
+            <label for="nsp" class="form-label js-form-label">ФИО</label>
+            <input type="text" id="nsp" name="nsp" class="form-input js-form-input">
         </div>
         <div class="input_wrapper">
-            <label for="surname" class="form-label js-form-label">Фамилия</label>
-            <input type="text" id="surname" name="surname" class="form-input js-form-input">
+            <label for="company" class="form-label js-form-label">Компания</label>
+            <input type="text" id="company" name="company" class="form-input js-form-input">
         </div>
         <div class="input_wrapper">
             <label for="email" class="form-label js-form-label">E-mail</label>
             <input type="email" id="email" name="email" class="form-input js-form-input">
         </div>
-        <div class="input_wrapper">
+        <div class="input_wrapper phone_wrapper">
             <label for="phone" class="form-label js-form-label">Телефон</label>
             <input type="tel" id="phone" name="phone" class="form-input js-form-input">
         </div>
         <input type="hidden" name="product" value="mmc-200">
+        <p class="form-info">* - обязательное поле</p>
+        <p class="form-info">
+            <input type="checkbox" class="form-accept js-form-accept" checked="checked" id="accept" style="cursor:pointer;">
+            <label style="cursor:pointer;" for="accept">Согласен на обработку персональных данных</label>
+        </p>
         <div class="form-btn_wrapper">
             <button type="submit" class="form-btn js-form-btn">
                 <span class="js-form-btn_txt">Заказать!</span>

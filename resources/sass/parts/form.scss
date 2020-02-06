@@ -47,6 +47,10 @@
     min-height: 90px;
 }
 
+.phone_wrapper {
+    min-height: 70px;
+}
+
 .form-btn_wrapper {
     text-align: center;
 }
@@ -78,11 +82,33 @@
     background-color: transparent;
     outline: none;
     transition: 0.3s;
+    position: relative;
 }
 
 .form-input:focus {
     border-bottom-color: #21f8f8;
     transform: translateY(-5px);
+}
+
+.input_wrapper:before {
+    content: '*';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    color: #ffffff;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+}
+
+.phone_wrapper:before {
+    display: none;
+}
+
+.form-info {
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
 
 .form-input::placeholder {
@@ -109,6 +135,10 @@
     background-color: transparent;
     color: #ffffff;
     border-color: white;
+}
+
+.form-btn:disabled {
+    cursor: not-allowed;
 }
 
 .spinner {

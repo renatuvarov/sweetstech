@@ -70,7 +70,7 @@ $( document ).ready(function() {
 
     (function () {
         let isScrolling = false;
-        const items = $('.js-product-item');
+        const items = $('.js-animated-item');
 
         window.addEventListener("scroll", throttleScroll, false);
 
@@ -91,7 +91,7 @@ $( document ).ready(function() {
         function makeVisible() {
             items.each(function () {
                 var item = $(this);
-                if (item.hasClass('product-item--active')) {
+                if (item.hasClass('animated-item--active')) {
                     return;
                 }
 
@@ -101,7 +101,7 @@ $( document ).ready(function() {
                 var bottom = elementBoundary.bottom;
 
                 if ((top >= 0) && (bottom - 80 <= window.innerHeight)) {
-                    item.addClass('product-item--active');
+                    item.addClass('animated-item--active');
                 }
             });
         }
@@ -109,8 +109,15 @@ $( document ).ready(function() {
         makeVisible();
     })();
 
+    $('.js-form-accept').on('change', function () {
+        $('.js-form-btn').attr('disabled', ! $(this).is(':checked'));
+    });
+
     $('.form').on('submit', function (e) {
         e.preventDefault();
+		if (! $('.js-form-accept').is(':checked')) {
+			return;
+		}
         var $form = $(this);
         $('.form-invalid').remove();
         var $btn = $('.js-form-btn');
@@ -184,6 +191,33 @@ $( document ).ready(function() {
             $('.js-to-top').removeClass('opacity');
         }
     });
+
+    (function () {
+        var bg = $('.js-contacts-bg');
+        var contacts = $('.js-contacts');
+
+        var visible = function () {
+            // Все позиции элемента
+            var targetPosition = {
+                    top: window.pageYOffset + contacts[0].getBoundingClientRect().top,
+                    bottom: window.pageYOffset + contacts[0].getBoundingClientRect().bottom
+                },
+                // Получаем позиции окна
+                windowPosition = {
+                    top: window.pageYOffset,
+                    bottom: window.pageYOffset + document.documentElement.clientHeight
+                };
+
+            if (targetPosition.bottom > windowPosition.top && targetPosition.top < windowPosition.bottom) {
+                var value = (window.pageYOffset) / - 50 + 30;
+                value = value >= 0 ? 0 : value;
+                value = value <= -35 ? -35 : value;
+                bg.css({"transform": "translate3d(0, " + value + "%, 0)"});
+            }
+        };
+
+        $(window).on('scroll', visible);
+    })();
 });
 
 $(window).on('load', function() {

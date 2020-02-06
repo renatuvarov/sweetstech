@@ -224,12 +224,9 @@
             </div>
             <div class="specifications-slider_wrapper">
                 <div class="specifications-slider owl-carousel owl-theme">
-                    <div><img src="{{asset('assets/img/866-800x800.jpg')}}" alt=""></div>
-                    <div><img src="{{asset('assets/img/866-800x800.jpg')}}" alt=""></div>
-                    <div><img src="{{asset('assets/img/866-800x800.jpg')}}" alt=""></div>
-                    <div><img src="{{asset('assets/img/866-800x800.jpg')}}" alt=""></div>
-                    <div><img src="{{asset('assets/img/866-800x800.jpg')}}" alt=""></div>
-                    <div><img src="{{asset('assets/img/866-800x800.jpg')}}" alt=""></div>
+                    <div><img src="{{asset('img/200/mms200-1jpg.jpg')}}" alt=""></div>
+                    <div><img src="{{asset('img/200/mms200-2jpg.jpg')}}" alt=""></div>
+                    <div><img src="{{asset('img/200/mms200-3jpg.jpg')}}" alt=""></div>
                 </div>
             </div>
         </div>
@@ -237,7 +234,7 @@
     <section id="products" class="product">
         <h2 class="section-title">Примеры продукции</h2>
         <ul class="product-list">
-            <li class="product-item js-product-item">
+            <li class="product-item animated-item js-animated-item">
                 <div class="product-img_wrapper">
                     <img src="{{ asset('assets/img/200/1-400png.png') }}" alt="" class="product-img">
                 </div>
@@ -247,7 +244,7 @@
                     <p class="product-description"><span>Состав: </span>Семена подсолнечника, черный кунжут, семена льна, сублимированная малина, изюм, кукурузные хлопья, медовый сироп.</p>
                 </div>
             </li>
-            <li class="product-item js-product-item">
+            <li class="product-item animated-item js-animated-item">
                 <div class="product-img_wrapper">
                     <img src="{{ asset('assets/img/200/9-400png.png') }}" alt="" class="product-img">
                 </div>
@@ -257,7 +254,7 @@
                     <p class="product-description"><span>Состав: </span>Взорванный рис, цельный арахис, изюм, сушеный резаный барбарис, ржаные хлопья.</p>
                 </div>
             </li>
-            <li class="product-item js-product-item">
+            <li class="product-item animated-item js-animated-item">
                 <div class="product-img_wrapper">
                     <img src="{{ asset('assets/img/200/8-400png.png') }}" alt="" class="product-img">
                 </div>
@@ -267,7 +264,7 @@
                     <p class="product-description"><span>Состав: </span>Рисовые шарики, цукаты (ананас), тыквенная семечка, пшеничные хлопья, сушеная клюква, шоколад, дробленный фундук.</p>
                 </div>
             </li>
-            <li class="product-item js-product-item">
+            <li class="product-item animated-item js-animated-item">
                 <div class="product-img_wrapper">
                     <img src="{{ asset('assets/img/200/7-400png.png') }}" alt="" class="product-img">
                 </div>
@@ -308,25 +305,31 @@
     <section class="photo" id="photo">
         <h3 class="section-title-photo">Фоторафии</h3>
         <ul class="photo-wrapper">
-            <li class="line-item">
+            <li class="line-item animated-item js-animated-item">
                 <div class="line-img-wrapper">
                     <img src="{{ asset('assets/img/200/original.jpg') }}" alt="" class="line-img">
                 </div>
                 <h4 class="line-subtitle">Формовочная</h4>
             </li>
-            <li class="line-item">
+            <li class="line-item animated-item js-animated-item">
                 <div class="line-img-wrapper">
                     <img src="{{ asset('assets/img/200/original.jpg') }}" alt="" class="line-img">
                 </div>
                 <h4 class="line-subtitle">Формовочная</h4>
             </li>
-            <li class="line-item">
+            <li class="line-item animated-item js-animated-item">
                 <div class="line-img-wrapper">
                     <img src="{{ asset('assets/img/200/original.jpg') }}" alt="" class="line-img">
                 </div>
                 <h4 class="line-subtitle">Формовочная</h4>
             </li>
-            <li class="line-item">
+            <li class="line-item animated-item js-animated-item">
+                <div class="line-img-wrapper">
+                    <img src="{{ asset('assets/img/200/original.jpg') }}" alt="" class="line-img">
+                </div>
+                <h4 class="line-subtitle">Формовочная</h4>
+            </li>
+            <li class="line-item animated-item js-animated-item">
                 <div class="line-img-wrapper">
                     <img src="{{ asset('assets/img/200/original.jpg') }}" alt="" class="line-img">
                 </div>
@@ -334,98 +337,102 @@
             </li>
         </ul>
     </section>
-    <section class="contacts" id="contacts">
-        <h2 class="section-title">Контакты</h2>
-        <div class="contacts-wrapper">
-            <ul class="contacts-list">
-                <li class="contacts-item">
-                    <h6>
-                        <svg height="16pt" viewBox="0 -1 512 512" width="16pt" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256.0002597504" x2="256.0002597504"
-                                            y1=".0001997504" y2="510.7493837504">
-                                <stop offset="0" stop-color="#2af598"/>
-                                <stop offset="1" stop-color="#009efd"/>
-                            </linearGradient>
-                            <path d="m204.5 458.605469v51.855469l-12.539062-10.128907c-1.9375-1.566406-48.035157-38.992187-94.78125-92.660156-64.484376-74.035156-97.179688-140.492187-97.179688-197.519531v-5.652344c0-112.761719 91.738281-204.5 204.5-204.5s204.5 91.738281 204.5 204.5v5.652344c0 4.789062-.253906 9.652344-.714844 14.574218l-39.992187-36.484374c-8.191407-83.15625-78.519531-148.339844-163.792969-148.339844-90.757812 0-164.597656 73.839844-164.597656 164.597656v5.652344c0 96.367187 124.164062 213.027344 164.597656 248.453125zm122.699219-28.660157h59.851562v-59.851562h-59.851562zm-122.699219-310.238281c46.753906 0 84.792969 38.039063 84.792969 84.792969s-38.039063 84.792969-84.792969 84.792969-84.792969-38.039063-84.792969-84.792969 38.039063-84.792969 84.792969-84.792969zm0 39.902344c-24.753906 0-44.890625 20.136719-44.890625 44.890625 0 24.75 20.136719 44.890625 44.890625 44.890625 24.75 0 44.890625-20.140625 44.890625-44.890625 0-24.753906-20.140625-44.890625-44.890625-44.890625zm280.609375 243.222656-11.21875-10.234375v64.058594c0 29.828125-24.269531 54.09375-54.097656 54.09375h-126.332031c-29.828126 0-54.097657-24.265625-54.097657-54.09375v-64.058594l-11.21875 10.234375-26.890625-29.476562 155.371094-141.746094 155.375 141.746094zm-51.121094-46.636719-77.363281-70.574218-77.359375 70.574218v100.457032c0 7.828125 6.367187 14.195312 14.195313 14.195312h126.332031c7.828125 0 14.195312-6.367187 14.195312-14.195312zm0 0"
-                                  fill="url(#a)"/>
-                        </svg><span><a href="yandexnavi://build_route_on_map?lat_to=56.316663&lon_to=38.112200"> Россия, Ставропольский край, Кочубеевский район,<br> п. Новозеленчукский, ул. Гагарина, 1</a></span>
-                    </h6>
-                </li>
-                <li class="contacts-item">
-                    <svg width="16pt" height="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">
+    <section class="contacts js-contacts" id="contacts">
+        <div class="contacts-bg js-contacts-bg">
+            <img src="/assets/img/background.jpg" alt="" class="contact-bg-img">
+        </div>
+        <div class="contacts-content">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-wrapper">
+                <ul class="contacts-list">
+                    <li class="contacts-item">
+                        <h6>
+                            <svg height="16pt" viewBox="0 -1 512 512" width="16pt" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256.0002597504" x2="256.0002597504"
+                                                y1=".0001997504" y2="510.7493837504">
+                                    <stop offset="0" stop-color="#2af598"/>
+                                    <stop offset="1" stop-color="#009efd"/>
+                                </linearGradient>
+                                <path d="m204.5 458.605469v51.855469l-12.539062-10.128907c-1.9375-1.566406-48.035157-38.992187-94.78125-92.660156-64.484376-74.035156-97.179688-140.492187-97.179688-197.519531v-5.652344c0-112.761719 91.738281-204.5 204.5-204.5s204.5 91.738281 204.5 204.5v5.652344c0 4.789062-.253906 9.652344-.714844 14.574218l-39.992187-36.484374c-8.191407-83.15625-78.519531-148.339844-163.792969-148.339844-90.757812 0-164.597656 73.839844-164.597656 164.597656v5.652344c0 96.367187 124.164062 213.027344 164.597656 248.453125zm122.699219-28.660157h59.851562v-59.851562h-59.851562zm-122.699219-310.238281c46.753906 0 84.792969 38.039063 84.792969 84.792969s-38.039063 84.792969-84.792969 84.792969-84.792969-38.039063-84.792969-84.792969 38.039063-84.792969 84.792969-84.792969zm0 39.902344c-24.753906 0-44.890625 20.136719-44.890625 44.890625 0 24.75 20.136719 44.890625 44.890625 44.890625 24.75 0 44.890625-20.140625 44.890625-44.890625 0-24.753906-20.140625-44.890625-44.890625-44.890625zm280.609375 243.222656-11.21875-10.234375v64.058594c0 29.828125-24.269531 54.09375-54.097656 54.09375h-126.332031c-29.828126 0-54.097657-24.265625-54.097657-54.09375v-64.058594l-11.21875 10.234375-26.890625-29.476562 155.371094-141.746094 155.375 141.746094zm-51.121094-46.636719-77.363281-70.574218-77.359375 70.574218v100.457032c0 7.828125 6.367187 14.195312 14.195313 14.195312h126.332031c7.828125 0 14.195312-6.367187 14.195312-14.195312zm0 0"
+                                      fill="url(#a)"/>
+                            </svg><span><a href="yandexnavi://build_route_on_map?lat_to=56.316663&lon_to=38.112200"> Россия, Ставропольский край, Кочубеевский район,<br> п. Новозеленчукский, ул. Гагарина, 1</a></span>
+                        </h6>
+                    </li>
+                    <li class="contacts-item">
+                        <svg width="16pt" height="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-23.875" y1="556.535" x2="-23.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
     <stop  offset="0" style="stop-color:#006DF0"/>
     <stop  offset="1" style="stop-color:#00E7F0"/>
 </linearGradient>
-                        <path style="fill:url(#SVGID_1_);" d="M264,240c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S277.255,240,264,240z
+                            <path style="fill:url(#SVGID_1_);" d="M264,240c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S277.255,240,264,240z
 	 M264,272c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S268.418,272,264,272z"/>
-                        <g>
+                            <g>
 
-                            <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_2_);" d="M328,240c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S341.255,240,328,240z
+                                <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_2_);" d="M328,240c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S341.255,240,328,240z
 		 M328,272c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S332.418,272,328,272z"/>
 
-                            <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="-7.875" y1="556.535" x2="-7.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_3_);" d="M392,240c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S405.255,240,392,240z
+                                <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="-7.875" y1="556.535" x2="-7.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_3_);" d="M392,240c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S405.255,240,392,240z
 		 M392,272c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S396.418,272,392,272z"/>
-                        </g>
-                        <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="-23.875" y1="556.535" x2="-23.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                            <stop  offset="0" style="stop-color:#006DF0"/>
-                            <stop  offset="1" style="stop-color:#00E7F0"/>
-                        </linearGradient>
-                        <path style="fill:url(#SVGID_4_);" d="M264,304c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S277.255,304,264,304z
-	 M264,336c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S268.418,336,264,336z"/>
-                        <g>
-
-                            <linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                            </g>
+                            <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="-23.875" y1="556.535" x2="-23.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
                                 <stop  offset="0" style="stop-color:#006DF0"/>
                                 <stop  offset="1" style="stop-color:#00E7F0"/>
                             </linearGradient>
-                            <path style="fill:url(#SVGID_5_);" d="M328,304c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S341.255,304,328,304z
+                            <path style="fill:url(#SVGID_4_);" d="M264,304c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S277.255,304,264,304z
+	 M264,336c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S268.418,336,264,336z"/>
+                            <g>
+
+                                <linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_5_);" d="M328,304c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S341.255,304,328,304z
 		 M328,336c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S332.418,336,328,336z"/>
 
-                            <linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="-7.875" y1="556.535" x2="-7.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_6_);" d="M392,304c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S405.255,304,392,304z
+                                <linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="-7.875" y1="556.535" x2="-7.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_6_);" d="M392,304c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S405.255,304,392,304z
 		 M392,336c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S396.418,336,392,336z"/>
-                        </g>
-                        <linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="-23.875" y1="556.535" x2="-23.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                            <stop  offset="0" style="stop-color:#006DF0"/>
-                            <stop  offset="1" style="stop-color:#00E7F0"/>
-                        </linearGradient>
-                        <path style="fill:url(#SVGID_7_);" d="M264,368c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S277.255,368,264,368z
-	 M264,400c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S268.418,400,264,400z"/>
-                        <g>
-
-                            <linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                            </g>
+                            <linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="-23.875" y1="556.535" x2="-23.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
                                 <stop  offset="0" style="stop-color:#006DF0"/>
                                 <stop  offset="1" style="stop-color:#00E7F0"/>
                             </linearGradient>
-                            <path style="fill:url(#SVGID_8_);" d="M328,368c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S341.255,368,328,368z
+                            <path style="fill:url(#SVGID_7_);" d="M264,368c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S277.255,368,264,368z
+	 M264,400c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S268.418,400,264,400z"/>
+                            <g>
+
+                                <linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_8_);" d="M328,368c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S341.255,368,328,368z
 		 M328,400c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S332.418,400,328,400z"/>
 
-                            <linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="-7.875" y1="556.535" x2="-7.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_9_);" d="M392,368c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S405.255,368,392,368z
+                                <linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="-7.875" y1="556.535" x2="-7.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_9_);" d="M392,368c-13.255,0-24,10.745-24,24s10.745,24,24,24s24-10.745,24-24S405.255,368,392,368z
 		 M392,400c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S396.418,400,392,400z"/>
 
-                            <linearGradient id="SVGID_10_" gradientUnits="userSpaceOnUse" x1="-26.875" y1="556.535" x2="-26.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_10_);" d="M456,128h-32V36.872L387.2,0H232v128h-58.4c-7.092-23.694-28.868-39.945-53.6-40h-16
+                                <linearGradient id="SVGID_10_" gradientUnits="userSpaceOnUse" x1="-26.875" y1="556.535" x2="-26.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_10_);" d="M456,128h-32V36.872L387.2,0H232v128h-58.4c-7.092-23.694-28.868-39.945-53.6-40h-16
 		c-24.732,0.055-46.508,16.306-53.6,40H24c-13.255,0-24,10.745-24,24v272c0,13.255,10.745,24,24,24l0,0h29.48
 		c9.258,19.518,28.917,31.97,50.52,32h16c21.603-0.03,41.262-12.482,50.52-32H456c13.255,0,24-10.745,24-24l0,0V152
 		C480,138.745,469.255,128,456,128z M248,16h132.584L408,43.488V128H248V16z M24,432c-4.418,0-8-3.582-8-8V152c0-4.418,3.582-8,8-8
@@ -433,73 +440,73 @@
 		c0.026-22.08,17.92-39.974,40-40h16c22.08,0.026,39.974,17.92,40,40V424z M464,424c0,4.418-3.582,8-8,8H175.36
 		c0.404-2.648,0.618-5.322,0.64-8V144h280c4.418,0,8,3.582,8,8V424z"/>
 
-                            <linearGradient id="SVGID_11_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_11_);" d="M232,224h192v-64H232V224z M248,176h160v32H248V176z"/>
+                                <linearGradient id="SVGID_11_" gradientUnits="userSpaceOnUse" x1="-15.875" y1="556.535" x2="-15.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_11_);" d="M232,224h192v-64H232V224z M248,176h160v32H248V176z"/>
 
-                            <linearGradient id="SVGID_12_" gradientUnits="userSpaceOnUse" x1="-16.875" y1="556.535" x2="-16.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_12_);" d="M264,32h112v16H264V32z"/>
+                                <linearGradient id="SVGID_12_" gradientUnits="userSpaceOnUse" x1="-16.875" y1="556.535" x2="-16.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_12_);" d="M264,32h112v16H264V32z"/>
 
-                            <linearGradient id="SVGID_13_" gradientUnits="userSpaceOnUse" x1="-16.875" y1="556.535" x2="-16.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_13_);" d="M264,64h112v16H264V64z"/>
+                                <linearGradient id="SVGID_13_" gradientUnits="userSpaceOnUse" x1="-16.875" y1="556.535" x2="-16.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_13_);" d="M264,64h112v16H264V64z"/>
 
-                            <linearGradient id="SVGID_14_" gradientUnits="userSpaceOnUse" x1="-16.875" y1="556.535" x2="-16.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
-                                <stop  offset="0" style="stop-color:#006DF0"/>
-                                <stop  offset="1" style="stop-color:#00E7F0"/>
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_14_);" d="M264,96h112v16H264V96z"/>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
+                                <linearGradient id="SVGID_14_" gradientUnits="userSpaceOnUse" x1="-16.875" y1="556.535" x2="-16.875" y2="621.002" gradientTransform="matrix(8 0 0 -8 455 4941)">
+                                    <stop  offset="0" style="stop-color:#006DF0"/>
+                                    <stop  offset="1" style="stop-color:#00E7F0"/>
+                                </linearGradient>
+                                <path style="fill:url(#SVGID_14_);" d="M264,96h112v16H264V96z"/>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
 </svg>
-                    <span>тел/факс +7 (86554) 7-62-77</span>
-                </li>
-                <li class="contacts-item">
-                    <svg height="16pt" width="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <span>тел/факс +7 (86554) 7-62-77</span>
+                    </li>
+                    <li class="contacts-item">
+                        <svg height="16pt" width="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256.2437" y1="513.822" x2="256.2437" y2="1.547"
                 gradientTransform="matrix(0.9992 0 0 -0.9992 -0.0391 513.4789)">
     <stop offset="0" style="stop-color:#2AF598"/>
     <stop offset="1" style="stop-color:#009EFD"/>
 </linearGradient>
-                        <path style="fill:url(#SVGID_1_);" d="M385.22,511.933c-12.434,0-24.949-2.751-36.609-8.414
+                            <path style="fill:url(#SVGID_1_);" d="M385.22,511.933c-12.434,0-24.949-2.751-36.609-8.414
   c-49.209-23.902-123.478-68.002-197.837-142.36C76.414,286.798,32.314,212.53,8.414,163.321
   c-15.662-32.248-9.054-71.047,16.445-96.546L92.011,0.067l136.304,137.121l-53.979,54.676c9.194,16.219,29.054,47.218,62.524,80.688
   c33.464,33.465,64.239,53.102,80.305,62.151l55.77-54.001L512,419.999l-66.843,67.074
@@ -508,49 +515,49 @@
   c70.43,70.431,140.586,112.108,187.039,134.67c16.926,8.221,37.341,4.709,50.805-8.739l38.669-38.804l-83.09-83.227l-47.467,45.962
   l-12.295-5.404c-2.008-0.882-49.799-22.238-104.101-76.54c-54.267-54.266-76.075-102.463-76.978-104.489l-5.55-12.462l45.984-46.579
   L91.833,56.581z"/>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
 </svg>
-                    <span>тел. +7 (86554) 9-53-17 доб. 410/411/412</span>
-                </li>
-                <li class="contacts-item">
-                    <svg height="16pt" width="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <span>тел. +7 (86554) 9-53-17 доб. 410/411/412</span>
+                    </li>
+                    <li class="contacts-item">
+                        <svg height="16pt" width="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256.2437" y1="513.822" x2="256.2437" y2="1.547"
                 gradientTransform="matrix(0.9992 0 0 -0.9992 -0.0391 513.4789)">
     <stop offset="0" style="stop-color:#2AF598"/>
     <stop offset="1" style="stop-color:#009EFD"/>
 </linearGradient>
-                        <path style="fill:url(#SVGID_1_);" d="M385.22,511.933c-12.434,0-24.949-2.751-36.609-8.414
+                            <path style="fill:url(#SVGID_1_);" d="M385.22,511.933c-12.434,0-24.949-2.751-36.609-8.414
   c-49.209-23.902-123.478-68.002-197.837-142.36C76.414,286.798,32.314,212.53,8.414,163.321
   c-15.662-32.248-9.054-71.047,16.445-96.546L92.011,0.067l136.304,137.121l-53.979,54.676c9.194,16.219,29.054,47.218,62.524,80.688
   c33.464,33.465,64.239,53.102,80.305,62.151l55.77-54.001L512,419.999l-66.843,67.074
@@ -559,85 +566,86 @@
   c70.43,70.431,140.586,112.108,187.039,134.67c16.926,8.221,37.341,4.709,50.805-8.739l38.669-38.804l-83.09-83.227l-47.467,45.962
   l-12.295-5.404c-2.008-0.882-49.799-22.238-104.101-76.54c-54.267-54.266-76.075-102.463-76.978-104.489l-5.55-12.462l45.984-46.579
   L91.833,56.581z"/>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
 </svg>
-                    <span>тел. +7 (8652) 95-15-04 доб. 410/411/412</span>
-                </li>
-                <li class="contacts-item">
-                    <svg width="16pt" height="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <span>тел. +7 (8652) 95-15-04 доб. 410/411/412</span>
+                    </li>
+                    <li class="contacts-item">
+                        <svg width="16pt" height="16pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256" y1="446" x2="256" y2="70" gradientTransform="matrix(1 0 0 -1 0 514)">
     <stop  offset="0" style="stop-color:#2AF598"/>
     <stop  offset="1" style="stop-color:#009EFD"/>
 </linearGradient>
-                        <path style="fill:url(#SVGID_1_);" d="M452,68H60C26.916,68,0,94.916,0,128v256c0,33.084,26.916,60,60,60h392
+                            <path style="fill:url(#SVGID_1_);" d="M452,68H60C26.916,68,0,94.916,0,128v256c0,33.084,26.916,60,60,60h392
 	c33.084,0,60-26.916,60-60V128C512,94.916,485.084,68,452,68z M448.354,108L256,251.074L63.646,108H448.354z M452,404H60
 	c-11.028,0-20-8.972-20-20V140.263l216,160.663l216-160.663V384C472,395.028,463.028,404,452,404z"/>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
 </svg>
-                    <span><a href="mailto:info@sweetstech.com">info@sweetstech.com</a></span>
-                </li>
-            </ul>
-            <div class="map-wrapper">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Abe39edd5598606edbf4da2700c64f47fde70ebd6a1a42b555d1effaedf5068aa&amp;source=constructor" width="100%" height="320" frameborder="0"></iframe>
+                        <span><a href="mailto:info@sweetstech.com">info@sweetstech.com</a></span>
+                    </li>
+                </ul>
+                <div class="map-wrapper">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Abe39edd5598606edbf4da2700c64f47fde70ebd6a1a42b555d1effaedf5068aa&amp;source=constructor" width="100%" height="320" frameborder="0"></iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -667,7 +675,6 @@
 
 @include('parts.form')
 @include('parts.to-top')
-
 <script src="{{asset('js/landings.js')}}"></script>
 
 </body>
