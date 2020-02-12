@@ -176,6 +176,13 @@ $( document ).ready(function() {
         $('.js-to-top').addClass('opacity');
     });
 
+    setTimeout(function () {
+        $('.js-contacts-form_wrapper').addClass('contacts-form_wrapper--active');
+        $('html, body').css({'overflow-y': 'hidden'});
+        $('.js-show-form').addClass('opacity');
+        $('.js-to-top').addClass('opacity');
+    }, 10000);
+
     $('.js-form-close').on('click', function () {
         $('.js-contacts-form_wrapper').removeClass('contacts-form_wrapper--active');
         $('html, body').css({'overflow-y': 'auto'});

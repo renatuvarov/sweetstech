@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Entities\User;
 
-class MakeAdmin extends Command
+class ChangeRole extends Command
 {
     protected $signature = 'user:role {email} {role}';
 
@@ -16,6 +16,7 @@ class MakeAdmin extends Command
         $email = $this->argument('email');
         $role = $this->argument('role');
 
+        /** @var User $user */
         if (!$user = User::where('email', $email)->first()) {
             $this->error('Пользователь с e-mail "' . $email . '" не найден.');
             return false;

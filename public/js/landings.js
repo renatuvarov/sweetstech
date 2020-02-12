@@ -14362,6 +14362,14 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('opacity');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-to-top').addClass('opacity');
   });
+  setTimeout(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-contacts-form_wrapper').addClass('contacts-form_wrapper--active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').css({
+      'overflow-y': 'hidden'
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-show-form').addClass('opacity');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-to-top').addClass('opacity');
+  }, 10000);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-form-close').on('click', function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-contacts-form_wrapper').removeClass('contacts-form_wrapper--active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').css({
