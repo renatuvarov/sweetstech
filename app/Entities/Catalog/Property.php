@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name_ru
  * @property string $measure_ru
  * @property string $measure_en
- * @property string $img
  */
 class Property extends Model
 {

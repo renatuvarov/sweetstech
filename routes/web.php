@@ -37,6 +37,8 @@ Route::group([
 ], function () {
     Route::get('home', 'HomeController@index')->name('home');
     Route::resource('types', 'TypeController')->except('show');
+    Route::resource('tag', 'TagController')->except('show');
+    Route::resource('properties', 'PropertyController')->except('show');
 });
 
 

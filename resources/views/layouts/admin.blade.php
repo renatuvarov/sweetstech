@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Управление</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
@@ -22,14 +23,34 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Лэндинги
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('mmc-200') }}">ММС-200</a>
+                                    <a class="dropdown-item" href="{{ route('admin.tag.index') }}">РФМ</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Каталог
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('admin.types.index') }}">Категории</a>
-                                    <a class="dropdown-item" href="#">Тэги</a>
-                                    <a class="dropdown-item" href="#">Параметры</a>
+                                    <a class="dropdown-item" href="{{ route('admin.tag.index') }}">Тэги</a>
+                                    <a class="dropdown-item" href="{{ route('admin.properties.index') }}">Параметры</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Оборудование</a>
+                                    <a class="dropdown-item font-weight-bold" href="#">Оборудование</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Блог
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Категории</a>
+                                    <a class="dropdown-item" href="#">Тэги</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item font-weight-bold" href="#">Посты</a>
                                 </div>
                             </li>
                             <li class="nav-item">

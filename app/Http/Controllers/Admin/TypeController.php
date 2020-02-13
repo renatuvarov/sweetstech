@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Entities\Catalog\Type;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Types\CreateRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Types\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -27,7 +27,7 @@ class TypeController extends Controller
         Type::create([
             'name_en' => mb_strtolower($request->input('name_en')),
             'name_ru' => mb_strtolower($request->input('name_ru')),
-            'slug' => $request->input('slug') ?? Str::slug($request->input('name_en')),
+            'slug' => $request->input('slug') ?: Str::slug($request->input('name_en')),
             'img' => '/storage/' . $request->file('img')->store('types'),
         ]);
 
@@ -39,7 +39,7 @@ class TypeController extends Controller
         return view('admin.types.edit', compact('type'));
     }
 
-    public function update(Request $request, Type $type)
+    public function update(UpdateRequest $request, Type $type)
     {
         if ($request->hasFile('img')) {
             Storage::delete(str_replace('/storage', '', $type->img));
@@ -47,9 +47,9 @@ class TypeController extends Controller
         }
 
         $type->update([
-            'name_en' => mb_strtolower($request->input('name_en')) ?? $type->name_en,
-            'name_ru' => mb_strtolower($request->input('name_ru')) ?? $type->name_ru,
-            'slug' => $request->input('slug') ?? Str::slug($request->input('name_en')) ?? $type->slug,
+            'name_en' => mb_strtolower($request->input('name_en')) ?: $type->name_en,
+            'name_ru' => mb_strtolower($request->input('name_ru')) ?: $type->name_ru,
+            'slug' => $request->input('slug') ? Str::slug($request->input('slug')) : $type->slug,
             'img' => $path ?? $type->img,
         ]);
 

@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5">Новая категория</h2>
-        <form class="text-left w-50 m-auto" method="post" action="{{ route('admin.types.store') }}" enctype="multipart/form-data">
+        <h2 class="h2 mb-5">Новый параметр</h2>
+        <form class="text-left w-50 m-auto" method="post" action="{{ route('admin.properties.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group required">
                 <input value="{{ old('name_ru') }}" type="text" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
@@ -18,14 +18,14 @@
                 @enderror
             </div>
             <div class="form-group">
-                <input value="{{ old('slug') }}" type="text" class="form-control @error('slug') is-invalid @enderror" placeholder="Слаг" name="slug">
-                @error('slug')
+                <input value="{{ old('measure_en') }}" type="text" class="form-control @error('measure_en') is-invalid @enderror" placeholder="Ед. изм. (eng)" name="measure_en">
+                @error('measure_en')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group required">
-                <input value="{{ old('img') }}" type="file" class="form-control @error('img') is-invalid @enderror" name="img">
-                @error('img')
+            <div class="form-group">
+                <input value="{{ old('measure_ru') }}" type="text" class="form-control @error('measure_ru') is-invalid @enderror" placeholder="Ед. изм. (ru)" name="measure_ru">
+                @error('measure_ru')
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
