@@ -9122,7 +9122,7 @@ a.text-dark:focus, a.text-dark:hover {
     .specifications-text {
         order: 2;
         width: 100%;
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .specifications-item .pro-title {
@@ -9374,6 +9374,10 @@ a.text-dark:focus, a.text-dark:hover {
     font-family: SF-Pro-Display-Light, sans-serif;
 }
 
+.line-item:last-child {
+    margin-right: 0;
+}
+
 @media (max-width: 768px) {
     .line-video_wrapper {
         width: 100%;
@@ -9398,7 +9402,9 @@ a.text-dark:focus, a.text-dark:hover {
         font-size: 3vw;
     }
 
-
+    .line-item:last-child {
+        margin-right: auto;
+    }
 
     .about {
         width: 100%;
@@ -9429,9 +9435,32 @@ a.text-dark:focus, a.text-dark:hover {
     margin-right: 15px;
 }
 
-.line-item:last-child {
-    margin-right: 0;
+.line-img-wrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
 }
+
+.line-img-wrapper span {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgb(0,52,84);
+    background: rgb(0,52,84);
+    background: radial-gradient(circle, rgba(0,52,84,1) 0%, rgba(5,68,98,1) 16%, rgba(8,76,104,1) 22%, rgba(17,103,126,1) 33%, rgba(255,131,115,1) 42%, rgba(55,224,224,1) 88%);
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.line-img-wrapper:hover span {
+    width: 300%;
+    height: 800px;
+}
+
+
 
 .line-img {
     max-width: 100%;
@@ -9578,7 +9607,7 @@ a.text-dark:focus, a.text-dark:hover {
 
 @media (max-width: 768px) {
     .contacts {
-        height: 700px;
+        height: 650px;
     }
 
     .contacts-wrapper {
@@ -9632,3 +9661,161 @@ a.text-dark:focus, a.text-dark:hover {
     z-index: 101;
     width: 100%;
 }
+
+.why {
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.why-icon {
+    text-align: center;
+}
+
+.social a {
+    fill: #8c8c8c;
+}
+
+.social a:hover {
+    fill: white;
+}
+
+.social svg {
+    margin-right: 10px;
+}
+
+a:hover {
+    color: #1BBDBD;
+}
+
+.main-title_wrapper {
+    border-bottom: 1px solid #dedede;
+    background-image: url(/assets/img/200/back-header.jpg);
+    background-position: bottom;
+    background-size: cover;
+}
+
+.main-title {
+    text-align: center;
+    color: #232323;
+    font-family: SF-Pro-Display-Semibold, sans-serif;
+    text-transform: uppercase;
+    font-size: 3.5vw;
+}
+
+.title-header {
+    padding-top: 100px;
+}
+
+.text-header {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 30px 25px 20px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.text-header h2 {
+    text-transform: uppercase;
+    color: black;
+}
+
+.text-header h4 {
+    color: black;
+    text-indent: 30px;
+}
+
+.text-header-title {
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.main {
+    padding-top: 0;
+}
+
+.specifications-item .pro-detail-dop {
+    font-size: 1.2vw;
+    font-family: SF-Pro-Display-Ultralight, sans-serif;
+    font-style: italic;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.specifications .pro-detail,
+.specifications .pro-title {
+    line-height: 1.2;
+}
+
+.about-txt {
+    font-family: SF-Pro-Display-Light, sans-serif;
+    font-size: 18px;
+    line-height: 1.2;
+    text-indent: 1.5em;
+    margin-bottom: 10px;
+}
+
+.logo-link {
+    max-width: 150px;
+    max-height: 50px;
+    display: block;
+    margin-top: 3px;
+}
+
+.logo-img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.footer-logo-img {
+    max-width: 100%;
+    width: 70%;
+    height: auto;
+}
+
+.copy {
+    text-align: right;
+}
+
+.advantages {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+@media (max-width: 768px) {
+    .specifications-item .pro-detail-dop {
+        font-size: 15px;
+    }
+
+    .main-title {
+        font-size: 18px;
+    }
+
+    .text-header h2 {
+        font-size: 18px;
+    }
+
+    .text-header h4 {
+        font-size: 15px;
+    }
+
+    .footer .logo {
+        display: none;
+    }
+
+    .copy {
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+.specifications .pro-detail {
+    font-size: 4.7vw;
+}
+}
+
+

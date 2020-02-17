@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    @stack('css')
 </head>
 <body>
     <header class="header fixed-top" style="background: white">
@@ -26,8 +27,8 @@
                                     Лэндинги
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('mmc-200') }}">ММС-200</a>
-                                    <a class="dropdown-item" href="{{ route('admin.tag.index') }}">РФМ</a>
+                                    <a class="dropdown-item" href="{{ route('mmc-200') }}" target="_blank">ММС-200</a>
+                                    <a class="dropdown-item" href="{{ route('admin.tag.index') }}" target="_blank">РФМ</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -39,7 +40,7 @@
                                     <a class="dropdown-item" href="{{ route('admin.tag.index') }}">Тэги</a>
                                     <a class="dropdown-item" href="{{ route('admin.properties.index') }}">Параметры</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item font-weight-bold" href="#">Оборудование</a>
+                                    <a class="dropdown-item font-weight-bold" href="{{ route('admin.machines.index') }}">Оборудование</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">

@@ -36,9 +36,15 @@ Route::group([
     'middleware' => ['auth',]
 ], function () {
     Route::get('home', 'HomeController@index')->name('home');
-    Route::resource('types', 'TypeController')->except('show');
-    Route::resource('tag', 'TagController')->except('show');
-    Route::resource('properties', 'PropertyController')->except('show');
+
+    Route::group([
+        'namespace' => 'Catalog',
+    ], function () {
+        Route::resource('types', 'TypeController')->except('show');
+        Route::resource('tag', 'TagController')->except('show');
+        Route::resource('properties', 'PropertyController')->except('show');
+        Route::resource('machines', 'MachineController');
+    });
 });
 
 
