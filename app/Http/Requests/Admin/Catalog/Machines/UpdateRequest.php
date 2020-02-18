@@ -13,6 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
+        dd($this->all());
         return false;
     }
 

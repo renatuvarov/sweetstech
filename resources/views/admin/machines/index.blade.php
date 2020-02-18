@@ -18,9 +18,12 @@
                 @foreach($machines as $machine)
                     <tr>
                         <td class="align-middle">{{$machine->id}}</td>
-                        <td class="align-middle"><a href="{{ route('admin.machines.show', ['machine' => $machine->id]) }}">{{$machine->name_ru}}</a></td>
+                        <td class="align-middle">{{$machine->name_ru}}</td>
                         <td class="align-middle">{{$machine->type->name_ru}}</td>
                         <td class="align-middle">
+                            <a class="btn btn-success" href="{{ route('admin.machines.show', ['machine' => $machine->id]) }}">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             <a class="btn btn-info" href="{{ route('admin.machines.edit', ['machine' => $machine->id]) }}">
                                 <i class="fa fa-edit"></i>
                             </a>

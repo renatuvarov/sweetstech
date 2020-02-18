@@ -49,6 +49,11 @@ class Machine extends Model
             'machine_property',
             'machine_id',
             'property_id'
-        );
+        )->withPivot('value');
+    }
+
+    public static function getByIdWithPivots($id): self
+    {
+        return self::where('id', $id)->with('properties', 'type', 'tags')->first();
     }
 }
