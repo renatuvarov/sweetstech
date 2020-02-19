@@ -14,9 +14,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_ru' => 'nullable|string|min:3',
-            'name_en' => 'nullable|string|min:3',
-            'slug' => 'nullable|string|min:3',
+            'name_ru' => 'nullable|string|min:3|unique:types,name_ru,' . $this->type . ',id',
+            'name_en' => 'nullable|string|min:3|unique:types,name_en,' . $this->type . ',id',
+            'slug' => 'nullable|string|min:3|unique:types,slug,' . $this->type . ',id',
             'img' => 'nullable|file|max:1024|mimes:jpeg,jpg,png',
         ];
     }
@@ -26,12 +26,15 @@ class UpdateRequest extends FormRequest
         return [
             'name_ru.string' => 'Значение этого поля должно быть строкой',
             'name_ru.min' => 'Длина не менее 3 символов',
+            'name_ru.unique' => 'Такая категория уже существует',
 
             'name_en.string' => 'Значение этого поля должно быть строкой',
             'name_en.min' => 'Длина не менее 3 символов',
+            'name_en.unique' => 'Такая категория уже существует',
 
             'slug.string' => 'Значение этого поля должно быть строкой',
             'slug.min' => 'Длина не менее 3 символов',
+            'slug.unique' => 'Такой слаг уже существует',
 
             'img.file' => 'Некорректный формат изображения',
             'img.max' => 'Максимальный размер изображения - 1 мегабайт',

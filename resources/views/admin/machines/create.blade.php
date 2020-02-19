@@ -66,7 +66,7 @@
                 @enderror
             </div>
             <div class="form-row"  data-id="0">
-                <div class="form-group required col">
+                <div class="form-group required col-5">
                     <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[0][name]">
                         <option disabled selected value="">Параметр</option>
                         @foreach($properties as $property)
@@ -77,11 +77,16 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
-                <div class="form-group required col ml-5">
+                <div class="form-group required col-5 ml-3">
                     <input type="text" class="form-control @error('properties.*.value') is-invalid @enderror" placeholder="Значение" name="properties[0][value]" value="{{ old('properties.*.value') }}">
                     @error('properties.*.value')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
+                </div>
+                <div class="form-group col ml-1 del-property-wrapper">
+                    <button type="button" class="btn btn-danger del-property">
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </div>
             </div>
             <div class="form-group border-bottom pb-5 mt-3">
@@ -111,9 +116,19 @@
             var id = props.data('id');
             id++;
             props.attr('data-id', id);
-            $('select', props).attr('name', 'properties[' + id + '][name]');
-            $('input', props).attr('name', 'properties[' + id + '][value]');
+            $('select', props)
+                .attr('name', 'properties[' + id + '][name]')
+                .find('option:selected').removeAttr('selected');
+            $('select', props).prepend('<option disabled selected value="">Параметр</option>');
+            $('input', props).attr('name', 'properties[' + id + '][value]').val('');
             props.insertBefore($(this).closest('.form-group'));
-        })
+        });
+
+        $('form').on('click', '.del-property',  function () {
+            if ($('.form-row').length === 1) {
+                return;
+            }
+            $(this).closest('.form-row').remove();
+        });
     </script>
 @endpush

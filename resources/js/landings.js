@@ -4,12 +4,12 @@ $( document ).ready(function() {
     (function () {
         $('.js-main_nav').on('click', function(e) {
             e.preventDefault();
-            const link = $(e.target).closest('.js-main_nav-link').data('section');
+            var link = $(e.target).closest('.js-main_nav-link').data('section');
             if (link) {
                 $('.js-main_nav').removeClass('main_nav--active');
                 $('html, body').css({'overflow-y': 'auto'});
-                const sectionName = '#' + link;
-                const position = $(sectionName).offset().top - 100;
+                var sectionName = '#' + link;
+                var position = $(sectionName).offset().top - 100;
                 $('html, body').stop().animate({ scrollTop: position }, 500);
             }
         });
@@ -70,7 +70,7 @@ $( document ).ready(function() {
 
     (function () {
         let isScrolling = false;
-        const items = $('.js-animated-item');
+        var items = $('.js-animated-item');
 
         window.addEventListener("scroll", throttleScroll, false);
 
@@ -137,8 +137,8 @@ $( document ).ready(function() {
                 $('.js-form-btn_txt').show();
 
                 if (response.errs) {
-                    Object.keys(response.errs).forEach(key => {
-                        $(`input[name=${key}]`).parent().append(`<p class="form-invalid">${response.errs[key]}</p>`);
+                    Object.keys(response.errs).forEach(function (key) {
+                        $('input[name=' + key + ']').parent().append('<p class="form-invalid">' + response.errs[key] + '</p>');
                     });
                     return;
                 }
@@ -253,7 +253,7 @@ $( document ).ready(function() {
 });
 
 $(window).on('load', function() {
-    const height = Math.ceil($('.owl-stage-outer').outerHeight(false) / 2) - Math.ceil($('.owl-nav').outerHeight(false) / 2);
+    var height = Math.ceil($('.owl-stage-outer').outerHeight(false) / 2) - Math.ceil($('.owl-nav').outerHeight(false) / 2);
     $('.owl-nav').each(function () {
         $(this).css({'top': height + 'px'});
     });

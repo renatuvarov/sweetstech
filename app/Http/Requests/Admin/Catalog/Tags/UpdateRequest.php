@@ -14,9 +14,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_ru' => 'nullable|string|min:3',
-            'name_en' => 'nullable|string|min:3',
-            'slug' => 'nullable|string|min:3',
+            'name_ru' => 'nullable|string|min:3|unique:tags,name_ru,' . $this->tag . ',id',
+            'name_en' => 'nullable|string|min:3|unique:tags,name_en,' . $this->tag . ',id',
+            'slug' => 'nullable|string|min:3|unique:tags,slug,' . $this->tag . ',id',
         ];
     }
 
@@ -25,12 +25,15 @@ class UpdateRequest extends FormRequest
         return [
             'name_ru.string' => 'Значение этого поля должно быть строкой',
             'name_ru.min' => 'Длина не менее 3 символов',
+            'name_ru.unique' => 'Такой тэг уже существует',
 
             'name_en.string' => 'Значение этого поля должно быть строкой',
             'name_en.min' => 'Длина не менее 3 символов',
+            'name_en.unique' => 'Такой тэг уже существует',
 
             'slug.string' => 'Значение этого поля должно быть строкой',
             'slug.min' => 'Длина не менее 3 символов',
+            'slug.unique' => 'Такой слаг уже существует',
         ];
     }
 }

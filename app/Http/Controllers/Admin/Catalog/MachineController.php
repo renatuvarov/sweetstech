@@ -30,29 +30,9 @@ class MachineController extends Controller
 
     public function store(CreateRequest $request)
     {
-        /** @var Machine $machine */
-        $machine = Machine::make([
-            'name_en' => mb_strtolower($request->input('name_en')),
-            'name_ru' => mb_strtolower($request->input('name_ru')),
-            'description_en' => $request->input('description_en'),
-            'description_ru' => $request->input('description_ru'),
-            'slug' => mb_strtolower($request->input('slug')) ?: Str::slug(mb_strtolower($request->input('name_en'))),
-            'img' => '/storage/' . $request->file('img')->store('machines'),
+        return redirect()->route('admin.machines.show', [
+            'machine' => Machine::new($request->all())->id,
         ]);
-
-        $machine->type()->associate(Type::findOrFail($request->input('type')));
-
-        $machine->save();
-
-        $machine->tags()->attach(Tag::whereIn('id', $request->input('tags'))->pluck('id'));
-
-        $propsArray = [];
-        foreach ($request->input('properties') as $item) {
-            $propsArray[$item['name']] = ['value' => $item['value']];
-        }
-        $machine->properties()->attach($propsArray);
-
-        return redirect()->route('admin.machines.show', ['machine' => $machine->id]);
     }
 
     public function show($id)
@@ -73,6 +53,9 @@ class MachineController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $machine = Machine::getByIdWithPivots($id);
+        return redirect()->route('admin.machines.show', [
+            'machine' => $machine->updateMachine($request->all())->id,
+        ]);
     }
 
     public function destroy(Machine $machine)

@@ -5,27 +5,20 @@ namespace App\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 
-class UniqueValues implements Rule
+class PropertiesNotEmpty implements Rule
 {
     /**
-     * @var Request
+     * @param Request $request
      */
     private $request;
-    /**
-     * @var string
-     */
-    private $field;
 
     /**
      * Create a new rule instance.
-     *
      * @param Request $request
-     * @param string $field
      */
-    public function __construct(Request $request, string $field = 'properties')
+    public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->field = $field;
     }
 
     /**
@@ -37,16 +30,19 @@ class UniqueValues implements Rule
      */
     public function passes($attribute, $value)
     {
-        if ($this->field === 'tags') {
-            foreach(array_values(array_count_values($this->request->input($this->field))) as $value) {
-                if ($value > 1) {
+        foreach ($this->request->properties as $property) {
+            if (count($property) < 2) {
+                return false;
+            }
+
+            foreach ($property as $item) {
+                if (is_null($item)) {
                     return false;
                 }
-
-                return true;
             }
         }
-        return array_values(array_count_values(array_column($this->request->input($this->field), 'name')))[0] === 1;
+
+        return true;
     }
 
     /**
@@ -56,6 +52,6 @@ class UniqueValues implements Rule
      */
     public function message()
     {
-        return 'Добавлены элементы с одинаковым значением.';
+        return 'Параметр не может быть пустым.';
     }
 }
