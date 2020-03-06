@@ -24,23 +24,70 @@ Route::post('secret-logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('secret-password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
 //Route::post('secret-password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
-Route::get('/mmc-200', 'User\LandingController@mmc200')->name('mmc-200');
-Route::post('/mmc-200-ajax', 'User\LandingController@mmc200form')
-    ->name('mmc-200.ajax')
-    ->middleware(IsAjax::class);
+Route::group([
+    'namespace' => 'User',
+    'middleware' => ['throttle:60,1'],
+], function () {
+
+    Route::get('/mmc-200', 'LandingController@mmc200')->name('mmc-200');
+    Route::post('/mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
+
+    Route::group([
+        'namespace' => 'Catalog',
+    ], function () {
+//        Route::group([
+//            'prefix' => 'categories',
+//            'as' => 'user.categories.',
+//        ], function () {
+//            Route::get('/', 'TypeController@index')->name('index');
+//            Route::get('/{slug}', 'TypeController@show')->name('show');
+//        });
+
+        Route::get('/tags/{slug}', 'TagController@show')->name('user.tags.show');
+        Route::get('/catalog/{slug}', 'MachineController@show')->name('user.catalog.show');
+        Route::post('/order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('user.order');
+    });
+});
+
+Route::group([
+    'namespace' => 'User',
+    'middleware' => ['throttle:60,1'],
+    'as' => config('site.user.routes.prefix.name'),
+    'prefix' => config('site.user.routes.prefix.path'),
+], function () {
+
+    Route::get('/mmc-200', 'LandingController@mmc200')->name('mmc-200');
+    Route::post('/mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
+
+    Route::group([
+        'namespace' => 'Catalog',
+    ], function () {
+//        Route::group([
+//            'prefix' => 'categories',
+//            'as' => 'user.categories.',
+//        ], function () {
+//            Route::get('/', 'TypeController@index')->name('index');
+//            Route::get('/{slug}', 'TypeController@show')->name('show');
+//        });
+
+        Route::get('/tags/{slug}', 'TagController@show')->name('user.tags.show');
+        Route::get('/catalog/{slug}', 'MachineController@show')->name('user.catalog.show');
+        Route::post('/order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('user.order');
+    });
+});
 
 Route::group([
     'prefix' => 'admsfsdfsin',
     'as' => 'admin.',
     'namespace' => 'Admin',
-    'middleware' => ['auth',]
+    'middleware' => ['auth', 'throttle:60,1']
 ], function () {
     Route::get('home', 'HomeController@index')->name('home');
 
     Route::group([
         'namespace' => 'Catalog',
     ], function () {
-        Route::resource('types', 'TypeController')->except('show');
+//        Route::resource('types', 'TypeController')->except('show');
         Route::resource('tag', 'TagController')->except('show');
         Route::resource('properties', 'PropertyController')->except('show');
         Route::resource('machines', 'MachineController');

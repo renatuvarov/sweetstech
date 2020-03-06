@@ -23,6 +23,12 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
+            <div class="form-group required">
+                <input value="{{ old('img') }}" type="file" class="form-control @error('img') is-invalid @enderror" name="img">
+                @error('img')
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                @enderror
+            </div>
             <p class="text-left font-weight-bold mt-3"><span class="text-danger">*</span> - обязательные поля</p>
             <button type="submit" class="btn btn-primary">Создать</button>
         </form>

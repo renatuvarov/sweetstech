@@ -48,21 +48,21 @@
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group required border-bottom pb-5">
-                <label for="type">Категория</label>
-                <select class="form-control" id="type" name="type">
-                    @foreach($types as $type)
-                        @if($machine->type->id === $type->id)
-                            <option selected value="{{ $type->id }}">{{ $type->name_ru }}</option>
-                        @else
-                            <option value="{{ $type->id }}">{{ $type->name_ru }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @error('type')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
+{{--            <div class="form-group required border-bottom pb-5">--}}
+{{--                <label for="type">Категория</label>--}}
+{{--                <select class="form-control" id="type" name="type">--}}
+{{--                    @foreach($types as $type)--}}
+{{--                        @if($machine->type->id === $type->id)--}}
+{{--                            <option selected value="{{ $type->id }}">{{ $type->name_ru }}</option>--}}
+{{--                        @else--}}
+{{--                            <option value="{{ $type->id }}">{{ $type->name_ru }}</option>--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+{{--                </select>--}}
+{{--                @error('type')--}}
+{{--                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
+{{--                @enderror--}}
+{{--            </div>--}}
             <div class="form-group border-bottom pb-5">
                 <label for="tags-select">Тэги</label>
                 <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
@@ -121,6 +121,18 @@
             @error('properties')
             <small class="form-text text-muted ml-2 border-bottom pb-3" style="color: #c82333 !important;">{{$message}}</small>
             @enderror
+            <div class="form-group required">
+                <textarea id="mail_en" class="form-control  @error('mail_en') is-invalid @enderror" placeholder="Текст в письме (eng)" name="mail_en" rows="10">{{ old('mail_en', $machine->mail_en) }}</textarea>
+                @error('mail_en')
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                @enderror
+            </div>
+            <div class="form-group required">
+                <textarea id="mail_ru" class="form-control  @error('mail_ru') is-invalid @enderror" placeholder="Текст в письме (ru)" name="mail_ru" rows="10">{{ old('mail_ru', $machine->mail_ru) }}</textarea>
+                @error('mail_ru')
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                @enderror
+            </div>
             <p class="text-left font-weight-bold mt-3"><span class="text-danger">*</span> - обязательные поля</p>
             <button type="submit" class="btn btn-primary d-block w-50">Создать</button>
         </form>

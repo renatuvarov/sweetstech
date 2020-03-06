@@ -17,6 +17,7 @@ class UpdateRequest extends FormRequest
             'name_ru' => 'nullable|string|min:3|unique:tags,name_ru,' . $this->tag . ',id',
             'name_en' => 'nullable|string|min:3|unique:tags,name_en,' . $this->tag . ',id',
             'slug' => 'nullable|string|min:3|unique:tags,slug,' . $this->tag . ',id',
+            'img' => 'nullable|file|max:1024|mimes:jpeg,jpg,png',
         ];
     }
 
@@ -34,6 +35,10 @@ class UpdateRequest extends FormRequest
             'slug.string' => 'Значение этого поля должно быть строкой',
             'slug.min' => 'Длина не менее 3 символов',
             'slug.unique' => 'Такой слаг уже существует',
+
+            'img.file' => 'Некорректный формат изображения',
+            'img.max' => 'Максимальный размер изображения - 1 мегабайт',
+            'img.mimes' => 'Некорректный формат изображения',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entities\Catalog;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,13 +15,57 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $customer_company
  * @property string $customer_phone
  * @property string $customer_email
+ * @property Carbon $created_at
  */
 class Order extends Model
 {
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function machine()
     {
         return $this->belongsTo(Machine::class);
+    }
+
+    public static function createOrder(array $data): self
+    {
+        /** @var Order $order */
+        $order = Order::make([
+            'customer_name' => $data['sh_nsp'],
+            'customer_company' => $data['sh_company'],
+            'customer_email' => $data['sh_email'],
+            'customer_phone' => $data['sh_phone'],
+        ]);
+
+        $order->machine()->associate(Machine::findOrFail($data['sh_id']));
+
+        $order->save();
+
+        return $order;
+    }
+
+    public static function isAlreadyOrdered(array $data): bool
+    {
+        /** @var Order $order */
+        $order = Order::where('machine_id', $data['sh_id'])
+            ->where('customer_email', $data['sh_email'])
+            ->where('viewed', false)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        if (! empty($order)) {
+            return $order->isNotExpired();
+        }
+
+        return false;
+    }
+
+    private function isNotExpired(): bool
+    {
+        return $this->created_at->diffInMinutes(Carbon::now()) < config('site.user.order.interval');
     }
 }

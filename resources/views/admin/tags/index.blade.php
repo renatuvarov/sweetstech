@@ -12,6 +12,7 @@
                     <th scope="col">Наименование (eng)</th>
                     <th scope="col">Наименование (ru)</th>
                     <th scope="col">Слаг</th>
+                    <th scope="col">Изображение</th>
                     <th scope="col">Управление</th>
                 </tr>
                 </thead>
@@ -22,6 +23,7 @@
                         <td class="align-middle">{{$tag->name_en}}</td>
                         <td class="align-middle">{{$tag->name_ru}}</td>
                         <td class="align-middle">{{$tag->slug}}</td>
+                        <td class="w-25"><div class="w-25 m-auto"><img class="img-fluid" src="{{$tag->img}}" alt=""></div></td>
                         <td class="align-middle">
                             <a class="btn btn-info" href="{{ route('admin.tag.edit', ['tag' => $tag->id]) }}">
                                 <i class="fa fa-edit"></i>

@@ -10,7 +10,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Наименование</th>
-                    <th scope="col">Категория</th>
+{{--                    <th scope="col">Категория</th>--}}
                     <th scope="col">Управление</th>
                 </tr>
                 </thead>
@@ -19,7 +19,7 @@
                     <tr>
                         <td class="align-middle">{{$machine->id}}</td>
                         <td class="align-middle">{{$machine->name_ru}}</td>
-                        <td class="align-middle">{{$machine->type->name_ru}}</td>
+{{--                        <td class="align-middle">{{$machine->type->name_ru}}</td>--}}
                         <td class="align-middle">
                             <a class="btn btn-success" href="{{ route('admin.machines.show', ['machine' => $machine->id]) }}">
                                 <i class="fa fa-eye"></i>

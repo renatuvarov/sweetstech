@@ -22,7 +22,7 @@ class CreateMachinesTable extends Migration
             $table->string('slug')->unique();
             $table->string('img');
             $table->unsignedTinyInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
+//            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
     }
 

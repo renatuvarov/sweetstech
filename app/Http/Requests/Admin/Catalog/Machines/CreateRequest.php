@@ -17,14 +17,14 @@ class CreateRequest extends FormRequest
 
     public function rules()
     {
-        $types = implode(',', Type::pluck('id')->toArray());
+//        $types = implode(',', Type::pluck('id')->toArray());
         $tags = implode(',', Tag::pluck('id')->toArray());
         $props = implode(',', Property::pluck('id')->toArray());
 
         return [
             'tags.*' => ['nullable', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
             'properties.*.name' => ['required', 'integer', 'in:' . $props, new UniqueValues($this)],
-            'type' => ['required', 'integer', 'in:' . $types],
+//            'type' => ['required', 'integer', 'in:' . $types],
             'properties.*.value' => 'required|string|min:1',
             'name_ru' => 'required|string|min:3|unique:machines',
             'name_en' => 'required|string|min:3|unique:machines',
@@ -32,6 +32,8 @@ class CreateRequest extends FormRequest
             'img' => 'required|file|max:1024|mimes:jpeg,jpg,png',
             'description_en' => 'required|string|min:3',
             'description_ru' => 'required|string|min:3',
+            'mail_en' => 'required|string|min:3',
+            'mail_ru' => 'required|string|min:3',
         ];
     }
 
@@ -50,9 +52,9 @@ class CreateRequest extends FormRequest
             'tags.*.integer' => 'Значение должно быть целым числом.',
             'tags.*.in' => 'Неизвестный тэг.',
 
-            'type.required' => 'Это поле обязательно для заполнения.',
-            'type.integer' => 'Значение должно быть целым числом.',
-            'type.in' => 'Неизвестная категория.',
+//            'type.required' => 'Это поле обязательно для заполнения.',
+//            'type.integer' => 'Значение должно быть целым числом.',
+//            'type.in' => 'Неизвестная категория.',
 
             'name_ru.required' => 'Это поле обязательно для заполнения',
             'name_ru.string' => 'Значение этого поля должно быть строкой',
@@ -71,6 +73,14 @@ class CreateRequest extends FormRequest
             'description_ru.required' => 'Это поле обязательно для заполнения',
             'description_ru.string' => 'Значение этого поля должно быть строкой',
             'description_ru.min' => 'Длина не менее 3 символов',
+
+            'mail_en.required' => 'Это поле обязательно для заполнения',
+            'mail_en.string' => 'Значение этого поля должно быть строкой',
+            'mail_en.min' => 'Длина не менее 3 символов',
+
+            'mail_ru.required' => 'Это поле обязательно для заполнения',
+            'mail_ru.string' => 'Значение этого поля должно быть строкой',
+            'mail_ru.min' => 'Длина не менее 3 символов',
 
             'slug.string' => 'Значение этого поля должно быть строкой',
             'slug.min' => 'Длина не менее 3 символов',

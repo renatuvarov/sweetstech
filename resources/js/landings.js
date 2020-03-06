@@ -152,7 +152,7 @@ $( document ).ready(function() {
             error: function(response) {
                 console.log('error')
             }
-        })
+        });
     });
 
     $('.order-success-close').on('click', function () {

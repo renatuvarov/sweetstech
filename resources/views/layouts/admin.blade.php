@@ -36,7 +36,7 @@
                                     Каталог
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.types.index') }}">Категории</a>
+{{--                                    <a class="dropdown-item" href="{{ route('admin.types.index') }}">Категории</a>--}}
                                     <a class="dropdown-item" href="{{ route('admin.tag.index') }}">Тэги</a>
                                     <a class="dropdown-item" href="{{ route('admin.properties.index') }}">Параметры</a>
                                     <div class="dropdown-divider"></div>

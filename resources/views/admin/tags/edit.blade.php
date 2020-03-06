@@ -24,6 +24,12 @@
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
+            <div class="form-group">
+                <input value="{{ old('img', $tag->img) }}" type="file" class="form-control @error('img') is-invalid @enderror" name="img">
+                @error('img')
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                @enderror
+            </div>
             <button type="submit" class="btn btn-primary">Обновить</button>
         </form>
     </div>

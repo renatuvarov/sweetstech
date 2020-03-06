@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name_en
  * @property string $name_ru
  * @property string $slug
+ * @property string $img
  */
 class Tag extends Model
 {

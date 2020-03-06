@@ -11,10 +11,14 @@
         <p>{{ $machine->description_en }}</p>
         <h3>Слаг</h3>
         <p>{{ $machine->slug }}</p>
-        <h3>Категория (ru)</h3>
-        <p>{{ $machine->type->name_ru }}</p>
-        <h3>Категория (eng)</h3>
-        <p>{{ $machine->type->name_en }}</p>
+        <h3>Текст письма (ru)</h3>
+        <p>{{ $machine->mail_ru }}</p>
+        <h3>Текст письма (eng)</h3>
+        <p>{{ $machine->mail_en }}</p>
+{{--        <h3>Категория (ru)</h3>--}}
+{{--        <p>{{ $machine->type->name_ru }}</p>--}}
+{{--        <h3>Категория (eng)</h3>--}}
+{{--        <p>{{ $machine->type->name_en }}</p>--}}
         <h3>Тэги</h3>
         <ul class="list-group">
             @foreach($machine->tags as $tag)

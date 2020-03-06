@@ -6,6 +6,7 @@ use App\Entities\Catalog\Tag;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Catalog\Tags\CreateRequest;
 use App\Http\Requests\Admin\Catalog\Tags\UpdateRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class TagController extends Controller
@@ -27,6 +28,7 @@ class TagController extends Controller
             'name_en' => mb_strtolower($request->input('name_en')),
             'name_ru' => mb_strtolower($request->input('name_ru')),
             'slug' => $request->input('slug') ?: Str::slug($request->input('name_en')),
+            'img' => '/storage/' . $request->file('img')->store('tags'),
         ]);
 
         return redirect()->route('admin.tag.index');
@@ -39,10 +41,16 @@ class TagController extends Controller
 
     public function update(UpdateRequest $request, Tag $tag)
     {
+        if ($request->hasFile('img')) {
+            Storage::delete(str_replace('/storage', '', $tag->img));
+            $path = '/storage/' . $request->file('img')->store('types');
+        }
+
         $tag->update([
             'name_en' => mb_strtolower($request->input('name_en')) ?: $tag->name_en,
             'name_ru' => mb_strtolower($request->input('name_ru')) ?: $tag->name_ru,
             'slug' => $request->input('slug') ? Str::slug($request->input('slug')) : $tag->slug,
+            'img' => $path ?? $tag->img,
         ]);
 
         return redirect()->route('admin.tag.index');
@@ -50,6 +58,7 @@ class TagController extends Controller
 
     public function destroy(Tag $tag)
     {
+        Storage::delete(str_replace('/storage', '', $tag->img));
         $tag->delete();
         return redirect()->route('admin.tag.index');
     }

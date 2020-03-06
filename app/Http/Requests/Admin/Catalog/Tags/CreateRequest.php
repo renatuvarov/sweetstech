@@ -17,6 +17,7 @@ class CreateRequest extends FormRequest
             'name_ru' => 'required|string|min:3|unique:tags',
             'name_en' => 'required|string|min:3|unique:tags',
             'slug' => 'nullable|string|min:3|unique:tags',
+            'img' => 'required|file|max:1024|mimes:jpeg,jpg,png',
         ];
     }
 
@@ -36,6 +37,11 @@ class CreateRequest extends FormRequest
             'slug.string' => 'Значение этого поля должно быть строкой',
             'slug.min' => 'Длина не менее 3 символов',
             'slug.unique' => 'Такой слаг уже существует',
+
+            'img.required' => 'Изображение не добавлено',
+            'img.file' => 'Некорректный формат изображения',
+            'img.max' => 'Максимальный размер изображения - 1 мегабайт',
+            'img.mimes' => 'Некорректный формат изображения',
         ];
     }
 }

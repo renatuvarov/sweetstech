@@ -16,19 +16,20 @@ use Illuminate\Support\Str;
  * @property string $name_ru
  * @property string $description_en
  * @property string $description_ru
+ * @property string $mail_ru
+ * @property string $mail_en
  * @property string $slug
  * @property string $img
- * @property integer $type_id
  */
 class Machine extends Model
 {
     public $timestamps = false;
     protected $guarded = ['id'];
 
-    public function type()
-    {
-        return $this->belongsTo(Type::class);
-    }
+//    public function type()
+//    {
+//        return $this->belongsTo(Type::class);
+//    }
 
     public function orders()
     {
@@ -57,8 +58,13 @@ class Machine extends Model
 
     public static function getByIdWithPivots($id): self
     {
-        return self::where('id', $id)->with('properties', 'type', 'tags')->first();
+        return self::where('id', $id)->with('properties', 'tags')->first();
     }
+
+//    public static function getByIdWithPivots($id): self
+//    {
+//        return self::where('id', $id)->with('properties', 'type', 'tags')->first();
+//    }
 
     public static function new(array $data): self
     {
@@ -68,11 +74,13 @@ class Machine extends Model
             'name_ru' => mb_strtolower($data['name_ru']),
             'description_en' => $data['description_en'],
             'description_ru' => $data['description_ru'],
+            'mail_en' => $data['mail_en'],
+            'mail_ru' => $data['mail_ru'],
             'slug' => mb_strtolower($data['slug']) ?: Str::slug(mb_strtolower($data['name_en'])),
             'img' => '/storage/' . $data['img']->store('machines'),
         ]);
 
-        $machine->type()->associate(Type::findOrFail($data['type']));
+//        $machine->type()->associate(Type::findOrFail($data['type']));
 
         $machine->save();
 
@@ -89,11 +97,13 @@ class Machine extends Model
             'name_ru' => mb_strtolower($data['name_ru']) ?: $this->name_ru,
             'description_en' => $data['description_en'] ?: $this->description_en,
             'description_ru' => $data['description_ru'] ?: $this->description_ru,
+            'mail_en' => $data['mail_en'] ?: $this->mail_en,
+            'mail_ru' => $data['mail_ru'] ?: $this->mail_ru,
             'slug' => mb_strtolower($data['slug']) ?: $this->slug,
             'img' => $this->newImg($data['img'] ?? null) ?: $this->img,
         ]);
 
-        $this->type()->associate(Type::findOrFail($data['type']));
+//        $this->type()->associate(Type::findOrFail($data['type']));
 
         $this->save();
 

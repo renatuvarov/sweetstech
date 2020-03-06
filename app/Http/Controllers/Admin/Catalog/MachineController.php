@@ -16,16 +16,17 @@ class MachineController extends Controller
 {
     public function index()
     {
-        $machines = Machine::with('type')->paginate(5);
+//        $machines = Machine::with('type')->paginate(5);
+        $machines = Machine::paginate(5);
         return view('admin.machines.index', compact('machines'));
     }
 
     public function create()
     {
-        $types = Type::all();
+//        $types = Type::all();
         $tags = Tag::all();
         $properties = Property::all();
-        return view('admin.machines.create', compact('types', 'tags', 'properties'));
+        return view('admin.machines.create', compact('tags', 'properties'));
     }
 
     public function store(CreateRequest $request)
@@ -44,10 +45,11 @@ class MachineController extends Controller
     public function edit($id)
     {
         $machine = Machine::getByIdWithPivots($id);
-        $types = Type::all();
+//        $types = Type::all();
         $tags = Tag::all();
         $properties = Property::all();
-        return view('admin.machines.edit', compact('machine', 'tags', 'types', 'properties'));
+        return view('admin.machines.edit', compact('machine', 'tags', 'properties'));
+//        return view('admin.machines.edit', compact('machine', 'tags', 'types', 'properties'));
     }
 
     public function update(UpdateRequest $request, $id)

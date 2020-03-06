@@ -18,7 +18,7 @@ class UpdateRequest extends FormRequest
 
     public function rules()
     {
-        $types = implode(',', Type::pluck('id')->toArray());
+//        $types = implode(',', Type::pluck('id')->toArray());
         $tags = implode(',', Tag::pluck('id')->toArray());
         $props = implode(',', Property::pluck('id')->toArray());
 
@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
             'tags.*' => ['nullable', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
             'properties' => [new PropertiesNotEmpty($this)],
             'properties.*.name' => ['nullable', 'integer', 'in:' . $props, new UniqueValues($this)],
-            'type' => ['nullable', 'integer', 'in:' . $types],
+//            'type' => ['nullable', 'integer', 'in:' . $types],
             'properties.*.value' => 'nullable|string|min:1',
             'name_ru' => 'nullable|string|min:3|unique:machines,name_ru,' . $this->machine . ',id',
             'name_en' => 'nullable|string|min:3|unique:machines,name_en,' . $this->machine . ',id',
@@ -34,6 +34,8 @@ class UpdateRequest extends FormRequest
             'img' => 'nullable|file|max:1024|mimes:jpeg,jpg,png',
             'description_en' => 'nullable|string|min:3',
             'description_ru' => 'nullable|string|min:3',
+            'mail_en' => 'nullable|string|min:3',
+            'mail_ru' => 'nullable|string|min:3',
         ];
     }
 
@@ -49,8 +51,8 @@ class UpdateRequest extends FormRequest
             'tags.*.integer' => 'Значение должно быть целым числом.',
             'tags.*.in' => 'Неизвестный тэг.',
 
-            'type.integer' => 'Значение должно быть целым числом.',
-            'type.in' => 'Неизвестная категория.',
+//            'type.integer' => 'Значение должно быть целым числом.',
+//            'type.in' => 'Неизвестная категория.',
 
             'name_ru.string' => 'Значение этого поля должно быть строкой',
             'name_ru.min' => 'Длина не менее 3 символов',
@@ -65,6 +67,12 @@ class UpdateRequest extends FormRequest
 
             'description_ru.string' => 'Значение этого поля должно быть строкой',
             'description_ru.min' => 'Длина не менее 3 символов',
+
+            'mail_en.string' => 'Значение этого поля должно быть строкой',
+            'mail_en.min' => 'Длина не менее 3 символов',
+
+            'mail_ru.string' => 'Значение этого поля должно быть строкой',
+            'mail_ru.min' => 'Длина не менее 3 символов',
 
             'slug.string' => 'Значение этого поля должно быть строкой',
             'slug.min' => 'Длина не менее 3 символов',
