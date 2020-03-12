@@ -43,7 +43,7 @@ Route::group([
 //            Route::get('/{slug}', 'TypeController@show')->name('show');
 //        });
 
-        Route::get('/tags/{slug}', 'TagController@show')->name('user.tags.show');
+        Route::get('/category/{slug}', 'TagController@show')->name('user.tags.show');
         Route::get('/catalog/{slug}', 'MachineController@show')->name('user.catalog.show');
         Route::post('/order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('user.order');
     });
@@ -70,7 +70,7 @@ Route::group([
 //            Route::get('/{slug}', 'TypeController@show')->name('show');
 //        });
 
-        Route::get('/tags/{slug}', 'TagController@show')->name('user.tags.show');
+        Route::get('/category/{slug}', 'TagController@show')->name('user.tags.show');
         Route::get('/catalog/{slug}', 'MachineController@show')->name('user.catalog.show');
         Route::post('/order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('user.order');
     });

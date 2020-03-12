@@ -38,6 +38,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <a href="/{{ config('site.user.routes.prefix.path') }}{{ request()->getRequestUri() }}">ru</a>
                         @guest
 {{--                            <li class="nav-item">--}}
 {{--                                <a class="nav-link" href="{{ route('login') }}">Вход</a>--}}

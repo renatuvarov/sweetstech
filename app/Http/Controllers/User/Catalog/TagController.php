@@ -12,6 +12,6 @@ class TagController extends Controller
         $tag = Tag::where('slug', $slug)->first();
         $machines = $tag->machines()->paginate(config('site.user.pagination'));
 //        $machines = $tag->machines()->with('type')->paginate(config('site.user.pagination'));
-        return view('user.catalog.tags.show', compact('tag', 'machines'));
+        return $this->getView('user.catalog.tags.show', compact('tag', 'machines'));
     }
 }

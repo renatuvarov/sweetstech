@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.ru-app')
 
 @section('content')
     <div class="container">
@@ -15,7 +15,7 @@
         @if($machine->tags->count() > 0)
             <ul>
                 @foreach($machine->tags as $tag)
-                    <li><a href="{{ route('user.tags.show', ['slug' => $tag->slug]) }}">{{ $tag->name_ru }}</a></li>
+                    <li><a href="{{ route('ru.user.tags.show', ['slug' => $tag->slug]) }}">{{ $tag->name_ru }}</a></li>
                 @endforeach
             </ul>
         @endif
