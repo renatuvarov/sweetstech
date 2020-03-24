@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Blog;
 
+use App\Handlers\ImageManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PostImagesController extends Controller
 {
@@ -18,12 +18,9 @@ class PostImagesController extends Controller
         return '/storage/' . $file->store('posts/' . date('dmY'));
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, ImageManager $manager)
     {
-        $files = json_decode($request->input('files'));
-        foreach ($files as $file) {
-            Storage::delete(str_replace('/storage/', '', $file));
-        }
+        $manager->delete(json_decode($request->input('files')));
         return 'deleted';
     }
 }

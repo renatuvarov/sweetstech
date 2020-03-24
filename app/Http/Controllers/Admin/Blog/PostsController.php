@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Blog;
 use App\Entities\Blog\Category;
 use App\Entities\Blog\Post;
 use App\Entities\Blog\Tag;
+use App\Handlers\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Blog\Posts\CreateRequest;
 use App\Http\Requests\Admin\Blog\Posts\UpdateRequest;
@@ -28,6 +29,7 @@ class PostsController extends Controller
 
     public function store(CreateRequest $request)
     {
+        /** @var Post $post */
         $post = Post::create([
             'title_en' => $en = mb_strtolower($request->input('title_en')),
             'title_ru' => mb_strtolower($request->input('title_ru')),
@@ -38,9 +40,7 @@ class PostsController extends Controller
             'images' => empty($request->input('images')) ? null : $request->input('images'),
         ]);
 
-        if (! empty(array_filter($request->input('tags')))) {
-            $post->tags()->attach($request->input('tags'));
-        }
+        $post->attachTags($request->input('tags'));
 
         return redirect()->route('admin.blog.posts.index');
     }
@@ -57,7 +57,7 @@ class PostsController extends Controller
         return view('admin.blog.posts.edit', compact('post', 'tags', 'categories'));
     }
 
-    public function update(UpdateRequest $request, Post $post)
+    public function update(UpdateRequest $request, Post $post, ImageManager $manager)
     {
         $forRemoving = (array)$request->input('for_removing');
 
@@ -75,25 +75,16 @@ class PostsController extends Controller
             'images' => empty($images) ? null : $images,
         ]);
 
-        $post->tags()->detach();
+        $post->attachTags($request->input('tags'));
 
-        if (! empty(array_filter((array)$request->input('tags')))) {
-            $post->tags()->attach($request->input('tags'));
-        }
-
-        foreach ($forRemoving as $image) {
-            Storage::delete(str_replace('/storage/', '', $image));
-        }
+        $manager->delete($forRemoving);
 
         return redirect()->route('admin.blog.posts.index');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Post $post, ImageManager $manager)
     {
-        foreach ((array)$post->images as $image) {
-            Storage::delete(str_replace('/storage/', '', $image));
-        }
-
+        $manager->delete($post->images);
         $post->delete();
         return redirect()->route('admin.blog.posts.index');
     }

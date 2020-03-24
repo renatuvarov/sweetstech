@@ -167,6 +167,9 @@
 
         $('.add-item-form').on('submit', function () {
             submited = true;
+            $('textarea').each(function () {
+                $(this).val($(this).val().replace(new RegExp('<p><br></p>', 'g'), ''));
+            });
         });
 
         $(window).on('beforeunload', function () {

@@ -6,30 +6,30 @@
 @endpush
 
 @section('content')
-<div class="container">
+<div class="pt-5 pb-5">
     <h2 class="display-4 text-center mb-5">Редактировать пост (выставку)</h2>
     <form action="{{ route('admin.blog.posts.update', ['post' => $post->id]) }}" method="post" class="add-item-form">
         @csrf
         @method('put')
-        <div class="form-group">
+        <div class="form-group w-50 ml-auto mr-auto mb-5">
             <input type="text" name="title_ru" value="{{ old('title_ru', $post->title_ru) }}" class="form-control" placeholder="заголовок (русский)">
             @error('title_ru')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group w-50 ml-auto mr-auto mb-5">
             <input type="text" name="title_en" value="{{ old('title_en', $post->title_en) }}" class="form-control" placeholder="заголовок (английский)">
             @error('title_en')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group w-50 ml-auto mr-auto mb-5">
             <input type="text" name="slug" value="{{ old('slug', $post->slug) }}" class="form-control" placeholder="слаг">
             @error('slug')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group w-50 ml-auto mr-auto mb-5">
             <select name="category_id" class="form-control">
                 @foreach($categories as $category)
                     <option value="{{$category->id}}" @if($category->id === $post->category_id) selected @endif>{{$category->name_ru}}</option>
@@ -39,7 +39,8 @@
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group w-25 ml-auto mr-auto mb-5 text-center">
+            <label for="tags-select" class="label h4">Тэги</label>
             <select name="tags[]" multiple class="form-control" id="tags-select">
                 <option value="" disabled selected class="empty-value">не выбрано</option>
                 @foreach($tags as $tag)
@@ -78,7 +79,7 @@
                 <input type="hidden" class="new-image" name="images[]" value="{{ $image }}">
             @endforeach
         @endif
-        <button type="submit" class="btn btn-success w-25">Сохранить</button>
+        <button type="submit" class="btn btn-success btn-block w-25 m-auto">Сохранить</button>
     </form>
 </div>
 @endsection
@@ -185,6 +186,9 @@
 
         $('.add-item-form').on('submit', function () {
             submited = true;
+            $('textarea').each(function () {
+                $(this).val($(this).val().replace(new RegExp('<p><br></p>', 'g'), ''));
+            });
         });
 
         $(window).on('beforeunload', function () {
