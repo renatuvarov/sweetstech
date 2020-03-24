@@ -28,7 +28,6 @@ class PostsController extends Controller
 
     public function store(CreateRequest $request)
     {
-        dd($request->all());
         $post = Post::create([
             'title_en' => $en = mb_strtolower($request->input('title_en')),
             'title_ru' => mb_strtolower($request->input('title_ru')),
@@ -78,7 +77,7 @@ class PostsController extends Controller
 
         $post->tags()->detach();
 
-        if (! empty(array_filter($request->input('tags')))) {
+        if (! empty(array_filter((array)$request->input('tags')))) {
             $post->tags()->attach($request->input('tags'));
         }
 
