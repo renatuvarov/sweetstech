@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5">Обновить параметр</h2>
+        <h2 class="h2 mb-5 display-4">Обновить параметр</h2>
         <form class="text-left w-50 m-auto" method="post" action="{{ route('admin.properties.update', ['property' => $property->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('put')

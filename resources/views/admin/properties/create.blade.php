@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5">Новый параметр</h2>
+        <h2 class="h2 mb-5 display-4">Новый параметр</h2>
         <form class="text-left w-50 m-auto" method="post" action="{{ route('admin.properties.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group required">

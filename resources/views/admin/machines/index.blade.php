@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5">Оборудование</h2>
+        <h2 class="h2 mb-5 display-4">Оборудование</h2>
         <a href="{{route('admin.machines.create')}}" class="btn btn-success d-block w-25 m-auto">Добавить</a>
         @if(! empty($machines) && $machines->count() > 0)
             <table class="table table-bordered table-hover mt-5">

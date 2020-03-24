@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5">Создать</h2>
+        <h2 class="h2 mb-5 display-4">Создать</h2>
         <form class="text-left w-50 mr-auto ml-auto mb-5" method="post" action="{{ route('admin.machines.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group required">

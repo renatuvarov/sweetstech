@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5">Обновить</h2>
+        <h2 class="h2 mb-5 display-4">Обновить</h2>
         <form class="text-left w-50 mr-auto ml-auto mb-5" method="post" action="{{ route('admin.machines.update', ['machine' => $machine->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('put')

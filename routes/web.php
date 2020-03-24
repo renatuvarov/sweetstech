@@ -86,11 +86,25 @@ Route::group([
 
     Route::group([
         'namespace' => 'Catalog',
+        'prefix' => 'catalog',
     ], function () {
 //        Route::resource('types', 'TypeController')->except('show');
         Route::resource('tag', 'TagController')->except('show');
         Route::resource('properties', 'PropertyController')->except('show');
         Route::resource('machines', 'MachineController');
+    });
+
+    Route::group([
+        'namespace' => 'Blog',
+        'as' => 'blog.',
+        'prefix' => 'blog',
+    ], function () {
+        Route::resource('posts', 'PostsController');
+        Route::resource('categories', 'CategoriesController')->except('show');
+        Route::resource('tags', 'TagsController')->except('show');
+
+        Route::post('post-images', 'PostImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
+        Route::post('post-images-delete', 'PostImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
     });
 });
 
