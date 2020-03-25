@@ -24,8 +24,8 @@ class UpdateRequest extends FormRequest
             'slug' => 'nullable|string|min:3|max:255|unique:posts,slug,' . $this->post->id . ',id',
             'category_id' => 'nullable|integer|in:' . $categories,
             'tags.*' => 'nullable|integer|in:' . $tags,
-            'content_ru' => 'nullable|string|min:10',
-            'content_en' => 'nullable|string|min:10',
+            'content_ru' => 'required|string|min:10',
+            'content_en' => 'required|string|min:10',
             'images.*' => 'nullable|string'
         ];
     }
@@ -54,9 +54,11 @@ class UpdateRequest extends FormRequest
             'tags.*.integer' => 'Некорректное значение',
             'tags.*.in' => 'Такого тэга не существует',
 
+            'content_ru.required' => 'Обязательный параметр',
             'content_ru.string' => 'Некорректное значение',
             'content_ru.min' => 'Минимум 10 символов',
 
+            'content_en.required' => 'Обязательный параметр',
             'content_en.string' => 'Некорректное значение',
             'content_en.min' => 'Минимум 10 символов',
         ];

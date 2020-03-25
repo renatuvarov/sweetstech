@@ -7,7 +7,7 @@
 @section('content')
     <div class="text-center">
         <h2 class="h2 mb-5 display-4">Новое оборудование</h2>
-        <form class="text-left mb-5" method="post" action="{{ route('admin.machines.store') }}" enctype="multipart/form-data">
+        <form class="add-item-form text-left mb-5" method="post" action="{{ route('admin.machines.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="container w-50 m-auto">
                 <div class="form-group required">
@@ -29,8 +29,8 @@
                     @enderror
                 </div>
             </div>
-            <div class="form-group text-center">
-                <label for="description_en" class="h4 text-center required">Описание (eng)</label>
+            <div class="form-group">
+                <label for="description_en" class="h4 d-block text-center required">Описание (eng)</label>
                 <textarea id="description_en"
                           class="form-control  @error('description_en') is-invalid @enderror summernote"
                           name="description_en"
@@ -40,8 +40,8 @@
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group border-bottom pb-5 text-center">
-                <label for="description_ru" class="h4 text-center required">Описание (ru)</label>
+            <div class="form-group border-bottom pb-5">
+                <label for="description_ru" class="h4 d-block text-center required">Описание (ru)</label>
                 <textarea id="description_ru"
                           class="form-control  @error('description_ru') is-invalid @enderror summernote"
                           name="description_ru"
@@ -73,7 +73,7 @@
                 <div class="form-group border-bottom pb-5">
                     <label for="tags-select">Категории</label>
                     <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
-                        <option selected value=""></option>
+                        <option selected value="" class="empty-value"></option>
                         @foreach($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->name_ru }}</option>
                         @endforeach
@@ -141,10 +141,11 @@
 @push('js')
     <script src="{{ asset('js/jquery.multi-select.js') }}"></script>
     <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('js/summernote-create-item.js') }}"></script>
     <script>
         $('#tags-select').multiSelect({
             afterSelect: function () {
-                $('#tags-select option[value=""]').removeAttr('selected');
+                $('#tags-select .empty-value').removeAttr('selected');
             },
             selectableHeader: "<div class='custom-header'>Выберите категорию</div>",
             selectionHeader: "<div class='custom-header'>Выбранные категории</div>",
@@ -169,100 +170,5 @@
             }
             $(this).closest('.form-row').remove();
         });
-    </script>
-    <script>
-        (function () {
-            var submited = false;
-
-            function loadNewImages(url, data, success, error) {
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    data: data,
-                    processData: false,
-                    cache: false,
-                    contentType: false,
-                    headers: {
-                        'X-CSRF-TOKEN': $('input[name="_token"]').val()
-                    },
-                    success: success,
-                    error: error
-                });
-            }
-
-            $('.summernote').summernote({
-                tabsize: 2,
-                height: 500,
-                width: 1280,
-                callbacks: {
-                    onImageUpload: function (files) {
-                        var editor = $(this);
-                        var url = editor.data('image-url');
-                        var data = new FormData();
-                        data.append('file', files[0]);
-
-                        loadNewImages(url, data,
-                            function (res) {
-                                editor.summernote('insertImage', res);
-
-                                $('<input>', {
-                                    type: 'hidden',
-                                    name: 'images[]',
-                                    value: res,
-                                    class: 'new-image'
-                                }).appendTo('.add-item-form');
-                            },
-                            function (error) {
-                                console.log(error);
-                            }
-                        );
-                    },
-                    onMediaDelete: function(target) {
-                        var src = target[0].src;
-                        src = src.replace(new URL(src).origin, '');
-
-                        if ($('img[src="' + src + '"]').length === 0) {
-                            var editor = $(this);
-                            var url = editor.data('image-delete');
-                            var data = new FormData();
-
-                            data.append('files', JSON.stringify([src]));
-
-                            loadNewImages(url, data, function (res) {
-                                $('input[value="' + src + '"]').remove();
-                            }, function (error) {
-                                console.log(error);
-                            });
-                        }
-                    }
-                }
-            });
-
-            $('.add-item-form').on('submit', function () {
-                submited = true;
-                $('textarea').each(function () {
-                    $(this).val($(this).val().replace(new RegExp('<p><br></p>', 'g'), ''));
-                });
-            });
-
-            $(window).on('beforeunload', function () {
-                if (! submited) {
-                    var urls = $('.new-image').map(function () {
-                        return $(this).val();
-                    }).get();
-
-                    var url = $('.summernote').data('image-delete');
-                    var data = new FormData();
-                    data.append('files', JSON.stringify([urls]));
-                    $('.new-image').remove();
-
-                    loadNewImages(url, data, function(res) {
-                        console.log(res)
-                    }, function (error) {
-                        console.log(error)
-                    });
-                }
-            });
-        })();
     </script>
 @endpush

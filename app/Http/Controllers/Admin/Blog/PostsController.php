@@ -6,9 +6,12 @@ use App\Entities\Blog\Category;
 use App\Entities\Blog\Post;
 use App\Entities\Blog\Tag;
 use App\Handlers\ImageManager;
+use App\Handlers\TransactionManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Blog\Posts\CreateRequest;
 use App\Http\Requests\Admin\Blog\Posts\UpdateRequest;
+use App\UseCases\Blog\CreatePost;
+use App\UseCases\Blog\UpdatePost;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -26,21 +29,13 @@ class PostsController extends Controller
         return view('admin.blog.posts.create', compact('categories', 'tags'));
     }
 
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request, TransactionManager $transactionManager, CreatePost $createPost)
     {
-        /** @var Post $post */
-        $post = Post::create([
-            'title_en' => $en = mb_strtolower($request->input('title_en')),
-            'title_ru' => mb_strtolower($request->input('title_ru')),
-            'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: Str::slug($en),
-            'category_id' => $request->input('category_id'),
-            'content_en' => clean($request->input('content_en')),
-            'content_ru' => clean($request->input('content_ru')),
-            'images' => empty($request->input('images')) ? null : $request->input('images'),
-        ]);
+       $transactionManager->handle(function () use ($request, $createPost) {
+           $createPost->action($request->all());
+       });
 
-        $post->attachTags($request->input('tags'));
-        return redirect()->route('admin.blog.posts.index');
+       return redirect()->route('admin.blog.posts.index');
     }
 
     public function show(Post $post)
@@ -55,26 +50,12 @@ class PostsController extends Controller
         return view('admin.blog.posts.edit', compact('post', 'tags', 'categories'));
     }
 
-    public function update(UpdateRequest $request, Post $post, ImageManager $manager)
+    public function update(UpdateRequest $request, Post $post, TransactionManager $transactionManager, UpdatePost $updatePost)
     {
-        $forRemoving = (array)$request->input('for_removing');
-
-        $images = array_filter($request->input('images'), function ($image) use ($forRemoving) {
-            return ! in_array($image, (array)$forRemoving);
+        $transactionManager->handle(function () use ($post, $request, $updatePost) {
+            $updatePost->action($request->all(), $post);
         });
 
-        $post->update([
-            'title_en' => $en = mb_strtolower($request->input('title_en')) ?: $post->title_en,
-            'title_ru' => mb_strtolower($request->input('title_ru')) ?: $post->title_ru,
-            'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: $post->slug,
-            'category_id' => $request->input('category_id') ?: $post->category_id,
-            'content_en' => empty($request->input('content_en')) ? $post->content_en : clean($request->input('content_en')),
-            'content_ru' => empty($request->input('content_ru')) ? $post->content_ru : clean($request->input('content_ru')),
-            'images' => empty($images) ? null : $images,
-        ]);
-
-        $post->attachTags($request->input('tags'));
-        $manager->delete($forRemoving);
         return redirect()->route('admin.blog.posts.index');
     }
 

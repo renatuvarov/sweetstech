@@ -20,16 +20,16 @@ use Illuminate\Support\Str;
  * @property string $mail_en
  * @property string $slug
  * @property string $img
+ * @property array $images
  */
 class Machine extends Model
 {
     public $timestamps = false;
     protected $guarded = ['id'];
 
-//    public function type()
-//    {
-//        return $this->belongsTo(Type::class);
-//    }
+    protected $casts = [
+        'images' => 'array',
+    ];
 
     public function orders()
     {
@@ -61,60 +61,7 @@ class Machine extends Model
         return self::where('id', $id)->with('properties', 'tags')->first();
     }
 
-//    public static function getByIdWithPivots($id): self
-//    {
-//        return self::where('id', $id)->with('properties', 'type', 'tags')->first();
-//    }
-
-    public static function new(array $data): self
-    {
-        /** @var Machine $machine */
-        $machine = Machine::make([
-            'name_en' => mb_strtolower($data['name_en']),
-            'name_ru' => mb_strtolower($data['name_ru']),
-            'description_en' => clean($data['description_en']),
-            'description_ru' => clean($data['description_ru']),
-            'mail_en' => $data['mail_en'],
-            'mail_ru' => $data['mail_ru'],
-            'slug' => mb_strtolower($data['slug']) ?: Str::slug(mb_strtolower($data['name_en'])),
-            'img' => '/storage/' . $data['img']->store('machines'),
-            'images' => empty($data['images']) ? null : $data['images'],
-        ]);
-
-//        $machine->type()->associate(Type::findOrFail($data['type']));
-
-        $machine->save();
-
-        $machine->newTags($data['tags'] ?? []);
-        $machine->newProperties($data['properties'] ?? []);
-
-        return $machine;
-    }
-
-    public function updateMachine(array $data): self
-    {
-        $this->update([
-            'name_en' => mb_strtolower($data['name_en']) ?: $this->name_en,
-            'name_ru' => mb_strtolower($data['name_ru']) ?: $this->name_ru,
-            'description_en' => $data['description_en'] ?: $this->description_en,
-            'description_ru' => $data['description_ru'] ?: $this->description_ru,
-            'mail_en' => $data['mail_en'] ?: $this->mail_en,
-            'mail_ru' => $data['mail_ru'] ?: $this->mail_ru,
-            'slug' => mb_strtolower($data['slug']) ?: $this->slug,
-            'img' => $this->newImg($data['img'] ?? null) ?: $this->img,
-        ]);
-
-//        $this->type()->associate(Type::findOrFail($data['type']));
-
-        $this->save();
-
-        $this->newTags($data['tags'] ?? []);
-        $this->newProperties($data['properties'] ?? []);
-
-        return $this;
-    }
-
-    private function newImg(?UploadedFile $file)
+    public function newImg(?UploadedFile $file)
     {
         if (! empty($file)) {
             Storage::delete(str_replace('/storage', '', $this->img));
@@ -122,7 +69,7 @@ class Machine extends Model
         }
     }
 
-    private function newTags($tags): void
+    public function newTags($tags): void
     {
         $this->tags()->detach();
 
@@ -131,7 +78,7 @@ class Machine extends Model
         }
     }
 
-    private function newProperties($properties): void
+    public function newProperties($properties): void
     {
         if (! empty($properties)) {
             $this->properties()->detach();

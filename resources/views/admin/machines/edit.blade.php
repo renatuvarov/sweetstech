@@ -5,50 +5,62 @@
 @endsection
 
 @section('content')
-    <div class="container text-center">
-        <h2 class="h2 mb-5 display-4">Редактировать</h2>
-        <form class="text-left w-50 mr-auto ml-auto mb-5" method="post" action="{{ route('admin.machines.update', ['machine' => $machine->id]) }}" enctype="multipart/form-data">
+    <div>
+        <h2 class="h2 mb-5 display-4 text-center">Редактировать</h2>
+        <form class="add-item-form text-left pb-5" method="post" action="{{ route('admin.machines.update', ['machine' => $machine->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('put')
-            <div class="form-group required">
-                <label for="name_ru" class="form-label">Наименование (ru)</label>
-                <input value="{{ old('name_ru', $machine->name_ru) }}" type="text" id="name_ru" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
-                @error('name_ru')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
+            <div class="container w-50 m-auto">
+                <div class="form-group required">
+                    <label for="name_ru" class="form-label">Наименование (ru)</label>
+                    <input value="{{ old('name_ru', $machine->name_ru) }}" type="text" id="name_ru" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
+                    @error('name_ru')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-5">
+                    <label for="name_en" class="form-label">Наименование (eng)</label>
+                    <input value="{{ old('name_en', $machine->name_en) }}" id="name_en" type="text" class="form-control  @error('name_en') is-invalid @enderror" placeholder="Наименование (eng)" name="name_en">
+                    @error('name_en')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group border-bottom pb-5">
+                    <label for="slug-input" class="form-label">Слаг</label>
+                    <input value="{{ old('slug', $machine->slug) }}" type="text" id="slug-input" class="form-control @error('slug') is-invalid @enderror" placeholder="Слаг" name="slug">
+                    @error('slug')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-5">
+                    <label for="img-input" class="form-label">Изображение оборудования</label>
+                    <input type="file" class="form-control @error('img') is-invalid @enderror" name="img" id="img-input">
+                    @error('img')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
             </div>
-            <div class="form-group required border-bottom pb-5">
-                <label for="name_en" class="form-label">Наименование (eng)</label>
-                <input value="{{ old('name_en', $machine->name_en) }}" id="name_en" type="text" class="form-control  @error('name_en') is-invalid @enderror" placeholder="Наименование (eng)" name="name_en">
-                @error('name_en')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group required">
-                <label for="description_en" class="form-label">Описание (eng)</label>
-                <textarea id="description_en" class="form-control  @error('description_en') is-invalid @enderror" placeholder="Описание (eng)" name="description_en" rows="10">{{ old('description_en', $machine->description_en) }}</textarea>
+            <div class="form-group">
+                <label for="description_en" class="form-label d-block text-center required h4">Описание (eng)</label>
+                <textarea id="description_en"
+                          class="form-control  @error('description_en') is-invalid @enderror summernote"
+                          placeholder="Описание (eng)"
+                          name="description_en"
+                          data-image-url="{{ route('admin.images.upload') }}"
+                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_en', $machine->description_en) }}</textarea>
                 @error('description_en')
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group required border-bottom pb-5">
-                <label for="description_ru" class="form-label">Описание (ru)</label>
-                <textarea id="description_ru" class="form-control  @error('description_ru') is-invalid @enderror" placeholder="Описание (ru)" name="description_ru" rows="10">{{ old('description_ru', $machine->description_ru) }}</textarea>
-                @error('description_ru')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
             <div class="form-group border-bottom pb-5">
-                <label for="slug-input" class="form-label">Слаг</label>
-                <input value="{{ old('slug', $machine->slug) }}" type="text" id="slug-input" class="form-control @error('slug') is-invalid @enderror" placeholder="Слаг" name="slug">
-                @error('slug')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group required border-bottom pb-5">
-                <label for="img-input" class="form-label">Изображение оборудования</label>
-                <input type="file" class="form-control @error('img') is-invalid @enderror" name="img" id="img-input">
-                @error('img')
+                <label for="description_ru" class="form-label d-block text-center required h4">Описание (ru)</label>
+                <textarea id="description_ru"
+                          class="form-control  @error('description_ru') is-invalid @enderror summernote"
+                          placeholder="Описание (ru)"
+                          name="description_ru"
+                          data-image-url="{{ route('admin.images.upload') }}"
+                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_ru', $machine->description_ru) }}</textarea>
+                @error('description_ru')
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
@@ -67,7 +79,8 @@
 {{--                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
 {{--                @enderror--}}
 {{--            </div>--}}
-            <div class="form-group border-bottom pb-5">
+            <div class="container w-50 m-auto">
+            <div class="form-group border-bottom pb-5 text-center">
                 <label for="tags-select">Категории</label>
                 <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
                     @if($machine->tags->count() === 0)
@@ -138,20 +151,33 @@
                 @enderror
             </div>
             <p class="text-left font-weight-bold mt-3"><span class="text-danger">*</span> - обязательные поля</p>
-            <button type="submit" class="btn btn-primary d-block w-50">Создать</button>
+            </div>
+            @if(! empty($machine->images))
+                @foreach($machine->images as $image)
+                    <input type="hidden" class="old-image" name="images[]" value="{{ $image }}">
+                @endforeach
+            @endif
+            @if($errors->count() > 0 && ! empty(old('images')))
+                @foreach(old('images') as $image)
+                    <input type="hidden" class="new-image" name="images[]" value="{{ $image }}">
+                @endforeach
+            @endif
+            <div class="text-center container">
+                <button type="submit" class="btn btn-primary w-50">Сохранить</button>
+            </div>
         </form>
     </div>
 @endsection
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/summernote-bs4.min.css') }}">
-    <script src="{{ asset('js/summernote-edit-item.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/multi-select.dist.css') }}">
 @endpush
 
 @push('js')
     <script src="{{ asset('js/jquery.multi-select.js') }}"></script>
     <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('js/summernote-edit-item.js') }}"></script>
     <script>
         $('#tags-select').multiSelect({
             afterSelect: function () {

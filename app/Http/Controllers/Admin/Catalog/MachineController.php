@@ -6,9 +6,13 @@ use App\Entities\Catalog\Machine;
 use App\Entities\Catalog\Property;
 use App\Entities\Catalog\Tag;
 use App\Entities\Catalog\Type;
+use App\Handlers\ImageManager;
+use App\Handlers\TransactionManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Catalog\Machines\CreateRequest;
 use App\Http\Requests\Admin\Catalog\Machines\UpdateRequest;
+use App\UseCases\Catalog\CreateMachine;
+use App\UseCases\Catalog\UpdateMachine;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -16,24 +20,24 @@ class MachineController extends Controller
 {
     public function index()
     {
-//        $machines = Machine::with('type')->paginate(5);
         $machines = Machine::paginate(5);
         return view('admin.machines.index', compact('machines'));
     }
 
     public function create()
     {
-//        $types = Type::all();
         $tags = Tag::all();
         $properties = Property::all();
         return view('admin.machines.create', compact('tags', 'properties'));
     }
 
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request, CreateMachine $createMachine, TransactionManager $transactionManager)
     {
-        return redirect()->route('admin.machines.show', [
-            'machine' => Machine::new($request->all())->id,
-        ]);
+        $transactionManager->handle(function () use ($request, $createMachine) {
+            $createMachine->action($request->all());
+        });
+
+        return redirect()->route('admin.machines.index');
     }
 
     public function show($id)
@@ -45,24 +49,28 @@ class MachineController extends Controller
     public function edit($id)
     {
         $machine = Machine::getByIdWithPivots($id);
-//        $types = Type::all();
         $tags = Tag::all();
         $properties = Property::all();
         return view('admin.machines.edit', compact('machine', 'tags', 'properties'));
-//        return view('admin.machines.edit', compact('machine', 'tags', 'types', 'properties'));
     }
 
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $id, UpdateMachine $updateMachine, TransactionManager $transactionManager)
     {
         $machine = Machine::getByIdWithPivots($id);
+
+        $transactionManager->handle(function () use ($request, $updateMachine, $machine) {
+            $updateMachine->action($machine, $request->all());
+        });
+
         return redirect()->route('admin.machines.show', [
-            'machine' => $machine->updateMachine($request->all())->id,
+            'machine' => $machine->id,
         ]);
     }
 
-    public function destroy(Machine $machine)
+    public function destroy(Machine $machine, ImageManager $manager)
     {
-        Storage::delete(str_replace('/storage', '', $machine->img));
+        $manager->delete([$machine->img]);
+        $manager->delete($machine->images);
         $machine->delete();
         return redirect()->route('admin.machines.index');
     }

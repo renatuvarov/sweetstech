@@ -28,15 +28,18 @@
                 var data = new FormData();
                 data.append('file', files[0]);
 
-                loadNewImages(url, data, function (res) {
+                loadNewImages(url, data,
+                    function (res) {
                         editor.summernote('insertImage', res);
+
                         $('<input>', {
                             type: 'hidden',
                             name: 'images[]',
                             value: res,
                             class: 'new-image'
                         }).appendTo('.add-item-form');
-                    }, function (error) {
+                    },
+                    function (error) {
                         console.log(error);
                     }
                 );
@@ -44,19 +47,8 @@
             onMediaDelete: function(target) {
                 var src = target[0].src;
                 src = src.replace(new URL(src).origin, '');
-                var newImage = $('.new-image[value="' + src + '"]');
-                var imgCount = $('img[src="' + src + '"]').length;
 
-                if (imgCount === 0) {
-                    if (newImage.get().length === 0) {
-                        $('<input>', {
-                            type: 'hidden',
-                            name: 'for_removing[]',
-                            value: src
-                        }).appendTo('.add-item-form');
-                        return;
-                    }
-
+                if ($('img[src="' + src + '"]').length === 0) {
                     var editor = $(this);
                     var url = editor.data('image-delete');
                     var data = new FormData();
@@ -64,7 +56,7 @@
                     data.append('files', JSON.stringify([src]));
 
                     loadNewImages(url, data, function (res) {
-                        newImage.remove();
+                        $('input[value="' + src + '"]').remove();
                     }, function (error) {
                         console.log(error);
                     });
@@ -82,13 +74,14 @@
 
     $(window).on('beforeunload', function () {
         if (! submited) {
-            var url = $('.summernote').data('image-delete');
-            var data = new FormData();
             var urls = $('.new-image').map(function () {
                 return $(this).val();
             }).get();
 
+            var url = $('.summernote').data('image-delete');
+            var data = new FormData();
             data.append('files', JSON.stringify(urls));
+            $('.new-image').remove();
 
             loadNewImages(url, data, function(res) {
                 console.log(res)
@@ -97,4 +90,4 @@
             });
         }
     });
-})(jQuery);
+})($);

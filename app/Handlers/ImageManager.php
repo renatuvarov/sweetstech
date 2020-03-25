@@ -21,7 +21,7 @@ class ImageManager
 
     public function delete($images): void
     {
-        foreach ((array)$images as $image) {
+        foreach ($images as $image) {
             Storage::delete($this->prepareToDelete($image));
         }
     }
