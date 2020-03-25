@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Все тэги</title>
+@endsection
+
 @section('content')
     <div class="container text-center">
         <h2 class="h2 mb-5 display-4">Тэги</h2>

@@ -92,6 +92,9 @@ Route::group([
         Route::resource('tag', 'TagController')->except('show');
         Route::resource('properties', 'PropertyController')->except('show');
         Route::resource('machines', 'MachineController');
+
+        Route::post('blog-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
+        Route::post('blog-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
     });
 
     Route::group([
@@ -103,8 +106,8 @@ Route::group([
         Route::resource('categories', 'CategoriesController')->except('show');
         Route::resource('tags', 'TagsController')->except('show');
 
-        Route::post('post-images', 'PostImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
-        Route::post('post-images-delete', 'PostImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
+        Route::post('post-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
+        Route::post('post-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
     });
 });
 

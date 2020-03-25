@@ -1,8 +1,12 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Редактировать оборудование</title>
+@endsection
+
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5 display-4">Обновить</h2>
+        <h2 class="h2 mb-5 display-4">Редактировать</h2>
         <form class="text-left w-50 mr-auto ml-auto mb-5" method="post" action="{{ route('admin.machines.update', ['machine' => $machine->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('put')
@@ -64,7 +68,7 @@
 {{--                @enderror--}}
 {{--            </div>--}}
             <div class="form-group border-bottom pb-5">
-                <label for="tags-select">Тэги</label>
+                <label for="tags-select">Категории</label>
                 <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
                     @if($machine->tags->count() === 0)
                         <option selected value=""></option>
@@ -140,16 +144,21 @@
 @endsection
 
 @push('css')
+    <link rel="stylesheet" href="{{ asset('css/summernote-bs4.min.css') }}">
+    <script src="{{ asset('js/summernote-edit-item.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/multi-select.dist.css') }}">
 @endpush
 
 @push('js')
     <script src="{{ asset('js/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
     <script>
         $('#tags-select').multiSelect({
             afterSelect: function () {
                 $('#tags-select option[value=""]').removeAttr('selected');
-            }
+            },
+            selectableHeader: "<div class='custom-header'>Выберите категорию</div>",
+            selectionHeader: "<div class='custom-header'>Выбранные категории</div>",
         });
 
         $('#add').on('click', function (e) {

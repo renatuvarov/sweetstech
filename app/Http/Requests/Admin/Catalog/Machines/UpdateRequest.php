@@ -36,6 +36,7 @@ class UpdateRequest extends FormRequest
             'description_ru' => 'nullable|string|min:3',
             'mail_en' => 'nullable|string|min:3',
             'mail_ru' => 'nullable|string|min:3',
+            'images.*' => 'nullable|string',
         ];
     }
 

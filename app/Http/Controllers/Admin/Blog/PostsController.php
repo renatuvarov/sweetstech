@@ -9,7 +9,6 @@ use App\Handlers\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Blog\Posts\CreateRequest;
 use App\Http\Requests\Admin\Blog\Posts\UpdateRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -41,7 +40,6 @@ class PostsController extends Controller
         ]);
 
         $post->attachTags($request->input('tags'));
-
         return redirect()->route('admin.blog.posts.index');
     }
 
@@ -76,9 +74,7 @@ class PostsController extends Controller
         ]);
 
         $post->attachTags($request->input('tags'));
-
         $manager->delete($forRemoving);
-
         return redirect()->route('admin.blog.posts.index');
     }
 

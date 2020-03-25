@@ -1,126 +1,153 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Новое оборудование</title>
+@endsection
+
 @section('content')
-    <div class="container text-center">
-        <h2 class="h2 mb-5 display-4">Создать</h2>
-        <form class="text-left w-50 mr-auto ml-auto mb-5" method="post" action="{{ route('admin.machines.store') }}" enctype="multipart/form-data">
+    <div class="text-center">
+        <h2 class="h2 mb-5 display-4">Новое оборудование</h2>
+        <form class="text-left mb-5" method="post" action="{{ route('admin.machines.store') }}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group required">
-                <input value="{{ old('name_ru') }}" type="text" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
-                @error('name_ru')
+            <div class="container w-50 m-auto">
+                <div class="form-group required">
+                    <input value="{{ old('name_ru') }}" type="text" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
+                    @error('name_ru')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group required border-bottom pb-5">
-                <input value="{{ old('name_en') }}" type="text" class="form-control  @error('name_en') is-invalid @enderror" placeholder="Наименование (eng)" name="name_en">
-                @error('name_en')
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-4">
+                    <input value="{{ old('name_en') }}" type="text" class="form-control  @error('name_en') is-invalid @enderror" placeholder="Наименование (eng)" name="name_en">
+                    @error('name_en')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
+                    @enderror
+                </div>
+                <div class="form-group border-bottom pb-3">
+                    <input value="{{ old('slug', \Illuminate\Support\Str::slug(old('name_en'))) }}" type="text" class="form-control @error('slug') is-invalid @enderror" placeholder="Слаг" name="slug">
+                    @error('slug')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
             </div>
-            <div class="form-group required">
-                <textarea id="description_en" class="form-control  @error('description_en') is-invalid @enderror" placeholder="Описание (eng)" name="description_en" rows="10">{{ old('description_en') }}</textarea>
+            <div class="form-group text-center">
+                <label for="description_en" class="h4 text-center required">Описание (eng)</label>
+                <textarea id="description_en"
+                          class="form-control  @error('description_en') is-invalid @enderror summernote"
+                          name="description_en"
+                          data-image-url="{{ route('admin.images.upload') }}"
+                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_en') }}</textarea>
                 @error('description_en')
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group required border-bottom pb-5">
-                <textarea id="description_ru" class="form-control  @error('description_ru') is-invalid @enderror" placeholder="Описание (ru)" name="description_ru" rows="10">{{ old('description_ru') }}</textarea>
+            <div class="form-group border-bottom pb-5 text-center">
+                <label for="description_ru" class="h4 text-center required">Описание (ru)</label>
+                <textarea id="description_ru"
+                          class="form-control  @error('description_ru') is-invalid @enderror summernote"
+                          name="description_ru"
+                          data-image-url="{{ route('admin.images.upload') }}"
+                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_ru') }}</textarea>
                 @error('description_ru')
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group border-bottom pb-5">
-                <input value="{{ old('slug', \Illuminate\Support\Str::slug(old('name_en'))) }}" type="text" class="form-control @error('slug') is-invalid @enderror" placeholder="Слаг" name="slug">
-                @error('slug')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group required border-bottom pb-5">
-                <input type="file" class="form-control @error('img') is-invalid @enderror" name="img">
-                @error('img')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-{{--            <div class="form-group required border-bottom pb-5">--}}
-{{--                <label for="type">Категория</label>--}}
-{{--                <select class="form-control" id="type" name="type">--}}
-{{--                    <option disabled selected value="0"></option>--}}
-{{--                    @foreach($types as $type)--}}
-{{--                        <option value="{{ $type->id }}">{{ $type->name_ru }}</option>--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
-{{--                @error('type')--}}
-{{--                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
-{{--                @enderror--}}
-{{--            </div>--}}
-            <div class="form-group border-bottom pb-5">
-                <label for="tags-select">Тэги</label>
-                <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
-                    <option selected value=""></option>
-                    @foreach($tags as $tag)
-                        <option value="{{ $tag->id }}">{{ $tag->name_ru }}</option>
-                    @endforeach
-                </select>
-                @error('tags.*')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-row"  data-id="0">
-                <div class="form-group required col-5">
-                    <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[0][name]">
-                        <option disabled selected value="">Параметр</option>
-                        @foreach($properties as $property)
-                            <option value="{{ $property->id }}">{{ $property->name_ru }}</option>
+            <div class="container w-50 m-auto">
+                <div class="form-group required border-bottom pb-5">
+                    <input type="file" class="form-control @error('img') is-invalid @enderror" name="img">
+                    @error('img')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                {{--            <div class="form-group required border-bottom pb-5">--}}
+                {{--                <label for="type">Категория</label>--}}
+                {{--                <select class="form-control" id="type" name="type">--}}
+                {{--                    <option disabled selected value="0"></option>--}}
+                {{--                    @foreach($types as $type)--}}
+                {{--                        <option value="{{ $type->id }}">{{ $type->name_ru }}</option>--}}
+                {{--                    @endforeach--}}
+                {{--                </select>--}}
+                {{--                @error('type')--}}
+                {{--                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
+                {{--                @enderror--}}
+                {{--            </div>--}}
+                <div class="form-group border-bottom pb-5">
+                    <label for="tags-select">Категории</label>
+                    <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
+                        <option selected value=""></option>
+                        @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->name_ru }}</option>
                         @endforeach
                     </select>
-                    @error('properties.*.name')
+                    @error('tags.*')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
-                <div class="form-group required col-5 ml-3">
-                    <input type="text" class="form-control @error('properties.*.value') is-invalid @enderror" placeholder="Значение" name="properties[0][value]" value="{{ old('properties.*.value') }}">
-                    @error('properties.*.value')
+                <div class="form-row"  data-id="0">
+                    <div class="form-group required col-5">
+                        <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[0][name]">
+                            <option disabled selected value="">Параметр</option>
+                            @foreach($properties as $property)
+                                <option value="{{ $property->id }}">{{ $property->name_ru }}</option>
+                            @endforeach
+                        </select>
+                        @error('properties.*.name')
+                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group required col-5 ml-3">
+                        <input type="text" class="form-control @error('properties.*.value') is-invalid @enderror" placeholder="Значение" name="properties[0][value]" value="{{ old('properties.*.value') }}">
+                        @error('properties.*.value')
+                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group col ml-1 del-property-wrapper">
+                        <button type="button" class="btn btn-danger del-property">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group border-bottom pb-5 mt-3">
+                    <button type="button" class="btn btn-success btn-block w-50" id="add">Добавить параметр</button>
+                </div>
+                <div class="form-group required">
+                    <textarea id="mail_en" class="form-control  @error('mail_en') is-invalid @enderror" placeholder="Текст в письме (eng)" name="mail_en" rows="10">{{ old('mail_en') }}</textarea>
+                    @error('mail_en')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
-                <div class="form-group col ml-1 del-property-wrapper">
-                    <button type="button" class="btn btn-danger del-property">
-                        <i class="fa fa-trash"></i>
-                    </button>
+                <div class="form-group required">
+                    <textarea id="mail_ru" class="form-control  @error('mail_ru') is-invalid @enderror" placeholder="Текст в письме (ru)" name="mail_ru" rows="10">{{ old('mail_ru') }}</textarea>
+                    @error('mail_ru')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
                 </div>
+                <p class="text-left font-weight-bold mt-3"><span class="text-danger">*</span> - обязательные поля</p>
+                <button type="submit" class="btn btn-primary d-block w-50">Создать</button>
             </div>
-            <div class="form-group border-bottom pb-5 mt-3">
-                <button type="button" class="btn btn-success btn-block w-50" id="add">Добавить параметр</button>
-            </div>
-            <div class="form-group required">
-                <textarea id="mail_en" class="form-control  @error('mail_en') is-invalid @enderror" placeholder="Текст в письме (eng)" name="mail_en" rows="10">{{ old('mail_en') }}</textarea>
-                @error('mail_en')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group required">
-                <textarea id="mail_ru" class="form-control  @error('mail_ru') is-invalid @enderror" placeholder="Текст в письме (ru)" name="mail_ru" rows="10">{{ old('mail_ru') }}</textarea>
-                @error('mail_ru')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <p class="text-left font-weight-bold mt-3"><span class="text-danger">*</span> - обязательные поля</p>
-            <button type="submit" class="btn btn-primary d-block w-50">Создать</button>
+            @if($errors->count() > 0 && ! empty(old('images')))
+                @foreach(old('images') as $image)
+                    <input type="hidden" class="new-image" name="images[]" value="{{ $image }}">
+                @endforeach
+            @endif
         </form>
     </div>
 @endsection
 
 @push('css')
+    <link rel="stylesheet" href="{{ asset('css/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/multi-select.dist.css') }}">
 @endpush
 
 @push('js')
     <script src="{{ asset('js/jquery.multi-select.js') }}"></script>
+    <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
     <script>
         $('#tags-select').multiSelect({
             afterSelect: function () {
                 $('#tags-select option[value=""]').removeAttr('selected');
-            }
+            },
+            selectableHeader: "<div class='custom-header'>Выберите категорию</div>",
+            selectionHeader: "<div class='custom-header'>Выбранные категории</div>",
         });
 
         $('#add').on('click', function (e) {
@@ -142,5 +169,100 @@
             }
             $(this).closest('.form-row').remove();
         });
+    </script>
+    <script>
+        (function () {
+            var submited = false;
+
+            function loadNewImages(url, data, success, error) {
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: data,
+                    processData: false,
+                    cache: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                    },
+                    success: success,
+                    error: error
+                });
+            }
+
+            $('.summernote').summernote({
+                tabsize: 2,
+                height: 500,
+                width: 1280,
+                callbacks: {
+                    onImageUpload: function (files) {
+                        var editor = $(this);
+                        var url = editor.data('image-url');
+                        var data = new FormData();
+                        data.append('file', files[0]);
+
+                        loadNewImages(url, data,
+                            function (res) {
+                                editor.summernote('insertImage', res);
+
+                                $('<input>', {
+                                    type: 'hidden',
+                                    name: 'images[]',
+                                    value: res,
+                                    class: 'new-image'
+                                }).appendTo('.add-item-form');
+                            },
+                            function (error) {
+                                console.log(error);
+                            }
+                        );
+                    },
+                    onMediaDelete: function(target) {
+                        var src = target[0].src;
+                        src = src.replace(new URL(src).origin, '');
+
+                        if ($('img[src="' + src + '"]').length === 0) {
+                            var editor = $(this);
+                            var url = editor.data('image-delete');
+                            var data = new FormData();
+
+                            data.append('files', JSON.stringify([src]));
+
+                            loadNewImages(url, data, function (res) {
+                                $('input[value="' + src + '"]').remove();
+                            }, function (error) {
+                                console.log(error);
+                            });
+                        }
+                    }
+                }
+            });
+
+            $('.add-item-form').on('submit', function () {
+                submited = true;
+                $('textarea').each(function () {
+                    $(this).val($(this).val().replace(new RegExp('<p><br></p>', 'g'), ''));
+                });
+            });
+
+            $(window).on('beforeunload', function () {
+                if (! submited) {
+                    var urls = $('.new-image').map(function () {
+                        return $(this).val();
+                    }).get();
+
+                    var url = $('.summernote').data('image-delete');
+                    var data = new FormData();
+                    data.append('files', JSON.stringify([urls]));
+                    $('.new-image').remove();
+
+                    loadNewImages(url, data, function(res) {
+                        console.log(res)
+                    }, function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        })();
     </script>
 @endpush

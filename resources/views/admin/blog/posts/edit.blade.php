@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('css/summernote-bs4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/multi-select.dist.css') }}">
-@endpush
+@section('title')
+    <title>Редактировать пост</title>
+@endsection
 
 @section('content')
 <div class="pt-5 pb-5">
@@ -83,6 +82,11 @@
     </form>
 </div>
 @endsection
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/multi-select.dist.css') }}">
+@endpush
 
 @push('js')
 <script src="{{ asset('js/jquery.multi-select.js') }}"></script>

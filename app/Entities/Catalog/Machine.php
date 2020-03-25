@@ -72,12 +72,13 @@ class Machine extends Model
         $machine = Machine::make([
             'name_en' => mb_strtolower($data['name_en']),
             'name_ru' => mb_strtolower($data['name_ru']),
-            'description_en' => $data['description_en'],
-            'description_ru' => $data['description_ru'],
+            'description_en' => clean($data['description_en']),
+            'description_ru' => clean($data['description_ru']),
             'mail_en' => $data['mail_en'],
             'mail_ru' => $data['mail_ru'],
             'slug' => mb_strtolower($data['slug']) ?: Str::slug(mb_strtolower($data['name_en'])),
             'img' => '/storage/' . $data['img']->store('machines'),
+            'images' => empty($data['images']) ? null : $data['images'],
         ]);
 
 //        $machine->type()->associate(Type::findOrFail($data['type']));

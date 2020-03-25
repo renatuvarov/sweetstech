@@ -1,8 +1,12 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Все категории</title>
+@endsection
+
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5 display-4">Тэги</h2>
+        <h2 class="h2 mb-5 display-4">Все категории</h2>
         <a href="{{route('admin.tag.create')}}" class="btn btn-success d-block w-25 m-auto">Добавить</a>
         @if(! empty($tags) && $tags->count() > 0)
             <table class="table table-bordered table-hover mt-5">

@@ -1,4 +1,9 @@
 @extends('layouts.admin')
+
+@section('title')
+    <title>Редактировать категорию</title>
+@endsection
+
 @section('content')
     <div class="container">
         <h2 class="display-4 text-center mb-5">Редактировать категорию</h2>

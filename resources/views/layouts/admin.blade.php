@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="noindex, nofollow">
-    <title>Управление</title>
+    @section('title')
+        <title>Управление</title>
+    @show
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
@@ -36,7 +38,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 {{--                                    <a class="dropdown-item" href="{{ route('admin.types.index') }}">Категории</a>--}}
-                                    <a class="dropdown-item" href="{{ route('admin.tag.index') }}">Тэги</a>
+                                    <a class="dropdown-item" href="{{ route('admin.tag.index') }}">Категории</a>
                                     <a class="dropdown-item" href="{{ route('admin.properties.index') }}">Параметры</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item font-weight-bold" href="{{ route('admin.machines.index') }}">Оборудование</a>

@@ -22,7 +22,7 @@ class CreateRequest extends FormRequest
         $props = implode(',', Property::pluck('id')->toArray());
 
         return [
-            'tags.*' => ['nullable', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
+            'tags.*' => ['required', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
             'properties.*.name' => ['required', 'integer', 'in:' . $props, new UniqueValues($this)],
 //            'type' => ['required', 'integer', 'in:' . $types],
             'properties.*.value' => 'required|string|min:1',
@@ -34,6 +34,7 @@ class CreateRequest extends FormRequest
             'description_ru' => 'required|string|min:3',
             'mail_en' => 'required|string|min:3',
             'mail_ru' => 'required|string|min:3',
+            'images.*' => 'nullable|string'
         ];
     }
 

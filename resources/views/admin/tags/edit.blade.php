@@ -1,8 +1,12 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Редактировать категорию</title>
+@endsection
+
 @section('content')
     <div class="container text-center">
-        <h2 class="h2 mb-5 display-4">Обновить тэг</h2>
+        <h2 class="h2 mb-5 display-4">Редактировать категорию</h2>
         <form class="text-left w-50 m-auto" method="post" action="{{ route('admin.tag.update', ['tag' => $tag->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('put')

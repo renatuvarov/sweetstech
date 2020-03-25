@@ -6,16 +6,15 @@ use App\Handlers\ImageManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PostImagesController extends Controller
+class ImagesController extends Controller
 {
-    public function upload(Request $request)
+    public function upload(Request $request, ImageManager $manager)
     {
         $this->validate($request, [
             'file' => 'required|image|mimes:jpg,jpeg,png'
         ]);
 
-        $file = $request->file('file');
-        return '/storage/' . $file->store('posts/' . date('dmY'));
+        return $manager->load($request->file('file'), 'posts');
     }
 
     public function destroy(Request $request, ImageManager $manager)
