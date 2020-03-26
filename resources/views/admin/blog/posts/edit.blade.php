@@ -55,7 +55,7 @@
                   data-image-url="{{ route('admin.blog.images.upload') }}"
                   cols="130"
                   rows="30"
-                  data-image-delete="{{ route('admin.blog.images.delete') }}">{{old('content_en', $post->content_en)}}</textarea><br>
+                  data-image-delete="{{ route('admin.blog.images.delete') }}">{{old('content_en') ?: $post->content_en}}</textarea><br>
         @error('content_en')
         {{ $message }}
         @enderror
@@ -64,7 +64,7 @@
                   data-image-url="{{ route('admin.blog.images.upload') }}"
                   cols="130"
                   rows="30"
-                  data-image-delete="{{ route('admin.blog.images.delete') }}">{{old('content_ru', $post->content_ru)}}</textarea><br>
+                  data-image-delete="{{ route('admin.blog.images.delete') }}">{{old('content_ru') ?: $post->content_ru}}</textarea><br>
         @error('content_ru')
         {{ $message }}
         @enderror

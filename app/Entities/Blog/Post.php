@@ -22,10 +22,8 @@ class Post extends Model
         return $this->belongsToMany(Tag::class, 'blog_tag_post', 'post_id', 'tag_id');
     }
 
-    public function attachTags($tags)
+    public function attachTags(array $tags)
     {
-        $tags = (array)$tags;
-
         $this->tags()->detach();
 
         if (! empty(array_filter($tags))) {

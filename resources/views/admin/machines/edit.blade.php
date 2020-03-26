@@ -47,7 +47,7 @@
                           placeholder="Описание (eng)"
                           name="description_en"
                           data-image-url="{{ route('admin.images.upload') }}"
-                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_en', $machine->description_en) }}</textarea>
+                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_en') ?: $machine->description_en }}</textarea>
                 @error('description_en')
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
@@ -59,7 +59,7 @@
                           placeholder="Описание (ru)"
                           name="description_ru"
                           data-image-url="{{ route('admin.images.upload') }}"
-                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_ru', $machine->description_ru) }}</textarea>
+                          data-image-delete="{{ route('admin.images.delete') }}">{{ old('description_ru') ?: $machine->description_ru }}</textarea>
                 @error('description_ru')
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror

@@ -5,7 +5,6 @@ namespace App\Entities\Catalog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 /**
  * Class Machine
@@ -69,16 +68,16 @@ class Machine extends Model
         }
     }
 
-    public function newTags($tags): void
+    public function newTags(array $tags): void
     {
         $this->tags()->detach();
 
         if (! empty($tags)) {
-            $this->tags()->attach(Tag::whereIn('id', $tags)->pluck('id'));
+            $this->tags()->attach($tags);
         }
     }
 
-    public function newProperties($properties): void
+    public function newProperties(array $properties): void
     {
         if (! empty($properties)) {
             $this->properties()->detach();

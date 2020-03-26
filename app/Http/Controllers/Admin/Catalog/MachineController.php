@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Catalog;
 use App\Entities\Catalog\Machine;
 use App\Entities\Catalog\Property;
 use App\Entities\Catalog\Tag;
-use App\Entities\Catalog\Type;
 use App\Handlers\ImageManager;
 use App\Handlers\TransactionManager;
 use App\Http\Controllers\Controller;
@@ -13,8 +12,6 @@ use App\Http\Requests\Admin\Catalog\Machines\CreateRequest;
 use App\Http\Requests\Admin\Catalog\Machines\UpdateRequest;
 use App\UseCases\Catalog\CreateMachine;
 use App\UseCases\Catalog\UpdateMachine;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class MachineController extends Controller
 {

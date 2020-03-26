@@ -14,7 +14,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Наименование</th>
-{{--                    <th scope="col">Категория</th>--}}
+                    <th scope="col">Категории</th>
                     <th scope="col">Управление</th>
                 </tr>
                 </thead>
@@ -23,7 +23,22 @@
                     <tr>
                         <td class="align-middle">{{$machine->id}}</td>
                         <td class="align-middle">{{$machine->name_ru}}</td>
-{{--                        <td class="align-middle">{{$machine->type->name_ru}}</td>--}}
+                        <td class="align-middle">
+                            @if(! empty($machine->tags) && $machine->tags->count() > 0)
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Категории
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        @foreach($machine->tags as $tag)
+                                            <li class="dropdown-item">{{ $tag->name_ru }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @else
+                                ---
+                            @endif
+                        </td>
                         <td class="align-middle">
                             <a class="btn btn-success" href="{{ route('admin.machines.show', ['machine' => $machine->id]) }}">
                                 <i class="fa fa-eye"></i>
@@ -66,11 +81,4 @@
     </div>
 @endsection
 
-@push('js')
-    <script>
-        $('.btn-destroy').on('click', function () {
-            $('.modal').find('form').attr('action', $(this).data('destroy'));
-            $('.modal').modal();
-        });
-    </script>
-@endpush
+@include('parts.admin.open-modal')

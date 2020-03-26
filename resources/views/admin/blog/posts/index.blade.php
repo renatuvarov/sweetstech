@@ -83,7 +83,8 @@
         <p class="text-center">Постов пока нет.</p>
     @endif
 </div>
-@include('parts.admin.open-modal')
 @endsection
+
+@include('parts.admin.open-modal')
 
 

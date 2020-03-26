@@ -12,7 +12,6 @@ use App\Http\Requests\Admin\Blog\Posts\CreateRequest;
 use App\Http\Requests\Admin\Blog\Posts\UpdateRequest;
 use App\UseCases\Blog\CreatePost;
 use App\UseCases\Blog\UpdatePost;
-use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
