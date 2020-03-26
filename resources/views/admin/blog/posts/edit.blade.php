@@ -73,11 +73,9 @@
                 <input type="hidden" class="old-image" name="images[]" value="{{ $image }}">
             @endforeach
         @endif
-        @if($errors->count() > 0 && ! empty(old('images')))
-            @foreach(old('images') as $image)
-                <input type="hidden" class="new-image" name="images[]" value="{{ $image }}">
-            @endforeach
-        @endif
+
+        @include('parts.admin.check-image')
+
         <button type="submit" class="btn btn-success btn-block w-25 m-auto">Сохранить</button>
     </form>
 </div>

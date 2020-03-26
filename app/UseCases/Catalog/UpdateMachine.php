@@ -36,7 +36,7 @@ class UpdateMachine implements UpdatesContentImages
             'slug' => mb_strtolower($data['slug']) ?: $machine->slug,
             'img' => $machine->newImg($data['img'] ?? null) ?: $machine->img,
             'images' => empty(
-                $images = $this->updateImagesList($data['images'] ?? [], $data['for_removing']) ?? []
+                $images = $this->updateImagesList($data['images'] ?? [], $data['for_removing'] ?? [])
             ) ? null : $images,
         ]);
 

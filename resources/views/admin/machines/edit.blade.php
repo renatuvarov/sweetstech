@@ -64,21 +64,6 @@
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
-{{--            <div class="form-group required border-bottom pb-5">--}}
-{{--                <label for="type">Категория</label>--}}
-{{--                <select class="form-control" id="type" name="type">--}}
-{{--                    @foreach($types as $type)--}}
-{{--                        @if($machine->type->id === $type->id)--}}
-{{--                            <option selected value="{{ $type->id }}">{{ $type->name_ru }}</option>--}}
-{{--                        @else--}}
-{{--                            <option value="{{ $type->id }}">{{ $type->name_ru }}</option>--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
-{{--                @error('type')--}}
-{{--                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
-{{--                @enderror--}}
-{{--            </div>--}}
             <div class="container w-50 m-auto">
             <div class="form-group border-bottom pb-5 text-center">
                 <label for="tags-select">Категории</label>
@@ -157,11 +142,9 @@
                     <input type="hidden" class="old-image" name="images[]" value="{{ $image }}">
                 @endforeach
             @endif
-            @if($errors->count() > 0 && ! empty(old('images')))
-                @foreach(old('images') as $image)
-                    <input type="hidden" class="new-image" name="images[]" value="{{ $image }}">
-                @endforeach
-            @endif
+
+            @include('parts.admin.check-image')
+
             <div class="text-center container">
                 <button type="submit" class="btn btn-primary w-50">Сохранить</button>
             </div>
