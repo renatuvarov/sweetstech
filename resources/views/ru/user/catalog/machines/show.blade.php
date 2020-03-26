@@ -5,13 +5,12 @@
         <h1>{{ $machine->name_ru }}</h1>
         <div class="row">
             <div class="col col-md-6">
-                <p>{{ $machine->description_ru }}</p>
+                <p>{!! $machine->description_ru !!}</p>
             </div>
             <div class="col col-md-6">
                 <img src="{{ asset($machine->img) }}" alt="" class="img-fluid">
             </div>
         </div>
-        {{--    <div>Category: <a href="{{ route('user.categories.show', ['slug' => $machine->type->slug]) }}">{{ $machine->type->name_en }}</a></div>--}}
         @if($machine->tags->count() > 0)
             <ul>
                 @foreach($machine->tags as $tag)

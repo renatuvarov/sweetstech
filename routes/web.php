@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainController@index')->name('main');
 
-Route::get('secret-login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('secret-login', 'Auth\LoginController@login');
-Route::post('secret-logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('secfggdfgret-login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('secfggdfgret-login', 'Auth\LoginController@login');
+Route::post('secfggdfgret-logout', 'Auth\LoginController@logout')->name('logout');
 
 //Route::get('secret-register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //Route::post('secret-register', 'Auth\RegisterController@register');
@@ -26,53 +26,62 @@ Route::post('secret-logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group([
     'namespace' => 'User',
+    'as' => 'user.',
     'middleware' => ['throttle:60,1'],
 ], function () {
-
-    Route::get('/mmc-200', 'LandingController@mmc200')->name('mmc-200');
-    Route::post('/mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
+    Route::get('mmc-200', 'LandingController@mmc200')->name('mmc-200');
+    Route::post('mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
 
     Route::group([
         'namespace' => 'Catalog',
+        'prefix' => 'catalog',
     ], function () {
-//        Route::group([
-//            'prefix' => 'categories',
-//            'as' => 'user.categories.',
-//        ], function () {
-//            Route::get('/', 'TypeController@index')->name('index');
-//            Route::get('/{slug}', 'TypeController@show')->name('show');
-//        });
+        Route::get('/', 'MachineController@index')->name('catalog.index');
+        Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
+        Route::get('category/{slug}', 'TagController@show')->name('tags.show');
+        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('order');
+    });
 
-        Route::get('/category/{slug}', 'TagController@show')->name('user.tags.show');
-        Route::get('/catalog/{slug}', 'MachineController@show')->name('user.catalog.show');
-        Route::post('/order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('user.order');
+    Route::group([
+        'namespace' => 'Blog',
+        'prefix' => 'blog',
+        'as' => 'blog.',
+    ], function () {
+        Route::get('categories/{slug}', 'CategoryController@show')->name('categories.show');
+        Route::get('tags/{slug}', 'TagController@show')->name('tags.show');
+        Route::get('/', 'PostController@index')->name('news.index');
+        Route::get('/{slug}', 'PostController@show')->name('news.show');
     });
 });
 
 Route::group([
     'namespace' => 'User',
     'middleware' => ['throttle:60,1'],
-    'as' => config('site.user.routes.prefix.name'),
+    'as' => config('site.user.routes.prefix.name') . 'user.',
     'prefix' => config('site.user.routes.prefix.path'),
 ], function () {
-
-    Route::get('/mmc-200', 'LandingController@mmc200')->name('mmc-200');
-    Route::post('/mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
+    Route::get('mmc-200', 'LandingController@mmc200')->name('mmc-200');
+    Route::post('mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
 
     Route::group([
         'namespace' => 'Catalog',
+        'prefix' => 'catalog',
     ], function () {
-//        Route::group([
-//            'prefix' => 'categories',
-//            'as' => 'user.categories.',
-//        ], function () {
-//            Route::get('/', 'TypeController@index')->name('index');
-//            Route::get('/{slug}', 'TypeController@show')->name('show');
-//        });
+        Route::get('category/{slug}', 'TagController@show')->name('tags.show');
+        Route::get('/', 'MachineController@index')->name('catalog.index');
+        Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
+        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('order');
+    });
 
-        Route::get('/category/{slug}', 'TagController@show')->name('user.tags.show');
-        Route::get('/catalog/{slug}', 'MachineController@show')->name('user.catalog.show');
-        Route::post('/order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('user.order');
+    Route::group([
+        'namespace' => 'Blog',
+        'prefix' => 'blog',
+        'as' => 'blog.',
+    ], function () {
+        Route::get('categories/{slug}', 'CategoryController@show')->name('categories.show');
+        Route::get('tags/{slug}', 'TagController@show')->name('tags.show');
+        Route::get('/', 'PostController@index')->name('news.index');
+        Route::get('/{slug}', 'PostController@show')->name('news.show');
     });
 });
 
@@ -88,7 +97,6 @@ Route::group([
         'namespace' => 'Catalog',
         'prefix' => 'catalog',
     ], function () {
-//        Route::resource('types', 'TypeController')->except('show');
         Route::resource('tag', 'TagController')->except('show');
         Route::resource('properties', 'PropertyController')->except('show');
         Route::resource('machines', 'MachineController');

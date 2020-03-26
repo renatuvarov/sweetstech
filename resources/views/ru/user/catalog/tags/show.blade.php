@@ -1,6 +1,7 @@
 @extends('layouts.ru-app')
 
 @section('content')
+@include('ru.parts.machines-categories')
 <div class="container">
     <h1>{{ $tag->name_ru }}</h1>
     <div class="row">
@@ -12,11 +13,6 @@
                         <img src="{{ asset($machine->img) }}" alt="" class="img-fluid">
                     </div>
                 </a>
-{{--                <div>Category:--}}
-{{--                    <a href="{{ route('user.categories.show', ['slug' => $machine->type->slug]) }}">--}}
-{{--                        {{ $machine->type->name_en }}--}}
-{{--                    </a>--}}
-{{--                </div>--}}
             </div>
         @endforeach
     </div>

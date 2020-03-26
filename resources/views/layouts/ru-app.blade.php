@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    @section('title')
+        <title>{{ config('app.name') }}</title>
+    @show
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -37,6 +39,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    <a href="{{ request()->url() }}">ru | </a>
                     <a href="{{ substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) }}">en</a>
                     <!-- Authentication Links -->
                     @guest
