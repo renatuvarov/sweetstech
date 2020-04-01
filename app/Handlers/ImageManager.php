@@ -39,7 +39,7 @@ class ImageManager
 
     public function delete($images): void
     {
-        foreach ($images as $image) {
+        foreach ($images ?? [] as $image) {
             try {
                 $this->storage->delete($path = $this->preparePathToRemoval($image));
                 $this->deleteDirIfEmpty($path);

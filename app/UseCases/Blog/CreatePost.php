@@ -20,6 +20,7 @@ class CreatePost
             'content_en' => clean($data['content_en']),
             'content_ru' => clean($data['content_ru']),
             'images' => empty($data['images']) ? null : $data['images'],
+            'type' => empty($data['type']) ? Post::TYPE_POST : Post::TYPE_EXHIBITION,
         ]);
 
         $post->attachTags($data['tags']);

@@ -39,8 +39,12 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <a href="{{ request()->url() }}">ru | </a>
-                    <a href="{{ substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) }}">en</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ request()->url() }}">ru</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) }}">en</a>
+                    </li>
                     <!-- Authentication Links -->
                     @guest
                         {{--                            <li class="nav-item">--}}

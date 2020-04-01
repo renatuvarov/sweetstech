@@ -9,7 +9,8 @@ class CategoryController extends Controller
 {
     public function show(string $slug)
     {
-        $category = Category::query()->with('posts')->where('slug', $slug)->first();
-        return $this->getView('user.blog.categories.show', compact('category'));
+        $category = Category::findBySlugOrFail($slug);
+        $posts = $category->onlyPosts()->paginate(config('site.user.pagination'));
+        return $this->getView('user.blog.categories.show', compact('category', 'posts'));
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Entities\Catalog;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Entities\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 

@@ -110,7 +110,8 @@ Route::group([
         'as' => 'blog.',
         'prefix' => 'blog',
     ], function () {
-        Route::resource('posts', 'PostsController');
+        Route::get('posts/index/{type?}', 'PostsController@index')->name('posts.index');
+        Route::resource('posts', 'PostsController')->except('index');
         Route::resource('categories', 'CategoriesController')->except('show');
         Route::resource('tags', 'TagsController')->except('show');
 

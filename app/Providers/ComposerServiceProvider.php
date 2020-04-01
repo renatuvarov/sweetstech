@@ -11,7 +11,11 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(['parts.machines-categories', 'ru.parts.machines-categories'], function(View $view) {
-            $view->with(['categories' => Tag::all()]);
+            $categories = Tag::query()->with('machines')->get()->filter(function ($category) {
+                return $category->machines->count() > 0;
+            });
+
+            $view->with(compact('categories'));
         });
     }
 }

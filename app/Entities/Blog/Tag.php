@@ -2,7 +2,7 @@
 
 namespace App\Entities\Blog;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Entities\Model;
 
 class Tag extends Model
 {
@@ -14,6 +14,16 @@ class Tag extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class, 'blog_tag_post', 'tag_id', 'post_id');
+    }
+
+    public function onlyPosts()
+    {
+        return $this->posts()->onlyPosts();
+    }
+
+    public function onlyExhibitions()
+    {
+        return $this->posts()->onlyExhibitions();
     }
 }

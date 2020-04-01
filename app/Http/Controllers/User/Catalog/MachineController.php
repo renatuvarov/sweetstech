@@ -9,13 +9,14 @@ class MachineController extends Controller
 {
     public function index()
     {
-        $machines = Machine::query()->with('tags')->orderBy('id')->paginate(2);
+        $machines = Machine::query()->with('tags')->orderBy('id')->paginate(config('site.user.pagination'));
         return $this->getView('user.catalog.machines.index', compact('machines'));
     }
 
     public function show($slug)
     {
-        $machine = Machine::query()->where('slug', $slug)->with('tags', 'properties')->first();
+        $machine = Machine::findBySlugOrFail($slug);
+        $machine->load('tags', 'properties');
         return $this->getView('user.catalog.machines.show', compact('machine'));
     }
 }

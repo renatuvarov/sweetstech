@@ -9,7 +9,8 @@ class TagController extends Controller
 {
     public function show(string $slug)
     {
-        $tag = Tag::query()->with('posts')->where('slug', $slug)->first();
-        return $this->getView('user.blog.tags.show', compact('tag'));
+        $tag = Tag::findBySlugOrFail($slug);
+        $posts = $tag->onlyPosts()->paginate(config('site.user.pagination'));
+        return $this->getView('user.blog.tags.show', compact('tag', 'posts'));
     }
 }

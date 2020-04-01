@@ -33,6 +33,7 @@ class UpdatePost implements UpdatesContentImages
             'category_id' => $data['category_id'] ?: $post->category_id,
             'content_en' => clean($data['content_en']),
             'content_ru' => clean($data['content_ru']),
+            'type' => empty($data['type']) ? Post::TYPE_POST : Post::TYPE_EXHIBITION,
             'images' => empty(
                 $images = $this->updateImagesList($data['images'] ?? [], $data['for_removing'] ?? [])
             ) ? null : $images,

@@ -25,11 +25,15 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Лэндинги
+                                    Сайт
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('mmc-200') }}" target="_blank">ММС-200</a>
-                                    <a class="dropdown-item" href="{{ route('admin.tag.index') }}" target="_blank">РФМ</a>
+                                    <a class="dropdown-item" href="{{ route('main') }}" target="_blank">Главная</a>
+                                    <a class="dropdown-item" href="{{ route('user.catalog.index') }}" target="_blank">Каталог</a>
+                                    <a class="dropdown-item" href="{{ route('user.blog.news.index') }}" target="_blank">Блог</a>
+                                    <a class="dropdown-item" href="{{ route('main') }}" target="_blank">Выставки</a>
+                                    <a class="dropdown-item" href="{{ route('user.mmc-200') }}" target="_blank">ММС-200</a>
+                                    <a class="dropdown-item" href="#" target="_blank">РФМ</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -37,7 +41,6 @@
                                     Каталог
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-{{--                                    <a class="dropdown-item" href="{{ route('admin.types.index') }}">Категории</a>--}}
                                     <a class="dropdown-item" href="{{ route('admin.tag.index') }}">Категории</a>
                                     <a class="dropdown-item" href="{{ route('admin.properties.index') }}">Параметры</a>
                                     <div class="dropdown-divider"></div>

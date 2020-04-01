@@ -40,8 +40,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <a href="/{{ config('site.user.routes.prefix.path') }}{{ request()->getRequestUri() }}">ru</a>|
-                        <a href="{{request()->url() }}">en</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/{{ config('site.user.routes.prefix.path') }}{{ request()->getRequestUri() }}">ru</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{request()->url() }}">en</a>
+                        </li>
                         @guest
 {{--                            <li class="nav-item">--}}
 {{--                                <a class="nav-link" href="{{ route('login') }}">Вход</a>--}}
@@ -58,6 +62,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="layout-menu">
+                                    <a href="{{ route('admin.home') }}" class="dropdown-item">Админ</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

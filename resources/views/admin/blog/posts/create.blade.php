@@ -9,6 +9,13 @@
     <h2 class="display-4 text-center mb-5">Новый пост (выставка)</h2>
     <form action="{{ route('admin.blog.posts.store') }}" method="post" class="add-item-form mb-5">
         @csrf
+        <div class="form-group w-50 ml-auto mr-auto mb-5 text-left d-flex">
+            <label for="exh" class="form-check-label font-weight-bold">Выставка?</label>
+            <input type="checkbox" name="type" style="width: 30px; height: 30px; margin-left: 30px;" id="exh">
+            @error('type')
+            <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+        </div>
         <div class="form-group w-50 ml-auto mr-auto mb-5">
             <input type="text" name="title_ru" value="{{ old('title_ru') }}" class="form-control" placeholder="заголовок (русский)">
             @error('title_ru')

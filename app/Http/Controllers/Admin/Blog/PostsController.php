@@ -12,12 +12,19 @@ use App\Http\Requests\Admin\Blog\Posts\CreateRequest;
 use App\Http\Requests\Admin\Blog\Posts\UpdateRequest;
 use App\UseCases\Blog\CreatePost;
 use App\UseCases\Blog\UpdatePost;
+use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function index()
+    public function index(Request $request, ?string $type = null)
     {
-        $posts = Post::with('category', 'tags')->paginate(2);
+        $posts = Post::query();
+
+        if (!empty($type)) {
+            $posts->where('type', $type);
+        }
+
+        $posts = $posts->with('category', 'tags')->paginate(config('site.user.pagination'));
         return view('admin.blog.posts.index', compact('posts'));
     }
 

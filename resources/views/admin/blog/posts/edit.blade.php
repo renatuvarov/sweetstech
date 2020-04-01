@@ -10,6 +10,17 @@
     <form action="{{ route('admin.blog.posts.update', ['post' => $post->id]) }}" method="post" class="add-item-form">
         @csrf
         @method('put')
+        <div class="form-group w-50 ml-auto mr-auto mb-5 d-flex">
+            <label for="exh" class="form-check-label font-weight-bold">Выставка?</label>
+            @if($post->type === \App\Entities\Blog\Post::TYPE_EXHIBITION)
+                <input type="checkbox" name="type" style="width: 30px; height: 30px; margin-left: 30px;" id="exh" checked>
+            @else
+                <input type="checkbox" name="type" class="form-control" id="exh">
+            @endif
+            @error('type')
+            <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+        </div>
         <div class="form-group w-50 ml-auto mr-auto mb-5">
             <input type="text" name="title_ru" value="{{ old('title_ru', $post->title_ru) }}" class="form-control" placeholder="заголовок (русский)">
             @error('title_ru')

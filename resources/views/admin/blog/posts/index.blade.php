@@ -8,12 +8,19 @@
 <div class="container pt-5">
     <h2 class="display-4 text-center mb-5">Все посты</h2>
     <a href="{{ route('admin.blog.posts.create') }}" class="btn btn-success d-block w-25 m-auto">Создать пост (выставку)</a><br>
+    <h5 class="font-weight-bold text-center">Только с типом:</h5>
+    <div class="d-flex w-25 m-auto justify-content-around pb-3">
+        @foreach(\App\Entities\Blog\Post::getType() as $postType => $postText)
+            <a href="{{ route('admin.blog.posts.index', ['type' => $postType])}}" class="btn btn-info">{{ $postText }}</a>
+        @endforeach
+    </div>
     @if(! empty($posts) && $posts->count() > 0)
     <table class="table table-striped">
         <thead>
             <tr class="text-center">
                 <th>Заголовок</th>
                 <th>Слаг</th>
+                <th>Тип</th>
                 <th>Категория</th>
                 <th>Тэги</th>
                 <th>Управление</th>
@@ -24,6 +31,7 @@
                 <tr class="text-center">
                     <td class="align-middle" style="max-width: 300px;">{{$post->title_ru}}</td>
                     <td class="align-middle">{{$post->slug}}</td>
+                    <td class="align-middle">{{\App\Entities\Blog\Post::getType()[$post->type]}}</td>
                     <td class="align-middle">{{$post->category->name_ru}}</td>
                     <td class="align-middle">
                         @if(! empty($post->tags) && $post->tags->count() > 0)

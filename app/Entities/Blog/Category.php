@@ -2,7 +2,7 @@
 
 namespace App\Entities\Blog;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Entities\Model;
 
 /**
  * Class Category
@@ -21,6 +21,16 @@ class Category extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->hasMany(Post::class);
+    }
+
+    public function onlyPosts()
+    {
+        return $this->posts()->onlyPosts();
+    }
+
+    public function onlyExhibitions()
+    {
+        return $this->posts()->onlyExhibitions();
     }
 }

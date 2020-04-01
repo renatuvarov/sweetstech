@@ -26,7 +26,8 @@ class CreateRequest extends FormRequest
             'tags.*' => 'nullable|integer|in:' . $tags,
             'content_ru' => 'required|string|min:10',
             'content_en' => 'required|string|min:10',
-            'images.*' => 'nullable|string'
+            'images.*' => 'nullable|string',
+            'type' => 'nullable',
         ];
     }
 

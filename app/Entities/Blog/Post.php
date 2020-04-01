@@ -2,10 +2,14 @@
 
 namespace App\Entities\Blog;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Entities\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
+    public const TYPE_POST = 'post';
+    public const TYPE_EXHIBITION = 'exhibition';
+
     protected $guarded = ['id'];
 
     protected $casts = [
@@ -29,5 +33,23 @@ class Post extends Model
         if (! empty(array_filter($tags))) {
             $this->tags()->attach($tags);
         }
+    }
+
+    public static function getType(): array
+    {
+        return [
+            static::TYPE_EXHIBITION => 'выставка',
+            static::TYPE_POST => 'новость',
+        ];
+    }
+
+    public function scopeOnlyPosts(Builder $query)
+    {
+        return $query->where('type', static::TYPE_POST);
+    }
+
+    public function scopeOnlyExhibitions(Builder $query)
+    {
+        return $query->where('type', static::TYPE_EXHIBITION);
     }
 }
