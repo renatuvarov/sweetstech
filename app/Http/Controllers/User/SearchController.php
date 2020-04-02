@@ -9,6 +9,6 @@ class SearchController extends Controller
 {
     public function count(Request)
     {
-        
+
     }
 }
