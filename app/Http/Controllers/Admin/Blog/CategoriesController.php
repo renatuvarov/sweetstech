@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Entities\Blog\Category;
+use App\Handlers\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Blog\Categories\CreateRequest;
 use App\Http\Requests\Admin\Blog\Categories\UpdateRequest;
@@ -43,14 +44,17 @@ class CategoriesController extends Controller
         $category->update([
             'name_ru' => mb_strtolower($request->input('name_ru')) ?: $category->name_ru,
             'name_en' => mb_strtolower($request->input('name_en')) ?: $category->name_en,
-            'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: $category->slug
+            'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: $category->slug,
         ]);
 
         return redirect()->route('admin.blog.categories.index');
     }
 
-    public function destroy(Category $category)
+    public function destroy(Category $category, ImageManager $manager)
     {
+        if (! empty($images = array_filter($category->posts()->pluck('images')->toArray()))) {
+            $manager->delete(array_merge(...$images));
+        }
         $category->delete();
         return redirect()->route('admin.blog.categories.index');
     }

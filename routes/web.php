@@ -52,6 +52,17 @@ Route::group([
         Route::get('/', 'PostController@index')->name('news.index');
         Route::get('/{slug}', 'PostController@show')->name('news.show');
     });
+
+    Route::group([
+        'namespace' => 'Exhibitions',
+        'prefix' => 'exhibitions',
+        'as' => 'exhibitions.',
+    ], function () {
+        Route::get('categories/{slug}', 'CategoryController@show')->name('categories.show');
+        Route::get('tags/{slug}', 'TagController@show')->name('tags.show');
+        Route::get('/', 'PostController@index')->name('news.index');
+        Route::get('/{slug}', 'PostController@show')->name('news.show');
+    });
 });
 
 Route::group([
@@ -77,6 +88,17 @@ Route::group([
         'namespace' => 'Blog',
         'prefix' => 'blog',
         'as' => 'blog.',
+    ], function () {
+        Route::get('categories/{slug}', 'CategoryController@show')->name('categories.show');
+        Route::get('tags/{slug}', 'TagController@show')->name('tags.show');
+        Route::get('/', 'PostController@index')->name('news.index');
+        Route::get('/{slug}', 'PostController@show')->name('news.show');
+    });
+
+    Route::group([
+        'namespace' => 'Exhibitions',
+        'prefix' => 'exhibitions',
+        'as' => 'exhibitions.',
     ], function () {
         Route::get('categories/{slug}', 'CategoryController@show')->name('categories.show');
         Route::get('tags/{slug}', 'TagController@show')->name('tags.show');

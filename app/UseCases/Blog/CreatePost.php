@@ -23,7 +23,7 @@ class CreatePost
             'type' => empty($data['type']) ? Post::TYPE_POST : Post::TYPE_EXHIBITION,
         ]);
 
-        $post->attachTags($data['tags']);
+        $post->attachTags($data['tags'] ?? []);
 
         return $post;
     }
