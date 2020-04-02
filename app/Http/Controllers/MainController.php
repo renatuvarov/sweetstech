@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Catalog\Tag;
+
 class MainController extends Controller
 {
     public function index()
     {
-        dd(public_path());
-        return view('main');
+        $tags = Tag::all();
+        return view('main', compact('tags'));
     }
 }

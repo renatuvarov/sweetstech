@@ -44,7 +44,7 @@
                             <a class="nav-link" href="/{{ config('site.user.routes.prefix.path') }}{{ request()->getRequestUri() }}">ru</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{request()->url() }}">en</a>
+                            <a class="nav-link" href="{{request()->fullUrl() }}">en</a>
                         </li>
                         @guest
 {{--                            <li class="nav-item">--}}

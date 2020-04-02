@@ -40,7 +40,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ request()->url() }}">ru</a>
+                        <a class="nav-link" href="{{ request()->fullUrl() }}">ru</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) }}">en</a>
