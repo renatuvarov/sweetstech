@@ -24,18 +24,19 @@ return [
     'settings'      => [
         'default' => [
             'HTML.Doctype'             => 'HTML 4.01 Transitional',
-            'HTML.Allowed'             => 'table[style],td[style],tr[style],th[style],thead[style],tbody[style],tfoot[style],div[style],b[style],strong[style],i[style],em[style],u[style],a[href|title|style],ul[style],ol[style],li[style],p[style],br,span[style],img[width|height|alt|src|style]',
+            'HTML.Allowed'             => 'table[style],td[style],tr[style],th[style],thead[style],tbody[style],tfoot[style],div[style],b[style],strong[style],i[style],em[style],u[style],a[href|title|style],ul[style],ol[style],li[style],p[style],br,span[style],img[style|width|height|alt|src]',
             'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
             'AutoFormat.AutoParagraph' => true,
-            'AutoFormat.RemoveEmpty'   => true,
-            'URI.AllowedSchemes'       => ['data' => true, 'http' => true, 'https' => true]
+            'URI.AllowedSchemes'       => ['data' => true, 'http' => true, 'https' => true],
+            'HTML.MaxImgLength'   => null,
+            'CSS.MaxImgLength'   => null,
         ],
         'test'    => [
             'Attr.EnableID' => 'true',
         ],
         "youtube" => [
-            "HTML.SafeIframe"      => 'true',
-            "URI.SafeIframeRegexp" => "%^(https://|https://|//)(www.youtube.com/embed/)%",
+            "HTML.SafeIframe"      => true,
+            "URI.SafeIframeRegexp" => "%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%",
         ],
         'custom_definition' => [
             'id'  => 'html5-definitions',

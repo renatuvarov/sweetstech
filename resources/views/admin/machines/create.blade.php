@@ -22,6 +22,42 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
+                <div class="form-group required border-bottom pb-4">
+                    <input value="{{ old('short_name_en') }}" type="text" class="form-control  @error('short_name_en') is-invalid @enderror" placeholder="Короткое наименование (eng)" name="short_name_en">
+                    @error('short_name_en')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-4">
+                    <input value="{{ old('short_name_ru') }}" type="text" class="form-control  @error('short_name_ru') is-invalid @enderror" placeholder="Короткое наименование (ru)" name="short_name_ru">
+                    @error('short_name_ru')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-4">
+                    <input value="{{ old('short_description_en') }}" type="text" class="form-control  @error('short_description_en') is-invalid @enderror" placeholder="Короткое описание (eng)" name="short_description_en">
+                    @error('short_description_en')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-4">
+                    <input value="{{ old('short_description_ru') }}" type="text" class="form-control  @error('short_description_ru') is-invalid @enderror" placeholder="Короткое описание (ru)" name="short_description_ru">
+                    @error('short_description_ru')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group border-bottom pb-4">
+                    <input value="{{ old('meta_description_en') }}" type="text" class="form-control  @error('meta_description_en') is-invalid @enderror" placeholder="SEO описание (en)" name="meta_description_en">
+                    @error('meta_description_en')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group border-bottom pb-4">
+                    <input value="{{ old('meta_description_ru') }}" type="text" class="form-control  @error('meta_description_ru') is-invalid @enderror" placeholder="SEO описание (ru)" name="meta_description_ru">
+                    @error('meta_description_ru')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
                 <div class="form-group border-bottom pb-3">
                     <input value="{{ old('slug', \Illuminate\Support\Str::slug(old('name_en'))) }}" type="text" class="form-control @error('slug') is-invalid @enderror" placeholder="Слаг" name="slug">
                     @error('slug')
@@ -58,18 +94,6 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
-                {{--            <div class="form-group required border-bottom pb-5">--}}
-                {{--                <label for="type">Категория</label>--}}
-                {{--                <select class="form-control" id="type" name="type">--}}
-                {{--                    <option disabled selected value="0"></option>--}}
-                {{--                    @foreach($types as $type)--}}
-                {{--                        <option value="{{ $type->id }}">{{ $type->name_ru }}</option>--}}
-                {{--                    @endforeach--}}
-                {{--                </select>--}}
-                {{--                @error('type')--}}
-                {{--                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
-                {{--                @enderror--}}
-                {{--            </div>--}}
                 <div class="form-group border-bottom pb-5">
                     <label for="tags-select">Категории</label>
                     <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
@@ -141,6 +165,7 @@
 @push('js')
     <script src="{{ asset('js/jquery.multi-select.js') }}"></script>
     <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('js/summernote-tags.js') }}"></script>
     <script src="{{ asset('js/summernote-create-item.js') }}"></script>
     <script>
         $('#tags-select').multiSelect({

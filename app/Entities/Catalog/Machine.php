@@ -3,6 +3,7 @@
 namespace App\Entities\Catalog;
 
 use App\Entities\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -57,7 +58,11 @@ class Machine extends Model
 
     public static function getByIdWithPivots($id): self
     {
-        return self::where('id', $id)->with('properties', 'tags')->first();
+        if (empty($machine = self::where('id', $id)->with('properties', 'tags')->first())) {
+            throw new ModelNotFoundException('Machine with id = ' . $id . ' is not found.');
+        }
+
+        return $machine;
     }
 
     public function newImg(?UploadedFile $file)

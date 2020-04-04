@@ -27,12 +27,16 @@ class UpdatePost implements UpdatesContentImages
         $post->attachTags($data['tags'] ?? []);
 
         $post->update([
-            'title_en' => $en = mb_strtolower($data['title_en']) ?: $post->title_en,
-            'title_ru' => mb_strtolower($data['title_ru']) ?: $post->title_ru,
+            'title_en' => $en = $data['title_en'] ?: $post->title_en,
+            'title_ru' => $data['title_ru'] ?: $post->title_ru,
+            'short_description_en' => $data['short_description_en'],
+            'short_description_ru' => $data['short_description_ru'],
+            'meta_description_en' => $data['meta_description_en'] ?: $post->meta_description_en,
+            'meta_description_ru' => $data['meta_description_ru'] ?: $post->meta_description_ru,
             'slug' => Str::slug(mb_strtolower($data['slug'])) ?: $post->slug,
             'category_id' => $data['category_id'] ?: $post->category_id,
-            'content_en' => clean($data['content_en']),
-            'content_ru' => clean($data['content_ru']),
+            'content_en' => clean($data['content_en'], 'youtube'),
+            'content_ru' => clean($data['content_ru'], 'youtube'),
             'type' => empty($data['type']) ? Post::TYPE_POST : Post::TYPE_EXHIBITION,
             'images' => empty(
                 $images = $this->updateImagesList($data['images'] ?? [], $data['for_removing'] ?? [])

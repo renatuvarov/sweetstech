@@ -21,6 +21,16 @@
         tabsize: 2,
         height: 500,
         width: 1280,
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['add-text-tags']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['fontsize', 'color']],
+            ['font', ['fontname']],
+            ['para', ['paragraph']],
+            ['insert', ['link','picture', 'video']], // image and doc are customized buttons
+            ['misc', ['codeview']],
+        ],
         callbacks: {
             onImageUpload: function (files) {
                 var editor = $(this);

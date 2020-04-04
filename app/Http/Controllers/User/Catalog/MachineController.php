@@ -20,7 +20,8 @@ class MachineController extends Controller
     public function show($slug)
     {
         $machine = Machine::findBySlugOrFail($slug);
-        $machine->load('tags', 'properties');
-        return $this->getView('user.catalog.machines.show', compact('machine'));
+        $categories = $machine->tags()->get();
+        $properties = $machine->properties()->withPivot('value')->get();
+        return $this->getView('user.catalog.machines.show', compact('machine', 'categories', 'properties'));
     }
 }

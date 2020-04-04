@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin\Catalog\Machines;
 
 use App\Entities\Catalog\Property;
 use App\Entities\Catalog\Tag;
-use App\Entities\Catalog\Type;
 use App\Rules\PropertiesNotEmpty;
 use App\Rules\UniqueValues;
 use Illuminate\Foundation\Http\FormRequest;
@@ -18,7 +17,6 @@ class UpdateRequest extends FormRequest
 
     public function rules()
     {
-//        $types = implode(',', Type::pluck('id')->toArray());
         $tags = implode(',', Tag::pluck('id')->toArray());
         $props = implode(',', Property::pluck('id')->toArray());
 
@@ -26,12 +24,17 @@ class UpdateRequest extends FormRequest
             'tags.*' => ['nullable', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
             'properties' => [new PropertiesNotEmpty($this)],
             'properties.*.name' => ['nullable', 'integer', 'in:' . $props, new UniqueValues($this)],
-//            'type' => ['nullable', 'integer', 'in:' . $types],
             'properties.*.value' => 'nullable|string|min:1',
             'name_ru' => 'nullable|string|min:3|unique:machines,name_ru,' . $this->machine . ',id',
             'name_en' => 'nullable|string|min:3|unique:machines,name_en,' . $this->machine . ',id',
+            'short_name_ru' => 'required|string|min:3|unique:machines,short_name_ru,' . $this->machine . ',id',
+            'short_name_en' => 'required|string|min:3|unique:machines,short_name_en,' . $this->machine . ',id',
             'slug' => 'nullable|string|min:3|unique:machines,slug,' . $this->machine . ',id',
             'img' => 'nullable|file|max:1024|mimes:jpeg,jpg,png',
+            'short_description_en' => 'required|string|min:10',
+            'short_description_ru' => 'required|string|min:10',
+            'meta_description_en' => 'nullable|string|min:10|max:255',
+            'meta_description_ru' => 'nullable|string|min:10|max:255',
             'description_en' => 'required|string|min:3',
             'description_ru' => 'required|string|min:3',
             'mail_en' => 'nullable|string|min:3',
@@ -52,9 +55,6 @@ class UpdateRequest extends FormRequest
             'tags.*.integer' => 'Значение должно быть целым числом.',
             'tags.*.in' => 'Неизвестный тэг.',
 
-//            'type.integer' => 'Значение должно быть целым числом.',
-//            'type.in' => 'Неизвестная категория.',
-
             'name_ru.string' => 'Значение этого поля должно быть строкой',
             'name_ru.min' => 'Длина не менее 3 символов',
             'name_ru.unique' => 'Такое оборудование уже существует',
@@ -62,6 +62,32 @@ class UpdateRequest extends FormRequest
             'name_en.string' => 'Значение этого поля должно быть строкой',
             'name_en.min' => 'Длина не менее 3 символов',
             'name_en.unique' => 'Такое оборудование уже существует',
+
+            'short_name_ru.required' => 'Это поле обязательно для заполнения',
+            'short_name_ru.string' => 'Значение этого поля должно быть строкой',
+            'short_name_ru.min' => 'Длина не менее 3 символов',
+            'short_name_ru.unique' => 'Такое наименование уже существует',
+
+            'short_name_en.required' => 'Это поле обязательно для заполнения',
+            'short_name_en.string' => 'Значение этого поля должно быть строкой',
+            'short_name_en.min' => 'Длина не менее 3 символов',
+            'short_name_en.unique' => 'Такое наименование уже существует',
+
+            'short_description_en.required' => 'Обязательный параметр',
+            'short_description_en.string' => 'Некорректное значение',
+            'short_description_en.min' => 'Минимум 10 символов',
+
+            'short_description_ru.required' => 'Обязательный параметр',
+            'short_description_ru.string' => 'Некорректное значение',
+            'short_description_ru.min' => 'Минимум 10 символов',
+
+            'meta_description_en.max' => 'Максимум 255 символов',
+            'meta_description_en.string' => 'Некорректное значение',
+            'meta_description_en.min' => 'Минимум 10 символов',
+
+            'meta_description_ru.max' => 'Максимум 255 символов',
+            'meta_description_ru.string' => 'Некорректное значение',
+            'meta_description_ru.min' => 'Минимум 10 символов',
 
             'description_en.string' => 'Значение этого поля должно быть строкой',
             'description_en.min' => 'Длина не менее 3 символов',

@@ -26,6 +26,10 @@ class UpdateRequest extends FormRequest
             'tags.*' => 'nullable|integer|in:' . $tags,
             'content_ru' => 'required|string|min:10',
             'content_en' => 'required|string|min:10',
+            'short_description_en' => 'required|string|min:10',
+            'short_description_ru' => 'required|string|min:10',
+            'meta_description_en' => 'nullable|string|min:10|max:255',
+            'meta_description_ru' => 'nullable|string|min:10|max:255',
             'images.*' => 'nullable|string',
             'type' => 'nullable',
         ];
@@ -43,6 +47,22 @@ class UpdateRequest extends FormRequest
             'title_en.min' => 'Минимум 3 символа',
             'title_en.max' => 'Максимум 30 символов',
             'title_en.unique' => 'Такое наименование уже существует',
+
+            'short_description_en.required' => 'Обязательный параметр',
+            'short_description_en.string' => 'Некорректное значение',
+            'short_description_en.min' => 'Минимум 10 символов',
+
+            'short_description_ru.required' => 'Обязательный параметр',
+            'short_description_ru.string' => 'Некорректное значение',
+            'short_description_ru.min' => 'Минимум 10 символов',
+
+            'meta_description_en.max' => 'Максимум 255 символов',
+            'meta_description_en.string' => 'Некорректное значение',
+            'meta_description_en.min' => 'Минимум 10 символов',
+
+            'meta_description_ru.max' => 'Максимум 255 символов',
+            'meta_description_ru.string' => 'Некорректное значение',
+            'meta_description_ru.min' => 'Минимум 10 символов',
 
             'slug.string' => 'Некорректное значение',
             'slug.min' => 'Минимум 3 символа',

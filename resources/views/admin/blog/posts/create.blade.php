@@ -28,6 +28,32 @@
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
+
+        <div class="form-group required border-bottom pb-4">
+            <input value="{{ old('short_description_en') }}" type="text" class="form-control  @error('short_description_en') is-invalid @enderror" placeholder="Короткое описание (eng)" name="short_description_en">
+            @error('short_description_en')
+            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+            @enderror
+        </div>
+        <div class="form-group required border-bottom pb-4">
+            <input value="{{ old('short_description_ru') }}" type="text" class="form-control  @error('short_description_ru') is-invalid @enderror" placeholder="Короткое описание (ru)" name="short_description_ru">
+            @error('short_description_ru')
+            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+            @enderror
+        </div>
+        <div class="form-group border-bottom pb-4">
+            <input value="{{ old('meta_description_en') }}" type="text" class="form-control  @error('meta_description_en') is-invalid @enderror" placeholder="SEO описание (en)" name="meta_description_en">
+            @error('meta_description_en')
+            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+            @enderror
+        </div>
+        <div class="form-group border-bottom pb-4">
+            <input value="{{ old('meta_description_ru') }}" type="text" class="form-control  @error('meta_description_ru') is-invalid @enderror" placeholder="SEO описание (ru)" name="meta_description_ru">
+            @error('meta_description_ru')
+            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+            @enderror
+        </div>
+
         <div class="form-group w-50 ml-auto mr-auto mb-5">
             <input type="text" name="slug" value="{{ old('slug') }}" class="form-control" placeholder="слаг">
             @error('slug')
@@ -93,6 +119,7 @@
 @push('js')
 <script src="{{ asset('js/jquery.multi-select.js') }}"></script>
 <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
+<script src="{{ asset('js/summernote-tags.js') }}"></script>
 <script src="{{ asset('js/summernote-create-item.js') }}"></script>
 <script>
     $('#tags-select').multiSelect({

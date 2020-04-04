@@ -45,7 +45,7 @@
             @auth
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->email }} <span class="caret"></span>
+                        Админ <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="layout-menu">
@@ -76,11 +76,11 @@
                             class="language">RU</span></a>
                 </li>
             </ul>
-            <form class="form-inline form-inline-search">
-                <button class="btn-lang my-2 my-sm-0" data-toggle="modal" data-target="#modalSearch" type="button"><i
+            <div class="form-inline form-inline-search">
+                <button class="show-search my-2 my-sm-0" data-toggle="modal" data-target="#modalSearch" type="button"><i
                         class="fa fa-search" aria-hidden="true"></i> Search
                 </button>
-            </form>
+            </div>
         </div>
     </div>
 </nav>

@@ -1,5 +1,5 @@
 <div class="contacts-form_wrapper js-contacts-form_wrapper">
-    <form action="{{route('mmc-200.ajax')}}" class="form" method="post" enctype="multipart/form-data">
+    <form action="{{route('user.mmc-200.ajax')}}" class="form" method="post" enctype="multipart/form-data">
         <h3 class="form-title">MMC-200</h3>
         @csrf
         <div class="input_wrapper">

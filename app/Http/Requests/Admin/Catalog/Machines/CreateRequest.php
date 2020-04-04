@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin\Catalog\Machines;
 
 use App\Entities\Catalog\Property;
 use App\Entities\Catalog\Tag;
-use App\Entities\Catalog\Type;
 use App\Rules\UniqueValues;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -17,19 +16,23 @@ class CreateRequest extends FormRequest
 
     public function rules()
     {
-//        $types = implode(',', Type::pluck('id')->toArray());
         $tags = implode(',', Tag::pluck('id')->toArray());
         $props = implode(',', Property::pluck('id')->toArray());
 
         return [
             'tags.*' => ['required', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
             'properties.*.name' => ['required', 'integer', 'in:' . $props, new UniqueValues($this)],
-//            'type' => ['required', 'integer', 'in:' . $types],
             'properties.*.value' => 'required|string|min:1',
             'name_ru' => 'required|string|min:3|unique:machines',
             'name_en' => 'required|string|min:3|unique:machines',
+            'short_name_ru' => 'required|string|min:3|unique:machines',
+            'short_name_en' => 'required|string|min:3|unique:machines',
             'slug' => 'nullable|string|min:3|unique:machines',
             'img' => 'required|file|max:1024|mimes:jpeg,jpg,png',
+            'short_description_en' => 'required|string|min:10',
+            'short_description_ru' => 'required|string|min:10',
+            'meta_description_en' => 'nullable|string|min:10|max:255',
+            'meta_description_ru' => 'nullable|string|min:10|max:255',
             'description_en' => 'required|string|min:3',
             'description_ru' => 'required|string|min:3',
             'mail_en' => 'required|string|min:3',
@@ -53,19 +56,41 @@ class CreateRequest extends FormRequest
             'tags.*.integer' => 'Значение должно быть целым числом.',
             'tags.*.in' => 'Неизвестный тэг.',
 
-//            'type.required' => 'Это поле обязательно для заполнения.',
-//            'type.integer' => 'Значение должно быть целым числом.',
-//            'type.in' => 'Неизвестная категория.',
-
             'name_ru.required' => 'Это поле обязательно для заполнения',
             'name_ru.string' => 'Значение этого поля должно быть строкой',
             'name_ru.min' => 'Длина не менее 3 символов',
-            'name_ru.unique' => 'Такая категория уже существует',
+            'name_ru.unique' => 'Такое наименование уже существует',
 
             'name_en.required' => 'Это поле обязательно для заполнения',
             'name_en.string' => 'Значение этого поля должно быть строкой',
             'name_en.min' => 'Длина не менее 3 символов',
-            'name_en.unique' => 'Такая категория уже существует',
+            'name_en.unique' => 'Такое наименование уже существует',
+
+            'short_name_ru.required' => 'Это поле обязательно для заполнения',
+            'short_name_ru.string' => 'Значение этого поля должно быть строкой',
+            'short_name_ru.min' => 'Длина не менее 3 символов',
+            'short_name_ru.unique' => 'Такое наименование уже существует',
+
+            'short_name_en.required' => 'Это поле обязательно для заполнения',
+            'short_name_en.string' => 'Значение этого поля должно быть строкой',
+            'short_name_en.min' => 'Длина не менее 3 символов',
+            'short_name_en.unique' => 'Такое наименование уже существует',
+
+            'short_description_en.required' => 'Обязательный параметр',
+            'short_description_en.string' => 'Некорректное значение',
+            'short_description_en.min' => 'Минимум 10 символов',
+
+            'short_description_ru.required' => 'Обязательный параметр',
+            'short_description_ru.string' => 'Некорректное значение',
+            'short_description_ru.min' => 'Минимум 10 символов',
+
+            'meta_description_en.max' => 'Максимум 255 символов',
+            'meta_description_en.string' => 'Некорректное значение',
+            'meta_description_en.min' => 'Минимум 10 символов',
+
+            'meta_description_ru.max' => 'Максимум 255 символов',
+            'meta_description_ru.string' => 'Некорректное значение',
+            'meta_description_ru.min' => 'Минимум 10 символов',
 
             'description_en.required' => 'Это поле обязательно для заполнения',
             'description_en.string' => 'Значение этого поля должно быть строкой',

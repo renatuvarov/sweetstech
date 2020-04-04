@@ -27,10 +27,16 @@ class UpdateMachine implements UpdatesContentImages
         $machine->newProperties($data['properties'] ?? []);
 
         $machine->update([
-            'name_en' => mb_strtolower($data['name_en']) ?: $machine->name_en,
-            'name_ru' => mb_strtolower($data['name_ru']) ?: $machine->name_ru,
-            'description_en' => clean($data['description_en']),
-            'description_ru' => clean($data['description_ru']),
+            'name_en' => $data['name_en'] ?: $machine->name_en,
+            'name_ru' => $data['name_ru'] ?: $machine->name_ru,
+            'short_name_ru' => $data['short_name_ru'],
+            'short_name_en' => $data['short_name_en'],
+            'short_description_en' => $data['short_description_en'],
+            'short_description_ru' => $data['short_description_ru'],
+            'meta_description_en' => $data['meta_description_en'] ?: null,
+            'meta_description_ru' => $data['meta_description_ru'] ?: null,
+            'description_en' => clean($data['description_en'], 'youtube'),
+            'description_ru' => clean($data['description_ru'], 'youtube'),
             'mail_en' => $data['mail_en'] ?: $machine->mail_en,
             'mail_ru' => $data['mail_ru'] ?: $machine->mail_ru,
             'slug' => mb_strtolower($data['slug']) ?: $machine->slug,
