@@ -51,7 +51,7 @@
                                                 <div class="w-100 pl-4 pr-4">
                                                     <h4 itemprop="name" class="title-partners">{{ $machine->name_en }}</h4>
                                                     <div itemprop="description" class="text-desc">
-                                                        {!! $machine->description_en !!}
+                                                        {{ $machine->short_description_en }}
                                                     </div>
                                                     <p class="categories-oborudovanie font-weight-bold m-0">Categories:</p>
                                                     <ul class="equipment-card-categories-list">
@@ -66,22 +66,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="last-element">
-                            <div class="widget-sidebar-cat categories-list">
-                                <h5 class="sidebar-title">All Categories</h5>
-                                <div class="sidebar-content">
-                                    <ul class="list-sidebar-cat">
-                                        @foreach($categories as $category)
-                                            <li>
-                                                <a href="{{ route('user.tags.show', ['slug' => $category->slug]) }}">
-                                                    <button class="categories-all">{{ $category->name_en }}</button>
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        @include('parts.machines-categories')
                     </div>
                     <hr>
                     {{ $machines->links('vendor.pagination.default') }}

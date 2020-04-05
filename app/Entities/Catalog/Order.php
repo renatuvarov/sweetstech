@@ -35,13 +35,13 @@ class Order extends Model
     {
         /** @var Order $order */
         $order = Order::make([
-            'customer_name' => $data['sh_nsp'],
-            'customer_company' => $data['sh_company'],
-            'customer_email' => $data['sh_email'],
-            'customer_phone' => $data['sh_phone'],
+            'customer_name' => $data['st_nsp'],
+            'customer_company' => $data['st_company'],
+            'customer_email' => $data['st_email'],
+            'customer_phone' => $data['st_phone'],
         ]);
 
-        $order->machine()->associate(Machine::findOrFail($data['sh_id']));
+        $order->machine()->associate(Machine::findOrFail($data['st_id']));
 
         $order->save();
 
@@ -51,8 +51,8 @@ class Order extends Model
     public static function isAlreadyOrdered(array $data): bool
     {
         /** @var Order $order */
-        $order = Order::where('machine_id', $data['sh_id'])
-            ->where('customer_email', $data['sh_email'])
+        $order = Order::where('machine_id', $data['st_id'])
+            ->where('customer_email', $data['st_email'])
             ->where('viewed', false)
             ->orderBy('created_at', 'desc')
             ->first();

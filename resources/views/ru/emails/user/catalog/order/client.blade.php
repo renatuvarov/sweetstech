@@ -9,7 +9,7 @@
 С наилучшими пожеланиями,
 <b>Команда Sweets Technologies</b>
 
-<img src="https://sweetstech.com/mmc-200/assets/img/logo_mail.png" alt=""><br><br><br>
+<img src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo"><br><br><br>
 Мы предлагаем более подробную информацию о машинах нашего производства:
 
 @component('mail::button', ['url' => 'https://youtu.be/wnyeSNFc4PA'])

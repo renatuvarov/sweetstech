@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 align-self-center">
-                                <h3 class="equipment-title">{{ $machine->name_en }}</h3>
+                                <h1 class="equipment-title">{{ $machine->name_en }}</h1>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
                                         <a href="{{ route('main') }}">Home</a>
@@ -68,49 +68,119 @@
                     </div>
                 </div>
             </div>
-
             <button type="button" class="show-form js-show-form">Get quotation</button>
         </section>
     </div>
-{{--    <form action="{{ route('user.order') }}" method="post" enctype="multipart/form-data" id="form">--}}
-{{--        @csrf--}}
-{{--        <input type="text" name="sh_nsp" required>--}}
-{{--        @error('sh_nsp')--}}
-{{--            <p>{{ $message }}</p>--}}
-{{--        @enderror--}}
-{{--        <input type="text" name="sh_company" required>--}}
-{{--        @error('sh_company')--}}
-{{--        <p>{{ $message }}</p>--}}
-{{--        @enderror--}}
-{{--        <input type="email" name="sh_email" required>--}}
-{{--        @error('sh_email')--}}
-{{--        <p>{{ $message }}</p>--}}
-{{--        @enderror--}}
-{{--        <input type="tel" name="sh_phone">--}}
-{{--        @error('sh_phone')--}}
-{{--        <p>{{ $message }}</p>--}}
-{{--        @enderror--}}
-{{--        <input type="hidden" name="sh_id" value="{{ $machine->id }}">--}}
-{{--        @error('sh_id')--}}
-{{--        <p>{{ $message }}</p>--}}
-{{--        @enderror--}}
-{{--        <input type="checkbox" class="js-form-accept" checked>--}}
-{{--        <button type="submit" class="js-form-btn">get</button>--}}
-{{--    </form>--}}
+    <div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper">
+        <button type="button" class="fixed-backdrop-wrapper_close js-fixed-backdrop-wrapper_close"></button>
+        <div class="order-form js-order-form">
+            <h3 class="order-form_title">
+                <span class="equipment-title order-form_title-text">{{ $machine->short_name_en }}</span>
+                <span class="order-form_title-logo_wrapper">
+                    <img src="{{ asset('assets/img/logo_footer.png') }}" alt="{{ config('site.user.app.name') }}">
+                </span>
+            </h3>
+            <form class="order-form_body" action="{{ route('user.order') }}" method="post" enctype="multipart/form-data" id="form">
+                @csrf
+                <div class="order-form_input-wrapper">
+                    <label for="st_nsp">Name</label>
+                    <input type="text" name="st_nsp" class="form-equipment" id="st_nsp" autofocus>
+                </div>
+                <div class="order-form_input-wrapper">
+                    <label for="st_company">Company</label>
+                    <input type="text" name="st_company" class="form-equipment" id="st_company">
+                </div>
+                <div class="order-form_input-wrapper">
+                    <label for="st_email">E-mail</label>
+                    <input type="text" name="st_email" class="form-equipment" id="st_email">
+                </div>
+                <div class="order-form_input-wrapper">
+                    <label for="st_phone">Phone</label>
+                    <input type="text" name="st_phone" class="form-equipment" id="st_phone">
+                </div>
+                <input type="hidden" name="st_id" value="{{ $machine->id }}" >
+                <p class="order-form_wrapper text-center">
+                    <label style="cursor:pointer;"><input type="checkbox" class="js-form-accept" checked> I agree to the processing of personal data</label>
+                    <button type="submit" class="button-neu js-button-neu">Send</button>
+                    <br>
+                <span style="font-size: 8px; opacity: 0.5; margin: 3px auto; color: #cbcbcb;">
+                    This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                </span>
+                </p>
+            </form>
+        </div>
+        <div class="order-form_success js-order-form_success hide">
+            <div class="order-form">
+                <h3 class="order-form_title">
+                    <span class="equipment-title order-form_title-text">Success!</span>
+                </h3>
+                <div class="order-form_body text-center">
+                    <p>Thanks! Your application has been sent successfully! Expect feedback on the provided contact details.</p>
+                    <p class="text-center">
+                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="order-form_error js-order-form_error hide">
+            <div class="order-form">
+                <h3 class="order-form_title">
+                    <span class="equipment-title order-form_title-text">Error!</span>
+                </h3>
+                <div class="order-form_body text-center">
+                    <p> We're sorry, but something went wrong. Please, try again later</p>
+                <p class="text-center">
+                    <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
+                </p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/js-content.js') }}"></script>
+<script src="{{ asset('js/js-content.js') }}"></script>
+{{--<script>--}}
+{{--    --}}{{--grecaptcha.ready(function() {--}}
+{{--    --}}{{--    grecaptcha.execute('', {action: 'homepage'}).then(function(token) {--}}
+{{--    --}}{{--        document.getElementById('g-recaptcha-response').value=token;--}}
+{{--    --}}{{--    });--}}
+{{--    --}}{{--});--}}
+{{--</script>--}}
 <script>
+    $('.js-show-form').on('click', function () {
+        $('.js-fixed-backdrop-wrapper').addClass('fixed-backdrop-wrapper-active');
+    });
+
+    $('.js-fixed-backdrop-wrapper_close').on('click', function () {
+        $('input.form-equipment').val('');
+        $('.js-order-form').removeClass('hide');
+        $('.js-order-form_success').addClass('hide');
+        $('.js-order-form_error').addClass('hide');
+        $('.js-fixed-backdrop-wrapper').removeClass('fixed-backdrop-wrapper-active');
+    });
+
+    $('.js-fixed-backdrop-wrapper').on('click', function (e) {
+        if (e.target === $(this)) {
+            $('input.form-equipment').val('');
+            $('.js-order-form').removeClass('hide');
+            $('.js-order-form_success').addClass('hide');
+            $('.js-order-form_error').addClass('hide');
+            $('.js-fixed-backdrop-wrapper').removeClass('fixed-backdrop-wrapper-active');
+        }
+    });
+
     $('#form').on('submit', function (e) {
         e.preventDefault();
+
+        $(this).find('.invalid-feedback').remove();
 
         if (! $('.js-form-accept').is(':checked')) {
             return;
         }
 
         var $form = $(this);
-        var $btn = $('.js-form-btn');
+        var $btn = $('.js-button-neu');
         $btn.attr('disabled', true);
 
         $.ajax({
@@ -121,26 +191,32 @@
                 'X-Requested-With': 'XMLHttpRequest'
             },
             success: function(response) {
-                console.log(response)
-                $('.js-form-btn').removeAttr('disabled');
-
+                $('.js-button-neu').removeAttr('disabled');
+                $('input.form-equipment').val('');
+                $('.js-order-form').addClass('hide');
+                $('.js-order-form_success').removeClass('hide');
             },
-            error: function(response) {
+            error: function(response, textStatus, xhr) {
                 $btn.attr('disabled', false);
-                var errors = response.responseJSON;
-                $.each(errors, function (key, value) {
-                    if (key === 'sh_id') {
-                        $('<p>' + value[0] + '</p>').insertBefore('.js-form-btn')
-                        return;
-                    }
-                    $('<p>' + value[0] + '</p>').insertAfter($('input[name=' + key + ']'));
-                })
+                if (xhr.status === 422) {
+                    var errors = response.responseJSON;
+
+                    $.each(errors, function (key, value) {
+                        $('<p>', {
+                            class: 'invalid-feedback',
+                            text: value[0],
+                        }).insertAfter('input[name="' + key + '"]');
+                    });
+                } else {
+                    $('.js-order-form').addClass('hide');
+                    $('.js-order-form_error').removeClass('hide');
+                }
             }
         });
     });
 
     $('.js-form-accept').on('change', function () {
-        $('.js-form-btn').attr('disabled', ! $(this).is(':checked'));
+        $('.js-button-neu').attr('disabled', ! $(this).is(':checked'));
     });
 
 </script>

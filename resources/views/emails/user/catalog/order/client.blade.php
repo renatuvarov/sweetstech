@@ -9,7 +9,7 @@ Thank You for contacting to our company.
 Best regards,
 <b>Sweets Technologies team</b>
 
-<img src="https://sweetstech.com/mmc-200/assets/img/logo_mail.png" alt=""><br><br><br>
+<img src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo"><br><br><br>
 We offer more details about the machines of our production:
 
 @component('mail::button', ['url' => 'https://youtu.be/wnyeSNFc4PA'])
