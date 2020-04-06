@@ -7,7 +7,7 @@
 @section('content')
 <div class="pt-5 pb-5">
     <h2 class="display-4 text-center mb-5">Редактировать пост (выставку)</h2>
-    <form action="{{ route('admin.blog.posts.update', ['post' => $post->id]) }}" method="post" class="add-item-form">
+    <form action="{{ route('admin.blog.posts.update', ['post' => $post->id]) }}" method="post" class="add-item-form"  enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="form-group w-50 ml-auto mr-auto mb-5 d-flex">
@@ -58,7 +58,12 @@
             <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
             @enderror
         </div>
-
+        <div class="form-group required border-bottom pb-5">
+            <input type="file" class="form-control @error('img') is-invalid @enderror" name="img">
+            @error('img')
+            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+            @enderror
+        </div>
         <div class="form-group w-50 ml-auto mr-auto mb-5">
             <input type="text" name="slug" value="{{ old('slug', $post->slug) }}" class="form-control" placeholder="слаг">
             @error('slug')

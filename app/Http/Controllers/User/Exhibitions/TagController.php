@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Blog;
+namespace App\Http\Controllers\User\Exhibitions;
 
 use App\Entities\Blog\Tag;
 use App\Http\Controllers\Controller;

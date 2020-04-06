@@ -38,6 +38,7 @@ class UpdatePost implements UpdatesContentImages
             'content_en' => clean($data['content_en'], 'youtube'),
             'content_ru' => clean($data['content_ru'], 'youtube'),
             'type' => empty($data['type']) ? Post::TYPE_POST : Post::TYPE_EXHIBITION,
+            'img' => $post->newImg($data['img'] ?? null) ?: $post->img,
             'images' => empty(
                 $images = $this->updateImagesList($data['images'] ?? [], $data['for_removing'] ?? [])
             ) ? null : $images,

@@ -5,10 +5,21 @@ namespace App\UseCases\Blog;
 
 
 use App\Entities\Blog\Post;
+use App\Handlers\ImageManager;
 use Illuminate\Support\Str;
 
 class CreatePost
 {
+    /**
+     * @var ImageManager
+     */
+    private $manager;
+
+    public function __construct(ImageManager $manager)
+    {
+        $this->manager = $manager;
+    }
+
     public function action(array $data): Post
     {
         /** @var Post $post */
@@ -25,6 +36,7 @@ class CreatePost
             'content_ru' => clean($data['content_ru'], 'youtube'),
             'images' => empty($data['images']) ? null : $data['images'],
             'type' => empty($data['type']) ? Post::TYPE_POST : Post::TYPE_EXHIBITION,
+            'img' => $this->manager->load($data['img'], 'posts/main'),
         ]);
 
         $post->attachTags($data['tags'] ?? []);

@@ -9,6 +9,13 @@
         <h2 class="h2 mb-5 display-4">Новое оборудование</h2>
         <form class="add-item-form text-left mb-5" method="post" action="{{ route('admin.machines.store') }}" enctype="multipart/form-data">
             @csrf
+            <div class="form-group w-50 ml-auto mr-auto mb-5 text-left d-flex">
+                <label for="is_redirect" class="form-check-label font-weight-bold">Редирект?</label>
+                <input type="checkbox" name="is_redirect" style="width: 30px; height: 30px; margin-left: 30px;" id="is_redirect">
+                @error('is_redirect')
+                <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
+            </div>
             <div class="container w-50 m-auto">
                 <div class="form-group required">
                     <input value="{{ old('name_ru') }}" type="text" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
@@ -91,6 +98,18 @@
                 <div class="form-group required border-bottom pb-5">
                     <input type="file" class="form-control @error('img') is-invalid @enderror" name="img">
                     @error('img')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-5">
+                    <input type="file" class="form-control @error('pdf') is-invalid @enderror" name="pdf">
+                    @error('pdf')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-5">
+                    <input type="file" class="form-control @error('pdf_ru') is-invalid @enderror" name="pdf_ru">
+                    @error('pdf_ru')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>

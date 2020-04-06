@@ -7,7 +7,7 @@
 @section('content')
 <div class="pt-5 pb-5">
     <h2 class="display-4 text-center mb-5">Новый пост (выставка)</h2>
-    <form action="{{ route('admin.blog.posts.store') }}" method="post" class="add-item-form mb-5">
+    <form action="{{ route('admin.blog.posts.store') }}" method="post" class="add-item-form mb-5" enctype="multipart/form-data">
         @csrf
         <div class="form-group w-50 ml-auto mr-auto mb-5 text-left d-flex">
             <label for="exh" class="form-check-label font-weight-bold">Выставка?</label>
@@ -58,6 +58,12 @@
             <input type="text" name="slug" value="{{ old('slug') }}" class="form-control" placeholder="слаг">
             @error('slug')
                 <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="form-group required border-bottom pb-5">
+            <input type="file" class="form-control @error('img') is-invalid @enderror" name="img">
+            @error('img')
+            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
             @enderror
         </div>
         <div class="form-group w-50 ml-auto mr-auto mb-5">

@@ -72,7 +72,7 @@
                         <hr>
                         {{ $machines->links('vendor.pagination.default') }}
                     @else
-                        <p class="text-center">Nothing found</p>
+                        <p class="text-center">Nothing found.</p>
                     @endif
                 </div>
             </div>

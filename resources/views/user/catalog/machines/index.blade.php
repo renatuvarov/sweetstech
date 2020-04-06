@@ -36,7 +36,8 @@
     <section class="blog-wrapper sect-pt4" id="blog">
         <div class="container equipment-container">
             <div class="row">
-                <div class="col-12 row-element">
+                @if(! empty($machines) && $machines->count() > 0)
+                    <div class="col-12 row-element">
                     <div class="d-flex post-box post-box-cat">
                         <div class="row-equipment">
                             @foreach($machines as $machine)
@@ -71,6 +72,9 @@
                     <hr>
                     {{ $machines->links('vendor.pagination.default') }}
                 </div>
+                @else
+                    Nothing found.
+                @endif
             </div>
         </div>
     </section>

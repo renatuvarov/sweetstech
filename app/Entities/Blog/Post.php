@@ -4,6 +4,8 @@ namespace App\Entities\Blog;
 
 use App\Entities\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -51,5 +53,13 @@ class Post extends Model
     public function scopeOnlyExhibitions(Builder $query)
     {
         return $query->where('type', static::TYPE_EXHIBITION);
+    }
+
+    public function newImg(?UploadedFile $file)
+    {
+        if (! empty($file)) {
+            Storage::delete(str_replace('/storage', '', $this->img));
+            return '/storage/' . $file->store('posts/main');
+        }
     }
 }

@@ -10,6 +10,17 @@
         <form class="add-item-form text-left pb-5" method="post" action="{{ route('admin.machines.update', ['machine' => $machine->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('put')
+            <div class="form-group w-50 ml-auto mr-auto mb-5 d-flex">
+                <label for="is_redirect" class="form-check-label font-weight-bold">Редирект?</label>
+                @if(! empty($machine->is_redirect))
+                    <input type="checkbox" name="is_redirect" style="width: 30px; height: 30px; margin-left: 30px;" id="is_redirect" checked>
+                @else
+                    <input type="checkbox" name="is_redirect" class="form-control" id="is_redirect">
+                @endif
+                @error('is_redirect')
+                <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
+            </div>
             <div class="container w-50 m-auto">
                 <div class="form-group required">
                     <label for="name_ru" class="form-label">Наименование (ru)</label>
@@ -74,6 +85,18 @@
                     <label for="img-input" class="form-label">Изображение оборудования</label>
                     <input type="file" class="form-control @error('img') is-invalid @enderror" name="img" id="img-input">
                     @error('img')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-5">
+                    <input type="file" class="form-control @error('pdf') is-invalid @enderror" name="pdf">
+                    @error('pdf')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required border-bottom pb-5">
+                    <input type="file" class="form-control @error('pdf_ru') is-invalid @enderror" name="pdf_ru">
+                    @error('pdf_ru')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>

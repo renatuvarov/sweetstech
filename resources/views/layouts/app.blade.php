@@ -63,7 +63,7 @@
                 </li>
             @endauth
         </ul>
-        <div class="lang_search right">
+        <div class="lang_search right ml-auto">
             <ul class="navbar-nav navbar-nav-lang">
                 <li class="nav-item">
                     <a class="nav-link-lang nav-link-active">

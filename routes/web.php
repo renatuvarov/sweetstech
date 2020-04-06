@@ -4,6 +4,7 @@ use App\Http\Middleware\IsAjax;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainController@index')->name('main');
+Route::get('/ru', 'MainController@index')->name('ru.main');
 
 Route::get('secfggdfgret-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('secfggdfgret-login', 'Auth\LoginController@login');

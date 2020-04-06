@@ -32,6 +32,7 @@ class CreateRequest extends FormRequest
             'meta_description_ru' => 'nullable|string|min:10|max:255',
             'images.*' => 'nullable|string',
             'type' => 'nullable',
+            'img' => 'required|file|max:1024|mimes:jpeg,jpg,png',
         ];
     }
 
