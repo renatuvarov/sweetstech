@@ -24,14 +24,15 @@ Route::post('secfggdfgret-logout', 'Auth\LoginController@logout')->name('logout'
 
 //Route::get('secret-password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
 //Route::post('secret-password/confirm', 'Auth\ConfirmPasswordController@confirm');
-
+Route::post('contact-form', 'ContactController@index')->name('user.contact-form')->middleware([IsAjax::class, 'throttle:5,1']);
+Route::post('ru/contact-form', 'ContactController@index')->name('ru.user.contact-form')->middleware([IsAjax::class, 'throttle:5,1']);
 Route::group([
     'namespace' => 'User',
     'as' => 'user.',
     'middleware' => ['throttle:60,1'],
 ], function () {
-    Route::get('mmc-200', 'LandingController@mmc200')->name('mmc-200');
-    Route::post('mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
+
+    Route::get('equipment/{slug}', 'LandingController@index')->name('landing');
 
     Route::group([
         'namespace' => 'Catalog',
@@ -74,8 +75,7 @@ Route::group([
     'as' => config('site.user.routes.prefix.name') . 'user.',
     'prefix' => config('site.user.routes.prefix.path'),
 ], function () {
-    Route::get('mmc-200', 'LandingController@mmc200')->name('mmc-200');
-    Route::post('mmc-200-ajax', 'LandingController@mmc200form')->name('mmc-200.ajax')->middleware(IsAjax::class);
+    Route::get('equipment/{slug}', 'LandingController@index')->name('landing');
 
     Route::group([
         'namespace' => 'Catalog',

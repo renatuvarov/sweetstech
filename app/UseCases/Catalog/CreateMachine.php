@@ -6,7 +6,9 @@ namespace App\UseCases\Catalog;
 
 use App\Entities\Catalog\Machine;
 use App\Handlers\ImageManager;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Psr\SimpleCache\CacheInterface;
 
 class CreateMachine
 {
@@ -14,10 +16,15 @@ class CreateMachine
      * @var ImageManager
      */
     private $manager;
+    /**
+     * @var CacheInterface
+     */
+    private $cache;
 
-    public function __construct(ImageManager $manager)
+    public function __construct(ImageManager $manager, CacheInterface $cache)
     {
         $this->manager = $manager;
+        $this->cache = $cache;
     }
 
     public function action(array $data): Machine
@@ -38,8 +45,11 @@ class CreateMachine
             'mail_ru' => $data['mail_ru'],
             'slug' => mb_strtolower($data['slug']) ?: Str::slug(mb_strtolower($data['name_en'])),
             'img' => $this->manager->load($data['img'], 'machines'),
+            'is_redirect' => isset($data['is_redirect']),
             'images' => empty($data['images']) ? null : $data['images'],
         ]);
+
+        $this->cache->forget('categories');
 
         $machine->save();
 

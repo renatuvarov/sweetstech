@@ -14,9 +14,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_ru' => 'nullable|string|min:3|unique:tags,name_ru,' . $this->tag . ',id',
-            'name_en' => 'nullable|string|min:3|unique:tags,name_en,' . $this->tag . ',id',
-            'slug' => 'nullable|string|min:3|unique:tags,slug,' . $this->tag . ',id',
+            'name_ru' => 'nullable|string|min:3|unique:tags,name_ru,' . $this->tag->id . ',id',
+            'name_en' => 'nullable|string|min:3|unique:tags,name_en,' . $this->tag->id . ',id',
+            'slug' => 'nullable|string|min:3|unique:tags,slug,' . $this->tag->id . ',id',
             'img' => 'nullable|file|max:1024|mimes:jpeg,jpg,png',
         ];
     }

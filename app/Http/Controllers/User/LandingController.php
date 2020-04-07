@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Entities\Catalog\Machine;
 use App\Handlers\ValidateOrderEmail;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
@@ -10,6 +11,12 @@ use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
+    public function index(string $slug)
+    {
+        $machine = Machine::findBySlugOrFail($slug);
+        return $this->getView('landings.' . $slug . '.index', compact('machine'));
+    }
+
     public function mmc200()
     {
         return view('landings.mmc-200');

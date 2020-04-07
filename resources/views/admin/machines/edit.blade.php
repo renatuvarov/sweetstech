@@ -88,18 +88,18 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
-                <div class="form-group required border-bottom pb-5">
-                    <input type="file" class="form-control @error('pdf') is-invalid @enderror" name="pdf">
-                    @error('pdf')
-                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="form-group required border-bottom pb-5">
-                    <input type="file" class="form-control @error('pdf_ru') is-invalid @enderror" name="pdf_ru">
-                    @error('pdf_ru')
-                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                    @enderror
-                </div>
+{{--                <div class="form-group required border-bottom pb-5">--}}
+{{--                    <input type="file" class="form-control @error('pdf') is-invalid @enderror" name="pdf">--}}
+{{--                    @error('pdf')--}}
+{{--                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--                <div class="form-group required border-bottom pb-5">--}}
+{{--                    <input type="file" class="form-control @error('pdf_ru') is-invalid @enderror" name="pdf_ru">--}}
+{{--                    @error('pdf_ru')--}}
+{{--                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
             </div>
             <div class="form-group">
                 <label for="description_en" class="form-label d-block text-center required h4">Описание (eng)</label>

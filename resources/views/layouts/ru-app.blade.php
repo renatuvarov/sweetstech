@@ -22,7 +22,7 @@
     <a id="logo" class="navbar-brand" href="#">Sweets Technologies</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon">Меню <i class="fa fa-bars" aria-hidden="true"></i>
+    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i>
   </span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -66,7 +66,7 @@
         <div class="lang_search right">
             <ul class="navbar-nav navbar-nav-lang">
                 <li class="nav-item">
-                    <a href="{{ substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) }}" class="nav-link-lang">
+                    <a href="{{ substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) ?: '/' }}" class="nav-link-lang">
                         <img width="18pt" height="18pt" src="{{ asset('assets/img/en_flag.png') }}" alt="language-en"><span
                             class="language">EN</span></a>
                 </li>

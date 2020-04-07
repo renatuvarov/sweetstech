@@ -1,139 +1,134 @@
-<div class="contacts-form_wrapper js-contacts-form_wrapper">
-    <form action="{{route('user.mmc-200.ajax')}}" class="form" method="post" enctype="multipart/form-data">
-        <h3 class="form-title">MMC-200</h3>
-        @csrf
-        <div class="input_wrapper">
-            <label for="nsp" class="form-label js-form-label">ФИО</label>
-            <input type="text" id="nsp" name="nsp" class="form-input js-form-input">
+<div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper">
+    <button type="button" class="fixed-backdrop-wrapper_close js-fixed-backdrop-wrapper_close"></button>
+    <div class="order-form js-order-form">
+        <h3 class="order-form_title">
+            <span class="equipment-title order-form_title-text">{{ $machine->short_name_en }}</span>
+            <span class="order-form_title-logo_wrapper">
+                    <img src="{{ asset('assets/img/logo_footer.png') }}" alt="{{ config('site.user.app.name') }}">
+                </span>
+        </h3>
+        <form class="order-form_body" action="{{ route('user.order') }}" method="post" enctype="multipart/form-data" id="form">
+            @csrf
+            <div class="order-form_input-wrapper">
+                <label for="st_nsp" class="required">Name</label>
+                <input type="text" name="st_nsp" class="form-equipment" id="st_nsp" autofocus>
+            </div>
+            <div class="order-form_input-wrapper">
+                <label for="st_company" class="required">Company</label>
+                <input type="text" name="st_company" class="form-equipment" id="st_company">
+            </div>
+            <div class="order-form_input-wrapper">
+                <label for="st_email" class="required">E-mail</label>
+                <input type="text" name="st_email" class="form-equipment" id="st_email">
+            </div>
+            <div class="order-form_input-wrapper">
+                <label for="st_phone">Phone</label>
+                <input type="text" name="st_phone" class="form-equipment" id="st_phone">
+            </div>
+            <input type="hidden" name="st_id" value="{{ $machine->id }}" >
+            <p class="text-center"><span class="required"> - required fields</span></p>
+            <p class="order-form_wrapper text-center">
+                <label style="cursor:pointer;"><input type="checkbox" class="js-form-accept" checked> I agree to the processing of personal data</label>
+                <button type="submit" class="button-neu js-button-neu">Send</button>
+                <br>
+                <span style="font-size: 8px; opacity: 0.5; margin: 3px auto; color: #cbcbcb;">
+                    This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                </span>
+            </p>
+        </form>
+    </div>
+    <div class="order-form_success js-order-form_success hide">
+        <div class="order-form">
+            <h3 class="order-form_title">
+                <span class="equipment-title order-form_title-text">Success!</span>
+            </h3>
+            <div class="order-form_body text-center">
+                <p>Thanks! Your application has been sent successfully! Expect feedback on the provided contact details.</p>
+                <p class="text-center">
+                    <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
+                </p>
+            </div>
         </div>
-        <div class="input_wrapper">
-            <label for="company" class="form-label js-form-label">Компания</label>
-            <input type="text" id="company" name="company" class="form-input js-form-input">
+    </div>
+    <div class="order-form_error js-order-form_error hide">
+        <div class="order-form">
+            <h3 class="order-form_title">
+                <span class="equipment-title order-form_title-text">Error!</span>
+            </h3>
+            <div class="order-form_body text-center">
+                <p> We're sorry, but something went wrong. Please, try again later</p>
+                <p class="text-center">
+                    <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
+                </p>
+            </div>
         </div>
-        <div class="input_wrapper">
-            <label for="email" class="form-label js-form-label">E-mail</label>
-            <input type="email" id="email" name="email" class="form-input js-form-input">
-        </div>
-        <div class="input_wrapper phone_wrapper">
-            <label for="phone" class="form-label js-form-label">Телефон</label>
-            <input type="tel" id="phone" name="phone" class="form-input js-form-input">
-        </div>
-        <input type="hidden" name="product" value="mmc-200">
-        <p class="form-info">* - обязательное поле</p>
-        <p class="form-info">
-            <input type="checkbox" class="form-accept js-form-accept" checked="checked" id="accept" style="cursor:pointer;">
-            <label style="cursor:pointer;" for="accept">Согласен на обработку персональных данных</label>
-        </p>
-        <div class="form-btn_wrapper">
-            <button type="submit" class="form-btn js-form-btn">
-                <span class="js-form-btn_txt">Заказать!</span>
-                <div class="spinner js-spinner">
-                    <div class="bounce1"></div>
-                    <div class="bounce2"></div>
-                    <div class="bounce3"></div>
-                </div>
-            </button>
-        </div>
-        <button class="form-close js-form-close form-close-inner" type="button">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<g>
-    <g>
-        <path d="M256,0C114.508,0,0,114.497,0,256c0,141.493,114.497,256,256,256c141.492,0,256-114.497,256-256
-			C512,114.507,397.503,0,256,0z M256,472c-119.384,0-216-96.607-216-216c0-119.385,96.607-216,216-216
-			c119.384,0,216,96.607,216,216C472,375.385,375.393,472,256,472z"/>
-    </g>
-</g>
-                <g>
-                    <g>
-                        <path d="M343.586,315.302L284.284,256l59.302-59.302c7.81-7.81,7.811-20.473,0.001-28.284c-7.812-7.811-20.475-7.81-28.284,0
-			L256,227.716l-59.303-59.302c-7.809-7.811-20.474-7.811-28.284,0c-7.81,7.811-7.81,20.474,0.001,28.284L227.716,256
-			l-59.302,59.302c-7.811,7.811-7.812,20.474-0.001,28.284c7.813,7.812,20.476,7.809,28.284,0L256,284.284l59.303,59.302
-			c7.808,7.81,20.473,7.811,28.284,0C351.398,335.775,351.397,323.112,343.586,315.302z"/>
-                    </g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-</svg>
-        </button>
-    </form>
-    <button class="form-close js-form-close form-close-outer" type="button">
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<g>
-    <g>
-        <path d="M256,0C114.508,0,0,114.497,0,256c0,141.493,114.497,256,256,256c141.492,0,256-114.497,256-256
-			C512,114.507,397.503,0,256,0z M256,472c-119.384,0-216-96.607-216-216c0-119.385,96.607-216,216-216
-			c119.384,0,216,96.607,216,216C472,375.385,375.393,472,256,472z"/>
-    </g>
-</g>
-            <g>
-                <g>
-                    <path d="M343.586,315.302L284.284,256l59.302-59.302c7.81-7.81,7.811-20.473,0.001-28.284c-7.812-7.811-20.475-7.81-28.284,0
-			L256,227.716l-59.303-59.302c-7.809-7.811-20.474-7.811-28.284,0c-7.81,7.811-7.81,20.474,0.001,28.284L227.716,256
-			l-59.302,59.302c-7.811,7.811-7.812,20.474-0.001,28.284c7.813,7.812,20.476,7.809,28.284,0L256,284.284l59.303,59.302
-			c7.808,7.81,20.473,7.811,28.284,0C351.398,335.775,351.397,323.112,343.586,315.302z"/>
-                </g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-</svg>
-    </button>
+    </div>
 </div>
-<button type="button" class="show-form js-show-form">Заказать</button>
+
+@push('js')
+<script>
+    $('.js-show-form').on('click', function () {
+        $('.js-fixed-backdrop-wrapper').addClass('fixed-backdrop-wrapper-active');
+        $('input.form-equipment')[0].focus();
+        $('html, body').css({'overflow-y': 'hidden'});
+    });
+
+    $('.js-fixed-backdrop-wrapper_close').on('click', function () {
+        $('input.form-equipment').val('');
+        $('.js-order-form').removeClass('hide');
+        $('.js-order-form_success').addClass('hide');
+        $('.js-order-form_error').addClass('hide');
+        $('.js-fixed-backdrop-wrapper').removeClass('fixed-backdrop-wrapper-active');
+        $('html, body').css({'overflow-y': 'auto'});
+    });
+
+    $('#form').on('submit', function (e) {
+        e.preventDefault();
+
+        $(this).find('.invalid-feedback').remove();
+
+        if (! $('.js-form-accept').is(':checked')) {
+            return;
+        }
+
+        var $form = $(this);
+        var $btn = $('.js-button-neu');
+        $btn.attr('disabled', true);
+
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function(response) {
+                $('.js-button-neu').removeAttr('disabled');
+                $('input.form-equipment').val('');
+                $('.js-order-form').addClass('hide');
+                $('.js-order-form_success').removeClass('hide');
+            },
+            error: function(response, textStatus, xhr) {
+                $btn.attr('disabled', false);
+                if (xhr.status === 422) {
+                    var errors = response.responseJSON;
+                    $.each(errors, function (key, value) {
+                        $('<p>', {
+                            class: 'invalid-feedback',
+                            text: value[0],
+                        }).insertAfter('input[name="' + key + '"]');
+                    });
+                } else {
+                    $('.js-order-form').addClass('hide');
+                    $('.js-order-form_error').removeClass('hide');
+                }
+            }
+        });
+    });
+
+    $('.js-form-accept').on('change', function () {
+        $('.js-button-neu').attr('disabled', ! $(this).is(':checked'));
+    });
+
+</script>
+@endpush

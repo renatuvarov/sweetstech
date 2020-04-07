@@ -6,6 +6,7 @@ use App\Contracts\UpdatesContentImages;
 use App\Entities\Catalog\Machine;
 use App\Handlers\ImageManager;
 use App\Traits\UpdatesImagesTrait;
+use Psr\SimpleCache\CacheInterface;
 
 class UpdateMachine implements UpdatesContentImages
 {
@@ -15,10 +16,15 @@ class UpdateMachine implements UpdatesContentImages
      * @var ImageManager
      */
     private $manager;
+    /**
+     * @var CacheInterface
+     */
+    private $cache;
 
-    public function __construct(ImageManager $manager)
+    public function __construct(ImageManager $manager, CacheInterface $cache)
     {
         $this->manager = $manager;
+        $this->cache = $cache;
     }
 
     public function action(Machine $machine, array $data): Machine
@@ -41,10 +47,13 @@ class UpdateMachine implements UpdatesContentImages
             'mail_ru' => $data['mail_ru'] ?: $machine->mail_ru,
             'slug' => mb_strtolower($data['slug']) ?: $machine->slug,
             'img' => $machine->newImg($data['img'] ?? null) ?: $machine->img,
+            'is_redirect' => isset($data['is_redirect']),
             'images' => empty(
                 $images = $this->updateImagesList($data['images'] ?? [], $data['for_removing'] ?? [])
             ) ? null : $images,
         ]);
+
+        $this->cache->forget('categories');
 
         return $machine;
     }

@@ -7,7 +7,7 @@
                     <img src="{{ asset('assets/img/logo_footer.png') }}" alt="{{ config('site.user.app.name') }}">
                 </span>
         </h3>
-        <form class="order-form_body" action="{{ route('user.search.count') }}" method="get" enctype="multipart/form-data" id="form">
+        <form class="order-form_body" action="{{ route('user.search.count') }}" method="get" enctype="multipart/form-data">
             <h4>Equipments name:</h4>
             <div class="order-form_input-wrapper">
                 <input type="text" name="st_title" class="form-equipment" autofocus>
@@ -16,7 +16,7 @@
             @foreach($categories  as $category)
             <div class="mb-1">
                 <label>
-                    <input type="checkbox" name="categories[]" class="" value="{{ $category->id }}"> {{ $category->name_en }}
+                    <input type="checkbox" name="categories[]" class="" value="{{ $category['id'] }}"> {{ $category['name_en'] }}
                 </label>
             </div>
             @endforeach

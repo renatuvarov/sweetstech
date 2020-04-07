@@ -20,9 +20,8 @@
 <nav class="navbar fixed-top navbar-expand-lg">
     <img class="navbar-logo" width="18pt" height="18pt" src="{{ asset('assets/img/favicon.png') }}" alt="logo">
     <a id="logo" class="navbar-brand" href="#">Sweets Technologies</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon">Menu <i class="fa fa-bars" aria-hidden="true"></i>
+    <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i>
   </span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">

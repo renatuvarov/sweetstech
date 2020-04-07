@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Blog\Post;
 use App\Entities\Catalog\Tag;
 
 class MainController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
-        return view('main', compact('tags'));
+        $categories = Tag::query()->with('machines')->get();
+        $post = Post::query()->onlyPosts()->with('category')->orderByDesc('id')->limit(1)->first();
+        $exhibitions = Post::query()->onlyExhibitions()->with('category')->orderByDesc('id')->limit(2)->get();
+        return $this->getView('main', compact('categories', 'post', 'exhibitions'));
     }
 }

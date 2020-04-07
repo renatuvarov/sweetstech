@@ -5,8 +5,8 @@
             <ul class="list-sidebar-cat">
                 @foreach($categories as $category)
                     <li>
-                        <a href="{{ route('user.tags.show', ['slug' => $category->slug]) }}">
-                            <button class="categories-all">{{ $category->name_en }}</button>
+                        <a href="{{ route('user.tags.show', ['slug' => $category['slug']]) }}">
+                            <button class="categories-all">{{ $category['name_en'] }}</button>
                         </a>
                     </li>
                 @endforeach

@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Catalog\Tags\CreateRequest;
 use App\Http\Requests\Admin\Catalog\Tags\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Psr\SimpleCache\CacheInterface;
 
 class TagController extends Controller
 {
@@ -56,10 +57,11 @@ class TagController extends Controller
         return redirect()->route('admin.tag.index');
     }
 
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag, CacheInterface $cache)
     {
         Storage::delete(str_replace('/storage', '', $tag->img));
         $tag->delete();
+        $cache->forget('categories');
         return redirect()->route('admin.tag.index');
     }
 }
