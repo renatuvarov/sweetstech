@@ -51,6 +51,7 @@
                 </div>
             </div>
             <div class="row">
+                @if(! empty($categories) && $categories->count() > 0)
                 @foreach($categories as $category)
                 <div class="col-md-4 col-6 mb-30">
                     <div class="categories card-blog">
@@ -69,6 +70,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -113,7 +115,7 @@
             </div>
         </div>
     </section>
-
+    @if(! empty($post) || (! empty($exhibitions) && $exhibitions->count() > 0 ))
     <section id="news" class="blog-mf route">
         <div class="container">
             <div class="row">
@@ -124,6 +126,7 @@
                 </div>
             </div>
             <div class="row">
+                @if(! empty($post))
                 <div class="col-md-4">
                     <div class="card card-blog">
                         <div class="card-img">
@@ -150,6 +153,8 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                @if(! empty($exhibitions) && $exhibitions->count() > 0)
                 @foreach($exhibitions as $exhibition)
                     <div class="col-md-4">
                         <div class="card card-blog">
@@ -178,9 +183,11 @@
                         </div>
                     </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </section>
+    @endif
     <section id="partners" class="sect-pt4">
         <div class="container-fluid">
             <div class="row">

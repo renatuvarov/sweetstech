@@ -52,24 +52,26 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach($categories as $category)
-                        <div class="col-md-4 col-6 mb-30">
-                            <div class="categories card-blog">
-                                <div class="categories-img">
-                                    <a href="{{ route('user.tags.show', ['slug' => $category->slug]) }}">
-                                        <img src="{{ $category->img }}" alt="{{ $category->name_ru }}" class="categories-img-wrapper">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card-category-box">
-                                        <div class="card-category">
-                                            <h6 class="category">{{ $category->name_ru }}</h6>
+                    @if(! empty($categories) && $categories->count() > 0)
+                        @foreach($categories as $category)
+                            <div class="col-md-4 col-6 mb-30">
+                                <div class="categories card-blog">
+                                    <div class="categories-img">
+                                        <a href="{{ route('ru.user.tags.show', ['slug' => $category->slug]) }}">
+                                            <img src="{{ $category->img }}" alt="{{ $category->name_ru }}" class="categories-img-wrapper">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-category-box">
+                                            <div class="card-category">
+                                                <h6 class="category">{{ $category->name_ru }}</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>
@@ -114,7 +116,7 @@
                 </div>
             </div>
         </section>
-
+        @if(! empty($post) || (! empty($exhibitions) && $exhibitions->count() > 0 ))
         <section id="news" class="blog-mf route">
             <div class="container">
                 <div class="row">
@@ -125,63 +127,68 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card card-blog">
-                            <div class="card-img">
-                                <a href="{{ route('user.blog.news.show', ['slug' => $post->slug]) }}">
-                                    <img src="{{ $post->img }}" alt="{{ $post->title_ru }}" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-category-box">
-                                    <div class="card-category">
-                                        <h6 class="category">{{ $post->category->name_ru }}</h6>
-                                    </div>
-                                </div>
-                                <h3 class="card-title"><a href="news-single.html">{{ $post->title_ru }}</a></h3>
-                                <p class="card-description">
-                                    {{ $post->short_description_ru }}
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="post-date">
-                                    <span class="fa fa-calendar"></span>
-                                    <span class="date">{{ $post->created_at->format('d.m.Y') }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @foreach($exhibitions as $exhibition)
+                    @if(! empty($post))
                         <div class="col-md-4">
                             <div class="card card-blog">
                                 <div class="card-img">
-                                    <a href="{{ route('user.exhibitions.news.show', ['slug' => $exhibition->slug]) }}">
-                                        <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_ru }}" class="img-fluid">
+                                    <a href="{{ route('ru.user.blog.news.show', ['slug' => $post->slug]) }}">
+                                        <img src="{{ $post->img }}" alt="{{ $post->title_ru }}" class="img-fluid">
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     <div class="card-category-box">
                                         <div class="card-category">
-                                            <h6 class="category">{{ $exhibition->category->name_ru }}</h6>
+                                            <h6 class="category">{{ $post->category->name_ru }}</h6>
                                         </div>
                                     </div>
-                                    <h3 class="card-title"><a href="news-single.html">{{ $exhibition->title_ru }}</a></h3>
+                                    <h3 class="card-title"><a href="news-single.html">{{ $post->title_ru }}</a></h3>
                                     <p class="card-description">
-                                        {{ $exhibition->short_description_ru }}
+                                        {{ $post->short_description_ru }}
                                     </p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="post-date">
                                         <span class="fa fa-calendar"></span>
-                                        <span class="date">{{ $exhibition->created_at->format('Y-m-d') }}</span>
+                                        <span class="date">{{ $post->created_at->format('Y-m-d') }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endif
+                    @if(! empty($exhibitions) && $exhibitions->count() > 0)
+                        @foreach($exhibitions as $exhibition)
+                            <div class="col-md-4">
+                                <div class="card card-blog">
+                                    <div class="card-img">
+                                        <a href="{{ route('ru.user.exhibitions.news.show', ['slug' => $exhibition->slug]) }}">
+                                            <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_ru }}" class="img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-category-box">
+                                            <div class="card-category">
+                                                <h6 class="category">{{ $exhibition->category->name_ru }}</h6>
+                                            </div>
+                                        </div>
+                                        <h3 class="card-title">{{ $exhibition->title_ru }}</h3>
+                                        <p class="card-description">
+                                            {{ $exhibition->short_description_ru }}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="post-date">
+                                            <span class="fa fa-calendar"></span>
+                                            <span class="date">{{ $exhibition->created_at->format('Y-m-d') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>
+        @endif
         <section id="partners" class="sect-pt4">
             <div class="container-fluid">
                 <div class="row">
