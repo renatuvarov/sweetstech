@@ -344,3 +344,15 @@
         display: none;
     }
 }
+
+.home-main-page h1 {
+    font-size: 7rem;
+}
+
+@media (max-width: 850px) {
+    .home-main-page h1 {
+        font-size: 25px;
+    }
+}
+
+

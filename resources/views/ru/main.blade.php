@@ -1,38 +1,46 @@
 @extends('layouts.ru-app')
 
 @section('content')
-    <div id="home" class="intro main-bg">
-        <div class="overlay-itro"></div>
-        <div class="intro-content display-table">
-            <div class="table-cell">
-                <div itemscope itemtype="https://schema.org/Organization" class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-5 d-flex align-self-center justify-content-center">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-12 d-flex justify-content-center">
-                                        <img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-5 main-short align-self-center">
-                            <h2>Коротко о нас</h2>
-                            <p>Бренд «Сладкие технологии» (Sweets Technologies) создан более 15 лет назад!
+{{--    <div id="home" class="intro main-bg">--}}
+{{--        <div class="overlay-itro"></div>--}}
+{{--        <div class="intro-content display-table">--}}
+{{--            <div class="table-cell">--}}
+{{--                <div itemscope itemtype="https://schema.org/Organization" class="container-fluid">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-5 d-flex align-self-center justify-content-center">--}}
+{{--                            <div class="container-fluid">--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-md-12 d-flex justify-content-center">--}}
+{{--                                        <img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-2">--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-5 main-short align-self-center">--}}
+{{--                            <h2>Коротко о нас</h2>--}}
+{{--                            <p>Бренд «Сладкие технологии» (Sweets Technologies) создан более 15 лет назад!--}}
+{{--                                Sweets Technologies выпускает кондитерское оборудование,  соответствующее международным стандартам.--}}
+{{--                                Мы поможем вашей компании завоевать лидирующие позиции на рынке своей высококачественной продукцией!--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <video id="videoBG" autoplay muted loop>--}}
+{{--            <source src="{{ asset('assets/video/footage.mp4') }}" type="video/mp4">--}}
+{{--        </video>--}}
+{{--    </div>--}}
+<div class="home-main-page text-center" style="padding: 80px; color: white; background: radial-gradient(circle,#265c5c 0%,#002338 59%);">
+    <p><img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="" style="max-width: 100%"></p>
+    <h1 style="color: white">Sweets Technologies</h1>
+    <hr class="w-25 m-auto mb-3 d-block" style="color: white; background-color:#fff; margin-bottom: 30px !important;">
+    <p class="w-50 m-auto mt-3">Бренд «Сладкие технологии» (Sweets Technologies) создан более 15 лет назад!
                                 Sweets Technologies выпускает кондитерское оборудование,  соответствующее международным стандартам.
-                                Мы поможем вашей компании завоевать лидирующие позиции на рынке своей высококачественной продукцией!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <video id="videoBG" autoplay muted loop>
-            <source src="{{ asset('assets/video/footage.mp4') }}" type="video/mp4">
-        </video>
-    </div>
+                                Мы поможем вашей компании завоевать лидирующие позиции на рынке своей высококачественной продукцией!</p>
+</div>
     <div class="container-fluid main-back">
         <section id="categories" class="blog-mf route">
             <div class="container">

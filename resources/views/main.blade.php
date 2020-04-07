@@ -1,37 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="home" class="intro main-bg main-page">
-    <div class="overlay-itro"></div>
-    <div class="intro-content display-table">
-        <div class="table-cell">
-            <div itemscope itemtype="https://schema.org/Organization" class="container-fluid">
-                <div class="row">
-                    <div class="col-md-5 d-flex align-self-center justify-content-center">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12 d-flex justify-content-center">
-                                    <img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-5 main-short align-self-center">
-                        <h2>Brief information</h2>
-                        <p>The Sweets Technologies brand was created over 15 years ago!
-                            Sweets Technologies manufactures confectionery equipment that meets international standards.
-                            We will help your company to gain a leading position in the market with its high-quality products!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <video id="videoBG" autoplay muted loop>
-        <source src="{{ asset('assets/video/footage.mp4') }}" type="video/mp4">
-    </video>
+<div class="home-main-page text-center" style="padding: 80px; color: white; background: radial-gradient(circle,#265c5c 0%,#002338 59%);">
+    <p><img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="" style="max-width: 100%"></p>
+    <h1 style="color: white">Sweets Technologies</h1>
+    <hr class="w-25 m-auto mb-3 d-block" style="color: white; background-color:#fff; margin-bottom: 30px !important;">
+    <p class="w-50 m-auto mt-3">The Sweets Technologies brand was created over 15 years ago!
+        Sweets Technologies manufactures confectionery equipment that meets international standards.
+        We will help your company to gain a leading position in the market with its high-quality products!</p>
 </div>
+{{--<div id="home" class="intro main-bg main-page">--}}
+{{--    <div class="overlay-itro"></div>--}}
+{{--    <div class="intro-content display-table">--}}
+{{--        <div class="table-cell">--}}
+{{--            <div itemscope itemtype="https://schema.org/Organization" class="container-fluid">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-md-5 d-flex align-self-center justify-content-center">--}}
+{{--                        <div class="container-fluid">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-12 d-flex justify-content-center">--}}
+{{--                                    <img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-2">--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-5 main-short align-self-center">--}}
+{{--                        <h2>Brief information</h2>--}}
+{{--                        <p>The Sweets Technologies brand was created over 15 years ago!--}}
+{{--                            Sweets Technologies manufactures confectionery equipment that meets international standards.--}}
+{{--                            We will help your company to gain a leading position in the market with its high-quality products!</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <video id="videoBG" autoplay muted loop>--}}
+{{--        <source src="{{ asset('assets/video/footage.mp4') }}" type="video/mp4">--}}
+{{--    </video>--}}
+{{--</div>--}}
 <div class="container-fluid main-back main-page">
     <section id="categories" class="blog-mf route">
         <div class="container">
