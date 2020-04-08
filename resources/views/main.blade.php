@@ -9,37 +9,6 @@
         Sweets Technologies manufactures confectionery equipment that meets international standards.
         We will help your company to gain a leading position in the market with its high-quality products!</p>
 </div>
-{{--<div id="home" class="intro main-bg main-page">--}}
-{{--    <div class="overlay-itro"></div>--}}
-{{--    <div class="intro-content display-table">--}}
-{{--        <div class="table-cell">--}}
-{{--            <div itemscope itemtype="https://schema.org/Organization" class="container-fluid">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-md-5 d-flex align-self-center justify-content-center">--}}
-{{--                        <div class="container-fluid">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-12 d-flex justify-content-center">--}}
-{{--                                    <img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-md-2">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-md-5 main-short align-self-center">--}}
-{{--                        <h2>Brief information</h2>--}}
-{{--                        <p>The Sweets Technologies brand was created over 15 years ago!--}}
-{{--                            Sweets Technologies manufactures confectionery equipment that meets international standards.--}}
-{{--                            We will help your company to gain a leading position in the market with its high-quality products!</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <video id="videoBG" autoplay muted loop>--}}
-{{--        <source src="{{ asset('assets/video/footage.mp4') }}" type="video/mp4">--}}
-{{--    </video>--}}
-{{--</div>--}}
 <div class="container-fluid main-back main-page">
     <section id="categories" class="blog-mf route">
         <div class="container">
@@ -261,6 +230,7 @@
                                                 <textarea class="form-equipment" name="st_message" rows="5" placeholder="Message"></textarea>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                                         <p class="text-center"><span class="required"> - required fields</span></p>
                                         <p class="order-form_wrapper text-center">
                                             <label style="cursor:pointer;"><input type="checkbox" class="js-form-accept" checked> I agree to the processing of personal data</label>
@@ -328,6 +298,7 @@
         </div>
     </div>
 </div>
+    @include('parts.recaptcha')
 @endsection
 
 @push('css')

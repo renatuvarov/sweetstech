@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\IsAjax;
+use App\Http\Middleware\RecaptchaMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainController@index')->name('main');
@@ -10,22 +11,9 @@ Route::get('secfggdfgret-login', 'Auth\LoginController@showLoginForm')->name('lo
 Route::post('secfggdfgret-login', 'Auth\LoginController@login');
 Route::post('secfggdfgret-logout', 'Auth\LoginController@logout')->name('logout');
 
-//Route::get('secret-register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//Route::post('secret-register', 'Auth\RegisterController@register');
-//
-//Route::get('secret-password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//Route::post('secret-password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-//Route::get('secret-password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-//Route::post('secret-password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-//
-//Route::get('secret-email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-//Route::get('secret-email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
-//Route::post('secret-email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+Route::post('contact-form', 'ContactController@index')->name('user.contact-form')->middleware([IsAjax::class, RecaptchaMiddleware::class, 'throttle:5,1']);
+Route::post('ru/contact-form', 'ContactController@index')->name('ru.user.contact-form')->middleware([IsAjax::class, RecaptchaMiddleware::class, 'throttle:5,1']);
 
-//Route::get('secret-password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-//Route::post('secret-password/confirm', 'Auth\ConfirmPasswordController@confirm');
-Route::post('contact-form', 'ContactController@index')->name('user.contact-form')->middleware([IsAjax::class, 'throttle:5,1']);
-Route::post('ru/contact-form', 'ContactController@index')->name('ru.user.contact-form')->middleware([IsAjax::class, 'throttle:5,1']);
 Route::group([
     'namespace' => 'User',
     'as' => 'user.',
@@ -41,7 +29,7 @@ Route::group([
         Route::get('/', 'MachineController@index')->name('catalog.index');
         Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
         Route::get('category/{slug}', 'TagController@show')->name('tags.show');
-        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('order');
+        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
     });
 
     Route::group([
@@ -84,7 +72,7 @@ Route::group([
         Route::get('category/{slug}', 'TagController@show')->name('tags.show');
         Route::get('/', 'MachineController@index')->name('catalog.index');
         Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
-        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, 'throttle:10,1'])->name('order');
+        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
     });
 
     Route::group([

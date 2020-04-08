@@ -12,14 +12,16 @@
             <div class="order-form_input-wrapper">
                 <input type="text" name="st_title" class="form-equipment" autofocus>
             </div>
-            <h4>Categories:</h4>
-            @foreach($categories  as $category)
-            <div class="mb-1">
-                <label>
-                    <input type="checkbox" name="categories[]" class="" value="{{ $category['id'] }}"> {{ $category['name_en'] }}
-                </label>
-            </div>
-            @endforeach
+            @if(! empty($categories) && $categories->count() > 0)
+                <h4>Categories:</h4>
+                @foreach($categories  as $category)
+                <div class="mb-1">
+                    <label>
+                        <input type="checkbox" name="categories[]" class="" value="{{ $category['id'] }}"> {{ $category['name_en'] }}
+                    </label>
+                </div>
+                @endforeach
+            @endif
             <p class="order-form_wrapper text-center">
                 <button type="submit" class="button-neu js-button-neu">Search</button>
             </p>
