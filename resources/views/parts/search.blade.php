@@ -12,7 +12,7 @@
             <div class="order-form_input-wrapper">
                 <input type="text" name="st_title" class="form-equipment" autofocus>
             </div>
-            @if(! empty($categories) && $categories->count() > 0)
+            @if(! empty($categories))
                 <h4>Categories:</h4>
                 @foreach($categories  as $category)
                 <div class="mb-1">
