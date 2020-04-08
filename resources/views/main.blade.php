@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="home-main-page text-center" style="padding: 80px; color: white; background: radial-gradient(circle,#265c5c 0%,#002338 59%);">
-    <p><img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="" style="max-width: 100%"></p>
-    <h1 style="color: white">Sweets Technologies</h1>
+<div class="home-main-page text-center">
+    <p><img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt=""></p>
+    <h1>Sweets Technologies</h1>
     <hr class="w-25 m-auto mb-3 d-block" style="color: white; background-color:#fff; margin-bottom: 30px !important;">
-    <p class="w-50 m-auto mt-3">The Sweets Technologies brand was created over 15 years ago!
+    <p class="brief">The Sweets Technologies brand was created over 15 years ago!
         Sweets Technologies manufactures confectionery equipment that meets international standards.
         We will help your company to gain a leading position in the market with its high-quality products!</p>
 </div>
-<div class="container-fluid main-back main-page">
+<div class="container-fluid main-back main-page main-page-equipment">
     <section id="categories" class="blog-mf route">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="title-box text-center">
-                        <h3 class="title-a">Our Equipment</h3>
+                        <h3 class="title-a main-page-title">Our Equipment</h3>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="about-me pt-4 pt-md-0">
-                                    <h3 class="title-a text-center">About us</h3>
+                                    <h3 class="title-a text-center main-page-title">About us</h3>
                                     <br>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="title-box text-center">
-                        <h3 class="title-a">Last News</h3>
+                        <h3 class="title-a main-page-title">Last News</h3>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="title-box text-center">
-                        <h3 class="title-a">Partners</h3>
+                        <h3 class="title-a main-page-title">Partners</h3>
                     </div>
                 </div>
             </div>

@@ -3894,12 +3894,46 @@ em {
     width: 15px;
 }
 
+.home-main-page {
+    padding: 80px 30px 50px;
+    background: radial-gradient(circle,#265c5c 0%,#002338 59%);
+    color: whitesmoke;
+}
+
+.home-main-page img {
+    max-width: 100%;
+}
+
 .home-main-page h1 {
     font-size: 7rem;
+    color: whitesmoke;
 }
+
+.home-main-page .brief {
+    width: 60%;
+    margin: auto;
+}
+
+.main-page-equipment {
+    margin-top: 50px;
+}
+
 
 @media (max-width: 850px) {
     .home-main-page h1 {
         font-size: 25px;
     }
+
+    .home-main-page .brief {
+        width: 90%;
+        margin: auto;
+    }
 }
+
+@media (max-width: 600px) {
+    .main-page-title {
+        font-size: 2rem;
+    }
+}
+
+

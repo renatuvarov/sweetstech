@@ -1,21 +1,21 @@
 @extends('layouts.ru-app')
 
 @section('content')
-<div class="home-main-page text-center" style="padding: 80px; color: white; background: radial-gradient(circle,#265c5c 0%,#002338 59%);">
-    <p><img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt="" style="max-width: 100%"></p>
-    <h1 style="color: white">Sweets Technologies</h1>
+<div class="home-main-page text-center">
+    <p><img class="logo" src="{{ asset('assets/img/logo.png') }}" itemprop="logo" width="300px" alt=""></p>
+    <h1>Sweets Technologies</h1>
     <hr class="w-25 m-auto mb-3 d-block" style="color: white; background-color:#fff; margin-bottom: 30px !important;">
-    <p class="w-50 m-auto mt-3">Бренд «Сладкие технологии» (Sweets Technologies) создан более 15 лет назад!
+    <p class="brief">Бренд «Сладкие технологии» (Sweets Technologies) создан более 15 лет назад!
                                 Sweets Technologies выпускает кондитерское оборудование,  соответствующее международным стандартам.
                                 Мы поможем вашей компании завоевать лидирующие позиции на рынке своей высококачественной продукцией!</p>
 </div>
-    <div class="container-fluid main-back">
+    <div class="container-fluid main-back main-page-equipment">
         <section id="categories" class="blog-mf route">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="title-box text-center">
-                            <h3 class="title-a">Оборудование для производства:</h3>
+                            <h3 class="title-a main-page-title">Оборудование для производства:</h3>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="about-me pt-4 pt-md-0">
-                                        <h3 class="title-a text-center">О компании</h3>
+                                        <h3 class="title-a text-center main-page-title">О компании</h3>
                                         <br>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="title-box text-center">
-                            <h3 class="title-a">Новости</h3>
+                            <h3 class="title-a main-page-title">Новости</h3>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="title-box text-center">
-                            <h3 class="title-a">Наши партнеры</h3>
+                            <h3 class="title-a main-page-title">Наши партнеры</h3>
                         </div>
                     </div>
                 </div>
