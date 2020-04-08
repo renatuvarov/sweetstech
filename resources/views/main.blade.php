@@ -25,9 +25,15 @@
                 <div class="col-md-4 col-6 mb-30">
                     <div class="categories card-blog">
                         <div class="categories-img">
+                            @if($category->machines->count() > 0)
                             <a href="{{ route('user.tags.show', ['slug' => $category->slug]) }}">
                                 <img src="{{ $category->img }}" alt="{{ $category->name_en }}" class="categories-img-wrapper">
                             </a>
+                            @else
+                                <a>
+                                    <img src="{{ $category->img }}" alt="{{ $category->name_en }}" class="categories-img-wrapper">
+                                </a>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="card-category-box">
