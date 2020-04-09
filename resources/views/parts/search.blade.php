@@ -17,7 +17,7 @@
                 @foreach($categories  as $category)
                 <div class="mb-1">
                     <label>
-                        <input type="checkbox" name="categories[]" class="" value="{{ $category['id'] }}"> {{ $category['name_en'] }}
+                        <input type="checkbox" name="st_categories[]" class="" value="{{ $category['id'] }}"> {{ $category['name_en'] }}
                     </label>
                 </div>
                 @endforeach

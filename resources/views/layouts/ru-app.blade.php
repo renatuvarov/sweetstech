@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @section('description')
@@ -12,7 +11,6 @@
         <title>{{ config('site.user.app.name') }}</title>
     @show
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @stack('css')
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
@@ -78,8 +76,43 @@
                 </li>
             </ul>
             <div class="form-inline form-inline-search">
-                <button class="show-search my-2 my-sm-0 js-show-search" type="button"><i
-                        class="fa fa-search"></i> Поиск
+                <button class="show-search my-2 my-sm-0 js-show-search" type="button"><svg style="width:16px;margin-right:3px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                                                           viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
+<path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
+	s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
+	c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
+	s-17-7.626-17-17S14.61,6,23.984,6z"/>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+</svg>Поиск
                 </button>
             </div>
         </div>
@@ -157,9 +190,7 @@
 @include('parts.to-top')
 @include('ru.parts.cookies')
 <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
-<script src="{{ asset('js/all.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 @stack('js')
 </body>
 </html>
-

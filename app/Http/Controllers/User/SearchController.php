@@ -14,7 +14,7 @@ class SearchController extends Controller
     public function count(CountRequest $request)
     {
         $query = Machine::query();
-
+        dd($request->input('st_categories'));
         if (! empty($request->input('st_categories'))) {
             $query->whereIn('id', DB::table('machine_tag')
                 ->whereIn('tag_id', $request->input('st_categories'))

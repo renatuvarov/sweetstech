@@ -365,6 +365,12 @@ ul {
     margin-right: 10px;
 }
 
+.list-ico svg {
+    width:16px;
+    fill:#0078ff;
+    margin-right:5px;
+}
+
 span.date {
     margin-left: 5px;
 }
@@ -2302,15 +2308,23 @@ textarea::-moz-focus-inner {
 
 .img-equipment-card {
     text-align: center;
+    height: 300px;
+    margin-bottom: 20px;
 }
 
 .img-equipment-card img {
-    width: 300px;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .text-desc {
     font-size: 20px;
+    max-height: 210px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    line-height: 1.3;
 }
 
 h4.categories-single-title {
@@ -2417,7 +2431,7 @@ button.categories-all:focus {
 h4.title-partners {
     color: #232323;
     font-family: SF-Pro-Display-Regular;
-    font-size: 27px;
+    font-size: 25px;
 }
 
 p.text-oborudovanie {
@@ -2429,13 +2443,14 @@ p.text-oborudovanie {
 
 p.categories-oborudovanie {
     line-height: 1.6;
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: .1rem;
     font-family: SF-Pro-Display-Light;
 }
 
 .oborudovanie h4 {
     margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 .oborudovanie a {
@@ -2450,6 +2465,10 @@ p.categories-oborudovanie {
     margin-top: 130px;
     position: relative;
     z-index: 2;
+}
+
+ul.equipment-card-categories-list {
+    padding-left: 18px;
 }
 
 @media (min-width: 768px) {
@@ -3794,7 +3813,7 @@ em {
 
 
 @media (max-width: 450px) {
-   .order-form_title-logo_wrapper {
+    .order-form_title-logo_wrapper {
         display: none;
     }
 }
