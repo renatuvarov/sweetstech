@@ -25,8 +25,8 @@ class TagsController extends Controller
     public function store(CreateRequest $request)
     {
         Tag::create([
-            'name_ru' => mb_strtolower($request->input('name_ru')),
-            'name_en' => mb_strtolower($request->input('name_en')),
+            'name_ru' => $request->input('name_ru'),
+            'name_en' => $request->input('name_en'),
             'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: Str::slug(mb_strtolower($request->input('name_en'))),
         ]);
 
@@ -41,8 +41,8 @@ class TagsController extends Controller
     public function update(UpdateRequest $request, Tag $tag)
     {
         $tag->update([
-            'name_ru' => mb_strtolower($request->input('name_ru')) ?: $tag->name_ru,
-            'name_en' => mb_strtolower($request->input('name_en')) ?: $tag->name_en,
+            'name_ru' => $request->input('name_ru') ?: $tag->name_ru,
+            'name_en' => $request->input('name_en') ?: $tag->name_en,
             'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: $tag->slug
         ]);
 

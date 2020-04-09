@@ -23,10 +23,10 @@ class PropertyController extends Controller
     public function store(CreateRequest $request)
     {
         Property::create([
-            'name_en' => mb_strtolower($request->input('name_en')),
-            'name_ru' => mb_strtolower($request->input('name_ru')),
-            'measure_en' => mb_strtolower($request->input('measure_en')) ?: null,
-            'measure_ru' => mb_strtolower($request->input('measure_ru')) ?: null,
+            'name_en' => $request->input('name_en'),
+            'name_ru' => $request->input('name_ru'),
+            'measure_en' => $request->input('measure_en') ?: null,
+            'measure_ru' => $request->input('measure_ru') ?: null,
         ]);
 
         return redirect()->route('admin.properties.index');
@@ -40,10 +40,10 @@ class PropertyController extends Controller
     public function update(UpdateRequest $request, Property $property)
     {
         $property->update([
-            'name_en' => mb_strtolower($request->input('name_en')) ?: $property->name_en,
-            'name_ru' => mb_strtolower($request->input('name_ru')) ?: $property->name_ru,
-            'measure_en' => mb_strtolower($request->input('measure_en')) ?: null,
-            'measure_ru' => mb_strtolower($request->input('measure_ru')) ?: null,
+            'name_en' => $request->input('name_en') ?: $property->name_en,
+            'name_ru' => $request->input('name_ru') ?: $property->name_ru,
+            'measure_en' => $request->input('measure_en') ?: null,
+            'measure_ru' => $request->input('measure_ru') ?: null,
         ]);
 
         return redirect()->route('admin.properties.index');

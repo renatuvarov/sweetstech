@@ -26,8 +26,8 @@ class CategoriesController extends Controller
     public function store(CreateRequest $request)
     {
         Category::create([
-            'name_ru' => mb_strtolower($request->input('name_ru')),
-            'name_en' => mb_strtolower($request->input('name_en')),
+            'name_ru' => $request->input('name_ru'),
+            'name_en' => $request->input('name_en'),
             'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: Str::slug(mb_strtolower($request->input('name_en'))),
         ]);
 
@@ -42,8 +42,8 @@ class CategoriesController extends Controller
     public function update(UpdateRequest $request, Category $category)
     {
         $category->update([
-            'name_ru' => mb_strtolower($request->input('name_ru')) ?: $category->name_ru,
-            'name_en' => mb_strtolower($request->input('name_en')) ?: $category->name_en,
+            'name_ru' => $request->input('name_ru') ?: $category->name_ru,
+            'name_en' => $request->input('name_en') ?: $category->name_en,
             'slug' => Str::slug(mb_strtolower($request->input('slug'))) ?: $category->slug,
         ]);
 
