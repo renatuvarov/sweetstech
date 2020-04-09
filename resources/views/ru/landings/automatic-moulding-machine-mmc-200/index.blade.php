@@ -107,7 +107,7 @@
 
                         </div>
                         <hr>
-                        <p class="text-center">Компактность и высокая производительность формовочной машины RFM-200</p>
+                        <p class="text-center">Компактность и высокая производительность формовочной машины MMC-200</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -902,7 +902,7 @@
         <div class="line_wrapper">
             <div class="line-video_wrapper">
                 <div class="line-video">
-                    <iframe src="https://www.youtube.com/embed/hrqD98VLF2Q" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/tylrL1QHBSE" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="profile-wrapper fadeInRight">
@@ -924,7 +924,7 @@
         <div class="line_wrapper">
             <div class="line-video_wrapper">
                 <div class="line-video">
-                    <iframe src="https://www.youtube.com/embed/gPYDC4hF0Ik" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/bM88mnjvZ6A" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="profile-wrapper fadeInRight">

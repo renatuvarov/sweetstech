@@ -53,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div id="about" class="box-shadow-full">
+                    <div id="about" class="box-shadow-full about-us">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="about-me pt-4 pt-md-0">
@@ -109,7 +109,7 @@
                                 <img src="{{ $post->img }}" alt="{{ $post->title_en }}" class="img-fluid">
                             </a>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body news-main-text">
                             <div class="card-category-box">
                                 <div class="card-category">
                                     <h6 class="category">{{ $post->category->name_en }}</h6>
@@ -138,7 +138,7 @@
                                     <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_en }}" class="img-fluid">
                                 </a>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body news-main-text">
                                 <div class="card-category-box">
                                     <div class="card-category">
                                         <h6 class="category">{{ $exhibition->category->name_en }}</h6>

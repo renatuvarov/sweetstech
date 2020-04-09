@@ -3918,6 +3918,15 @@ em {
     margin-top: 50px;
 }
 
+.news-main-text {
+    padding-top: 15px;
+}
+
+.about-us {
+    padding-bottom: 0 !important;
+}
+
+.grecaptcha-badge { visibility: hidden; }
 
 @media (max-width: 850px) {
     .home-main-page h1 {

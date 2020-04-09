@@ -3,8 +3,8 @@
 return [
     'user' => [
         'app' => [
-            'name' => 'Sweets Technologies Ltd.',
-            'description' => 'Sweets Technologies Ltd.'
+            'name' => 'Sweets Technologies',
+            'description' => 'Sweets Technologies'
         ],
         'pagination' => 2,
         'routes' => [

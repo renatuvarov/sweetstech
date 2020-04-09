@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @section('description')
@@ -15,9 +16,6 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @stack('css')
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <style>
-        .grecaptcha-badge { visibility: hidden; }
-    </style>
 </head>
 <body id="page-top">
 <nav class="navbar fixed-top navbar-expand-lg">

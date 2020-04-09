@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ $machine->title_en . ' | '. config('site.user.app.name')}}</title>
+    <title>{{ $machine->name_en . ' | '. config('site.user.app.name')}}</title>
     <meta name="description" content="{{ $machine->meta_description_en }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landings.css') }}">
-    <style>
-        .grecaptcha-badge { visibility: hidden; }
-    </style>
     @stack('css')
 </head>
 <body>
@@ -389,7 +387,7 @@
                 </a>
             </div>
             <div class="col-md-4 copy">
-                <p>All rights reserved. © <a href="https://sweetstech.com/ru/">Sweets Technologies Ltd.</a></p>
+                <p>All rights reserved. © <a href="https://sweetstech.com/ru/">Sweets Technologies</a></p>
             </div>
         </div>
     </div>
