@@ -112,7 +112,7 @@
             },
             error: function(response, textStatus, xhr) {
                 $btn.attr('disabled', false);
-                if (xhr.status === 422) {
+                if (response.status === 422) {
                     var errors = response.responseJSON;
                     $.each(errors, function (key, value) {
                         $('<p>', {

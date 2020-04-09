@@ -142,13 +142,6 @@
 
 @push('js')
 <script src="{{ asset('js/js-content.js') }}"></script>
-{{--<script>--}}
-{{--    --}}{{--grecaptcha.ready(function() {--}}
-{{--    --}}{{--    grecaptcha.execute('', {action: 'homepage'}).then(function(token) {--}}
-{{--    --}}{{--        document.getElementById('g-recaptcha-response').value=token;--}}
-{{--    --}}{{--    });--}}
-{{--    --}}{{--});--}}
-{{--</script>--}}
 <script>
     $('.js-show-form').on('click', function () {
         $('.js-fixed-backdrop-wrapper').addClass('fixed-backdrop-wrapper-active');
@@ -200,7 +193,7 @@
             },
             error: function(response, textStatus, xhr) {
                 $btn.attr('disabled', false);
-                if (xhr.status === 422) {
+                if (response.status === 422) {
                     var errors = response.responseJSON;
 
                     $.each(errors, function (key, value) {

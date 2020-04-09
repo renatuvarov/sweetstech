@@ -15,7 +15,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <h1 class="equipment-title equipment-title-all mb-4">Тэг: {{ $tag->name_ru }}</h1>
+                            <h1 class="equipment-title equipment-title-all mb-4">{{ $tag->name_ru }}</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="{{ route('ru.main') }}">Главная</a>

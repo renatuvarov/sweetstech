@@ -15,7 +15,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <h2 class="equipment-title equipment-title-all mb-4">Category: {{ $tag->name_en }}</h2>
+                            <h2 class="equipment-title equipment-title-all mb-4">{{ $tag->name_en }}</h2>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="{{ route('main') }}">Home</a>

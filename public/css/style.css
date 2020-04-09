@@ -171,6 +171,13 @@ img {
     vertical-align: middle;
 }
 
+@media (max-width: 570px) {
+    .table-cell-news {
+        vertical-align: top;
+        padding-top: 70px;
+    }
+}
+
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -2325,6 +2332,19 @@ textarea::-moz-focus-inner {
     overflow: hidden;
     margin-bottom: 10px;
     line-height: 1.3;
+    position: relative;
+    color: black;
+}
+
+.text-desc::before {
+    content: '';
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0.9472163865546218) 2%, rgba(255,255,255,0.8183648459383753) 12%, rgba(255,255,255,0.7511379551820728) 20%, rgba(255,255,255,0.4962359943977591) 30%, rgba(255,255,255,0.19931722689075626) 39%, rgba(255,255,255,0) 50%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 h4.categories-single-title {
@@ -2490,7 +2510,7 @@ ul.equipment-card-categories-list {
 @media (max-width: 576px) {
 
     h4.categories-single-title {
-        margin-top: 0;
+        margin-top: 3px;
     }
 
 
@@ -2571,7 +2591,6 @@ ul.equipment-card-categories-list {
 
     .nav-link-lang {
         font-size: 20px;
-        padding: 0;
     }
 
     .dropdown-item {
@@ -3089,6 +3108,18 @@ ul.equipment-card-categories-list {
 
     .intro .equipment-title {
         margin-top: 60px;
+        font-size: 2.5rem;
+    }
+
+    .table-cell-news {
+        vertical-align: top;
+        padding-top: 45px;
+    }
+}
+
+@media (max-width:342px) {
+    .table-cell-news {
+        padding-top: 25px;
     }
 }
 
@@ -3937,6 +3968,15 @@ em {
     margin-top: 50px;
 }
 
+.home-main-page .brief {
+    width: 60%;
+    margin: auto;
+}
+
+.main-page-equipment {
+    margin-top: 50px;
+}
+
 .news-main-text {
     padding-top: 15px;
 }
@@ -3963,5 +4003,3 @@ em {
         font-size: 2rem;
     }
 }
-
-

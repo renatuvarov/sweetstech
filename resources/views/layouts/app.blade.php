@@ -18,7 +18,7 @@
 <body id="page-top">
 <nav class="navbar fixed-top navbar-expand-lg">
     <img class="navbar-logo" width="18pt" height="18pt" src="{{ asset('assets/img/favicon.png') }}" alt="logo">
-    <a id="logo" class="navbar-brand" href="#">Sweets Technologies</a>
+    <a id="logo" class="navbar-brand" href="{{ route('main') }}">Sweets Technologies</a>
     <button class="navbar-toggler" type="button">
     <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i>
   </span>
