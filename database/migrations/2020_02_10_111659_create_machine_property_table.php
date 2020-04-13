@@ -16,7 +16,8 @@ class CreateMachinePropertyTable extends Migration
         Schema::create('machine_property', function (Blueprint $table) {
             $table->unsignedInteger('machine_id');
             $table->unsignedInteger('property_id');
-            $table->string('value', 255);
+            $table->string('value_en');
+            $table->string('value_ru');
             $table->foreign('machine_id')->references('id')->on('machines')->onDelete('cascade');
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
             $table->primary(['machine_id', 'property_id']);

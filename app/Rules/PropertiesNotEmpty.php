@@ -31,7 +31,7 @@ class PropertiesNotEmpty implements Rule
     public function passes($attribute, $value)
     {
         foreach ($this->request->properties as $property) {
-            if (count($property) < 2) {
+            if (count($property) < 3) {
                 return false;
             }
 

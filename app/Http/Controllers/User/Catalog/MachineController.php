@@ -21,7 +21,7 @@ class MachineController extends Controller
             return redirect()->route($prefix . 'user.landing', ['slug' => $slug]);
         }
         $categories = $machine->tags()->get();
-        $properties = $machine->properties()->withPivot('value')->get();
+        $properties = $machine->properties()->get();
         return $this->getView('user.catalog.machines.show', compact('machine', 'categories', 'properties'));
     }
 }

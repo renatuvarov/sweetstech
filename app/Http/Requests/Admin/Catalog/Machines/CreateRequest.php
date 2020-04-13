@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\Catalog\Machines;
 
 use App\Entities\Catalog\Property;
 use App\Entities\Catalog\Tag;
+use App\Rules\PropertiesNotEmpty;
 use App\Rules\UniqueValues;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,8 +22,10 @@ class CreateRequest extends FormRequest
 
         return [
             'tags.*' => ['required', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
+            'properties' => [new PropertiesNotEmpty($this)],
             'properties.*.name' => ['required', 'integer', 'in:' . $props, new UniqueValues($this)],
-            'properties.*.value' => 'required|string|min:1',
+            'properties.*.value_en' => 'required|string|min:1',
+            'properties.*.value_ru' => 'required|string|min:1',
             'name_ru' => 'required|string|min:3|unique:machines',
             'name_en' => 'required|string|min:3|unique:machines',
             'short_name_ru' => 'required|string|min:3|unique:machines',
@@ -50,9 +53,13 @@ class CreateRequest extends FormRequest
             'properties.*.name.integer' => 'Значение должно быть целым числом.',
             'properties.*.name.in' => 'Неизвестный параметр.',
 
-            'properties.*.value.required' => 'Это поле обязательно для заполнения.',
-            'properties.*.value.string' => 'Значение этого поля должно быть строкой.',
-            'properties.*.value.min' => 'Длина не менее 1 символа',
+            'properties.*.value_en.required' => 'Это поле обязательно для заполнения.',
+            'properties.*.value_en.string' => 'Значение этого поля должно быть строкой.',
+            'properties.*.value_en.min' => 'Длина не менее 1 символа',
+
+            'properties.*.value_ru.required' => 'Это поле обязательно для заполнения.',
+            'properties.*.value_ru.string' => 'Значение этого поля должно быть строкой.',
+            'properties.*.value_ru.min' => 'Длина не менее 1 символа',
 
             'tags.*.required' => 'Это поле обязательно для заполнения.',
             'tags.*.integer' => 'Значение должно быть целым числом.',

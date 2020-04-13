@@ -17,7 +17,7 @@ class UpdateRequest extends FormRequest
 
     public function rules()
     {
-//        dd($this->all());
+//        dd($this->input('properties'));
         $tags = implode(',', Tag::pluck('id')->toArray());
         $props = implode(',', Property::pluck('id')->toArray());
 
@@ -25,7 +25,8 @@ class UpdateRequest extends FormRequest
             'tags.*' => ['nullable', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
             'properties' => [new PropertiesNotEmpty($this)],
             'properties.*.name' => ['nullable', 'integer', 'in:' . $props, new UniqueValues($this)],
-            'properties.*.value' => 'nullable|string|min:1',
+            'properties.*.value_en' => 'nullable|string|min:1',
+            'properties.*.value_ru' => 'nullable|string|min:1',
             'name_ru' => 'nullable|string|min:3|unique:machines,name_ru,' . $this->machine . ',id',
             'name_en' => 'nullable|string|min:3|unique:machines,name_en,' . $this->machine . ',id',
             'short_name_ru' => 'required|string|min:3|unique:machines,short_name_ru,' . $this->machine . ',id',
@@ -52,8 +53,11 @@ class UpdateRequest extends FormRequest
             'properties.*.name.integer' => 'Значение должно быть целым числом.',
             'properties.*.name.in' => 'Неизвестный параметр.',
 
-            'properties.*.value.string' => 'Значение этого поля должно быть строкой.',
-            'properties.*.value.min' => 'Длина не менее 1 символа',
+            'properties.*.value_en.string' => 'Значение этого поля должно быть строкой.',
+            'properties.*.value_en.min' => 'Длина не менее 1 символа',
+
+            'properties.*.value_ru.string' => 'Значение этого поля должно быть строкой.',
+            'properties.*.value_ru.min' => 'Длина не менее 1 символа',
 
             'tags.*.integer' => 'Значение должно быть целым числом.',
             'tags.*.in' => 'Неизвестный тэг.',

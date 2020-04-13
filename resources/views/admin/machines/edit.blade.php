@@ -157,7 +157,7 @@
             <h6>Параметры</h6>
             @foreach($machine->properties as $propertyNum => $propertyName)
                 <div class="form-row"  data-id="{{ $propertyNum }}">
-                    <div class="form-group required col-5">
+                    <div class="form-group required col-3">
                         <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[{{ $propertyNum }}][name]">
                             @foreach($properties as $property)
                                 @if($property->id === $propertyName->id)
@@ -171,13 +171,23 @@
                         <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                         @enderror
                     </div>
-                    <div class="form-group required col-5 ml-3">
+                    <div class="form-group required col-3 ml-5">
                         <input type="text"
-                               class="form-control @error('properties.*.value') is-invalid @enderror"
+                               class="form-control js-prop-en @error('properties.*.value_en') is-invalid @enderror"
                                placeholder="Значение"
-                               name="properties[{{ $propertyNum }}][value]"
-                               value="{{ old('properties.*.value', $propertyName->pivot->value) }}">
-                        @error('properties.*.value')
+                               name="properties[{{ $propertyNum }}][value_en]"
+                               value="{{ old('properties.*.value_en', $propertyName->pivot->value_en) }}">
+                        @error('properties.*.value_en')
+                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group required col-3 ml-5">
+                        <input type="text"
+                               class="form-control js-prop-ru @error('properties.*.value_ru') is-invalid @enderror"
+                               placeholder="Значение"
+                               name="properties[{{ $propertyNum }}][value_ru]"
+                               value="{{ old('properties.*.value_ru', $propertyName->pivot->value_ru) }}">
+                        @error('properties.*.value_ru')
                         <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                         @enderror
                     </div>
@@ -251,7 +261,8 @@
                 .attr('name', 'properties[' + id + '][name]')
                 .find('option:selected').removeAttr('selected');
             $('select', props).prepend('<option disabled selected value="">Параметр</option>');
-            $('input', props).attr('name', 'properties[' + id + '][value]').val('');
+            $('.js-prop-en', props).attr('name', 'properties[' + id + '][value_en]').val('');
+            $('.js-prop-ru', props).attr('name', 'properties[' + id + '][value_ru]').val('');
             props.insertBefore($(this).closest('.form-group'));
         });
 

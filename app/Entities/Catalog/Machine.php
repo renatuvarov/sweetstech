@@ -53,7 +53,7 @@ class Machine extends Model
             'machine_property',
             'machine_id',
             'property_id'
-        )->withPivot('value');
+        )->withPivot('value_en', 'value_ru');
     }
 
     public static function getByIdWithPivots($id): self
@@ -90,7 +90,10 @@ class Machine extends Model
             $propsArray = [];
 
             foreach ($properties as $property) {
-                $propsArray[$property['name']] = ['value' => $property['value']];
+                $propsArray[$property['name']] = [
+                    'value_en' => $property['value_en'],
+                    'value_ru' => $property['value_ru'],
+                ];
             }
 
             $this->properties()->attach($propsArray);

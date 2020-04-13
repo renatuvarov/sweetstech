@@ -128,7 +128,7 @@
                     @enderror
                 </div>
                 <div class="form-row"  data-id="0">
-                    <div class="form-group required col-5">
+                    <div class="form-group required col-3">
                         <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[0][name]">
                             <option disabled selected value="">Параметр</option>
                             @foreach($properties as $property)
@@ -139,9 +139,23 @@
                         <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                         @enderror
                     </div>
-                    <div class="form-group required col-5 ml-3">
-                        <input type="text" class="form-control @error('properties.*.value') is-invalid @enderror" placeholder="Значение" name="properties[0][value]" value="{{ old('properties.*.value') }}">
-                        @error('properties.*.value')
+                    <div class="form-group required col-3 ml-5">
+                        <input type="text"
+                               class="form-control js-prop-en @error('properties.*.value_en') is-invalid @enderror"
+                               placeholder="Значение (англ.)"
+                               name="properties[0][value_en]"
+                               value="{{ old('properties.*.value_en') }}">
+                        @error('properties.*.value_en')
+                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group required col-3 ml-5">
+                        <input type="text"
+                               class="form-control js-prop-ru @error('properties.*.value_ru') is-invalid @enderror"
+                               placeholder="Значение (рус.)"
+                               name="properties[0][value_ru]"
+                               value="{{ old('properties.*.value_ru') }}">
+                        @error('properties.*.value_ru')
                         <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                         @enderror
                     </div>
@@ -154,6 +168,9 @@
                 <div class="form-group border-bottom pb-5 mt-3">
                     <button type="button" class="btn btn-success btn-block w-50" id="add">Добавить параметр</button>
                 </div>
+                @error('properties')
+                <small class="form-text text-muted ml-2 border-bottom pb-3" style="color: #c82333 !important;">{{$message}}</small>
+                @enderror
                 <div class="form-group required">
                     <textarea id="mail_en" class="form-control  @error('mail_en') is-invalid @enderror" placeholder="Текст в письме (eng)" name="mail_en" rows="10">{{ old('mail_en') }}</textarea>
                     @error('mail_en')
@@ -206,7 +223,8 @@
                 .attr('name', 'properties[' + id + '][name]')
                 .find('option:selected').removeAttr('selected');
             $('select', props).prepend('<option disabled selected value="">Параметр</option>');
-            $('input', props).attr('name', 'properties[' + id + '][value]').val('');
+            $('.js-prop-en', props).attr('name', 'properties[' + id + '][value_en]').val('');
+            $('.js-prop-ru', props).attr('name', 'properties[' + id + '][value_ru]').val('');
             props.insertBefore($(this).closest('.form-group'));
         });
 

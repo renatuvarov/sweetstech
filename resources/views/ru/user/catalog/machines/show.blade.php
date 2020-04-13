@@ -49,7 +49,7 @@
                             @foreach($properties as $property)
                                 <p>
                                     <span class="characteristic">{{ $property->name_ru }}:</span>
-                                    <span class="characteristic_value">{{ $property->pivot->value }} {{ $property->measure_ru ?? '' }}</span>
+                                    <span class="characteristic_value">{{ $property->pivot->value_ru }} {{ $property->measure_ru ?? '' }}</span>
                                 </p>
                             @endforeach
                         </div>
