@@ -3,26 +3,28 @@
 namespace App\Console\Commands;
 
 use App\Entities\User;
+use App\Mail\Admin\Created;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
-class CreateAdmin extends Command
+class CreateUser extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'create:admin';
+    protected $signature = 'create:user';
 
     /**
      * Create admin
      *
      * @var string
      */
-    protected $description = 'Create a new admin';
+    protected $description = 'Create a new user';
     /**
      * @var Factory
      */
@@ -31,6 +33,10 @@ class CreateAdmin extends Command
      * @var Hasher
      */
     private $hasher;
+    /**
+     * @var Mailer
+     */
+    private $mailer;
 
     /**
      * Create a new command instance.
@@ -39,11 +45,12 @@ class CreateAdmin extends Command
      * @param Hasher $hasher
      * @return void
      */
-    public function __construct(Factory $validatorFactory, Hasher $hasher)
+    public function __construct(Factory $validatorFactory, Hasher $hasher, Mailer $mailer)
     {
         parent::__construct();
         $this->validatorFactory = $validatorFactory;
         $this->hasher = $hasher;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -57,10 +64,12 @@ class CreateAdmin extends Command
         $user = User::create([
             'email' => $values['email'],
             'password' => $this->hasher->make($values['password']),
-            'role' => User::ROLE_ADMIN
+            'role' => $values['role'],
         ]);
 
         $this->info('Пользователь создан.');
+
+        $this->mailer->to($user->email)->send(new Created($values['email'], $values['password'], $values['role']));
     }
 
     /**
@@ -74,6 +83,7 @@ class CreateAdmin extends Command
         $values['email'] = $this->ask('Введите email');
         $values['password'] = $this->ask('Введите пароль (не меннее 8 символов)');
         $values['password_confirmation'] = $this->ask('Повторите пароль');
+        $values['role'] = $this->ask('Роль пользователя');
         return $values;
     }
 
@@ -86,7 +96,7 @@ class CreateAdmin extends Command
     private function showErrors(ValidatorContract $validator): void
     {
         if ($validator->fails()) {
-            $this->error('Администратор не создан по причине:' . PHP_EOL);
+            $this->error('Пользователь не создан по причине:' . PHP_EOL);
 
             foreach ($validator->errors()->all() as $error) {
                 $this->comment($error);
@@ -103,10 +113,13 @@ class CreateAdmin extends Command
      */
     private function rules(): array
     {
+        $roles = implode(',', User::roles());
+
         return [
             'email' => 'required|string|max:255|email|unique:users',
             'password' => 'required|string|min:8|max:255',
             'password_confirmation' => 'required|string|min:8|max:255|same:password',
+            'role' => 'required|string|in:' . $roles,
         ];
     }
 
@@ -134,6 +147,10 @@ class CreateAdmin extends Command
             'password_confirmation.min' => 'Вы ввели разные значения пароля',
             'password_confirmation.max' => 'Вы ввели разные значения пароля',
             'password_confirmation.same' => 'Вы ввели разные значения пароля',
+
+            'role.required' => 'Роль не указана',
+            'role.string' => 'Значение поля Роль должно быть строкой',
+            'role.in' => 'Неизвестная роль',
         ];
     }
 }

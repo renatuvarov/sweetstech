@@ -11,6 +11,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
 
     public const ROLE_USER = 'user';
+    public const ROLE_MANAGER = 'manager';
     public const ROLE_ADMIN = 'admin';
 
     protected $fillable = [
@@ -21,13 +22,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-//    protected $casts = [
-//        'email_verified_at' => 'datetime',
-//    ];
-
-    private static function roles()
+    public static function roles()
     {
-        return [self::ROLE_USER, self::ROLE_ADMIN];
+        return [self::ROLE_USER, self::ROLE_MANAGER, self::ROLE_ADMIN];
     }
 
     public function changeRole($role)
