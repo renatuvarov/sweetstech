@@ -100,6 +100,7 @@
                 </div>
                 <input type="hidden" name="st_id" value="{{ $machine->id }}" >
                 <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                <p class="text-center"><span class="required"> - required fields</span></p>
                 <p class="order-form_wrapper text-center">
                     <label style="cursor:pointer;"><input type="checkbox" class="js-form-accept" checked> I agree to the processing of personal data</label>
                     <button type="submit" class="button-neu js-button-neu">Send</button>

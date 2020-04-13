@@ -102,13 +102,15 @@
                     @enderror
                 </div>
                 <div class="form-group border-bottom pb-5">
-                    <input type="file" class="form-control @error('pdf_en') is-invalid @enderror" name="pdf_en">
+                    <label for="pdf_en">PDF (английский)</label>
+                    <input type="file" class="form-control @error('pdf_en') is-invalid @enderror" name="pdf_en" id="pdf_en">
                     @error('pdf_en')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
                 <div class="form-group border-bottom pb-5">
-                    <input type="file" class="form-control @error('pdf_ru') is-invalid @enderror" name="pdf_ru">
+                    <label for="pdf_ru">PDF (русский)</label>
+                    <input type="file" class="form-control @error('pdf_ru') is-invalid @enderror" name="pdf_ru" id="pdf_ru">
                     @error('pdf_ru')
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror

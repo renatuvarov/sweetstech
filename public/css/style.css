@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0;
     font-family: SF-Pro-Display-light;
@@ -14,6 +23,17 @@ body {
     color: #212529;
     text-align: left;
     background-color: #f5f6f7;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #f5f6f7;
+}
+
+.content {
+    flex: 1 0 auto;
 }
 
 h1,
@@ -1273,6 +1293,7 @@ footer {
     width: 100%;
     background-color: #232323;
     position: relative;
+    flex: 0 0 auto;
 }
 
 footer .copy {
@@ -1961,6 +1982,12 @@ ul.list-sidebar a {
     12px 12px 25px -5px rgba(0, 0, 0, 0.08);
 }
 
+@media (max-width: 767px) {
+    .product_features {
+        margin-bottom: 0px;
+    }
+}
+
 .characteristics_group h5.characteristics_title {
     font-family: SF-Pro-Display-SemiBold;
     color: black;
@@ -2432,6 +2459,11 @@ button.categories-all:focus {
     2px 2px 4px -1px rgba(0, 0, 0, 0.12),
     5px 5px 12px -3px rgba(0, 0, 0, 0.1),
     12px 12px 25px -5px rgba(0, 0, 0, 0.08);
+}
+
+.img-equipment img {
+    max-width: 450px;
+    max-height: 450px;
 }
 
 .post-box {
@@ -4274,3 +4306,15 @@ span.content-blog {
     }
 }
 
+@media (max-width: 392px) {
+    .img-equipment img {
+        max-width: 250px;
+        max-height: 250px;
+    }
+    .product_features h2 {
+        font-size: 28px;
+    }
+    .text-equipment h2 {
+        font-size: 28px;
+    }
+}
