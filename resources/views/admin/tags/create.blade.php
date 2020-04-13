@@ -9,6 +9,10 @@
         <h2 class="h2 mb-5 display-4">Новая категория</h2>
         <form class="text-left w-50 m-auto" method="post" action="{{ route('admin.tag.store') }}" enctype="multipart/form-data">
             @csrf
+            <div class="form-group w-50 ml-auto mr-auto mb-5 text-left d-flex">
+                <label for="main" class="form-check-label font-weight-bold">Показывать на главной?</label>
+                <input type="checkbox" name="main" style="width: 30px; height: 30px; margin-left: 30px;" id="main" checked>
+            </div>
             <div class="form-group required">
                 <input value="{{ old('name_ru') }}" type="text" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
                 @error('name_ru')

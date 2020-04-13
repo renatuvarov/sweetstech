@@ -29,6 +29,7 @@ class TagController extends Controller
             'name_en' => mb_strtolower($request->input('name_en')),
             'name_ru' => mb_strtolower($request->input('name_ru')),
             'slug' => $request->input('slug') ?: Str::slug($request->input('name_en')),
+            'main' => (bool) $request->input('main'),
             'img' => '/storage/' . $request->file('img')->store('tags'),
         ]);
 
@@ -51,6 +52,7 @@ class TagController extends Controller
             'name_en' => mb_strtolower($request->input('name_en')) ?: $tag->name_en,
             'name_ru' => mb_strtolower($request->input('name_ru')) ?: $tag->name_ru,
             'slug' => $request->input('slug') ? Str::slug($request->input('slug')) : $tag->slug,
+            'main' => (bool) $request->input('main'),
             'img' => $path ?? $tag->img,
         ]);
 
