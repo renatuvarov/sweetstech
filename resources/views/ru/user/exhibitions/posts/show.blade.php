@@ -9,19 +9,19 @@
 @endsection
 
 @section('content')
-    <div class="intro news-bg intro-single route mt-5">
-        <div class="intro-content-news display-table pt-5">
+    <div class="intro news-bg intro-single route">
+        <div class="intro-content-news display-table">
             <div class="table-cell-news">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
                             <h1 class="single-news-title equipment-title-all mb-4">{{ $post->title_ru }}</h1>
-{{--                            <ul class="breadcrumb">--}}
-{{--                                <li class="breadcrumb-item">--}}
-{{--                                    <a href="{{ route('main') }}">Home</a>--}}
-{{--                                </li>--}}
-{{--                                <li class="breadcrumb-item"><a href="{{ route('user.blog.news.index') }}">News</a></li>--}}
-{{--                            </ul>--}}
+                            {{--                            <ul class="breadcrumb">--}}
+                            {{--                                <li class="breadcrumb-item">--}}
+                            {{--                                    <a href="{{ route('main') }}">Home</a>--}}
+                            {{--                                </li>--}}
+                            {{--                                <li class="breadcrumb-item"><a href="{{ route('user.blog.news.index') }}">News</a></li>--}}
+                            {{--                            </ul>--}}
                             <div class="d-flex justify-content-start">
                                 <ul class="categories-single mb-0">
                                     <h4 class="categories-single-title text-left">Категория:</h4>
@@ -53,10 +53,11 @@
     </div>
     <section class="mt-5">
         <div class="row-custom">
-            <div class="col-md-12 text-equipment ml-auto mr-auto" style="max-width: 1280px">
+            <div class="col-md-12 text-equipment ml-auto mr-auto" style="max-width: 1140px">
                 <div itemprop="description" class="text-about-equipment js-content">
-                    <img src="{{ $post->img }}" alt="{{ $post->title_ru }}">
-                    {!! $post->content_ru !!}
+                    <h4 class="content-blog">{{ $post->title_ru }}</h4>
+                    <img src="{{ $post->img }}" class="img-blog" alt="{{ $post->title_ru }}">
+                    <span class="content-blog">{!! $post->content_ru !!}</span>
                 </div>
             </div>
         </div>

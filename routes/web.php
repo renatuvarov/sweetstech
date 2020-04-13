@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainController@index')->name('main');
 Route::get('/ru', 'MainController@index')->name('ru.main');
 
+Route::redirect('category/the-new-equipment/', '/catalog')->name('redirect.new');
+
 Route::get('secfggdfgret-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('secfggdfgret-login', 'Auth\LoginController@login');
 Route::post('secfggdfgret-logout', 'Auth\LoginController@logout')->name('logout');

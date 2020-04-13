@@ -29,6 +29,8 @@ class CreateRequest extends FormRequest
             'short_name_en' => 'required|string|min:3|unique:machines',
             'slug' => 'nullable|string|min:3|unique:machines',
             'img' => 'required|file|max:1024|mimes:jpeg,jpg,png',
+            'pdf_en' => 'nullable|mimes:pdf|max:10000',
+            'pdf_ru' => 'nullable|mimes:pdf|max:10000',
             'short_description_en' => 'required|string|min:10',
             'short_description_ru' => 'required|string|min:10',
             'meta_description_en' => 'nullable|string|min:10|max:255',
@@ -116,6 +118,14 @@ class CreateRequest extends FormRequest
             'img.file' => 'Некорректный формат изображения',
             'img.max' => 'Максимальный размер изображения - 1 мегабайт',
             'img.mimes' => 'Некорректный формат изображения',
+
+            'pdf_en.file' => 'Некорректный формат',
+            'pdf_en.max' => 'Максимальный размер изображения - 10 мегабайт',
+            'pdf_en.mimes' => 'Некорректный формат',
+
+            'pdf_ru.file' => 'Некорректный формат',
+            'pdf_ru.max' => 'Максимальный размер изображения - 10 мегабайт',
+            'pdf_ru.mimes' => 'Некорректный формат',
         ];
     }
 }

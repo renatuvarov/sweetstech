@@ -82,15 +82,15 @@
             </h3>
             <form class="order-form_body" action="{{ route('user.order') }}" method="post" enctype="multipart/form-data" id="form">
                 @csrf
-                <div class="order-form_input-wrapper">
+                <div class="order-form_input-wrapper required">
                     <label for="st_nsp">Name</label>
                     <input type="text" name="st_nsp" class="form-equipment" id="st_nsp" autofocus>
                 </div>
-                <div class="order-form_input-wrapper">
+                <div class="order-form_input-wrapper required">
                     <label for="st_company">Company</label>
                     <input type="text" name="st_company" class="form-equipment" id="st_company">
                 </div>
-                <div class="order-form_input-wrapper">
+                <div class="order-form_input-wrapper required">
                     <label for="st_email">E-mail</label>
                     <input type="text" name="st_email" class="form-equipment" id="st_email">
                 </div>

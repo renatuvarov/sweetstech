@@ -21,8 +21,43 @@
     <a id="logo" class="navbar-brand" href="{{ route('ru.main') }}">Sweets Technologies</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i>
-  </span>
+        <svg width="16px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 124 124" style="enable-background:new 0 0 124 124;" xml:space="preserve">
+<g>
+    <path d="M112,6H12C5.4,6,0,11.4,0,18s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,6,112,6z"/>
+    <path d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z"/>
+    <path d="M112,94H12c-6.6,0-12,5.4-12,12s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,94,112,94z"/>
+</g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+</svg>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul itemscope itemtype="https://www.schema.org/SiteNavigationElement" class="navbar-nav right">
@@ -39,7 +74,7 @@
                 <a itemprop="url" class="nav-link" href="{{ route('ru.user.exhibitions.news.index') }}">Выставки</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/#contacts">Контакты</a>
+                <a class="nav-link" href="/ru/#contacts">Контакты</a>
             </li>
             @auth
                 <li class="nav-item dropdown">
@@ -194,3 +229,4 @@
 @stack('js')
 </body>
 </html>
+

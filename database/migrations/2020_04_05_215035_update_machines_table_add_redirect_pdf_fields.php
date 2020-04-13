@@ -10,7 +10,8 @@ class UpdateMachinesTableAddRedirectPdfFields extends Migration
     {
         Schema::table('machines', function (Blueprint $table) {
             $table->boolean('is_redirect')->nullable();
-            $table->string('pdf')->nullable();
+            $table->string('pdf_en')->nullable();
+            $table->string('pdf_ru')->nullable();
         });
     }
 
@@ -18,7 +19,8 @@ class UpdateMachinesTableAddRedirectPdfFields extends Migration
     {
         Schema::table('machines', function (Blueprint $table) {
             $table->dropColumn('is_redirect');
-            $table->dropColumn('pdf');
+            $table->dropColumn('pdf_en');
+            $table->dropColumn('pdf_ru');
         });
     }
 }

@@ -100,60 +100,90 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        @if(! empty($post))
-                            <a href="{{ route('user.blog.news.show', ['slug' => $post->slug]) }}" class="col-md-4 d-block">
-                                <div class="card card-blog">
-                                    <div class="card-img">
-                                        <img src="{{ $post->img }}" alt="{{ $post->title_en }}" class="img-fluid">
+                </div>
+                <div class="news-container">
+                @if(! empty($post))
+                    <!--<a href="{{ route('user.blog.news.show', ['slug' => $post->slug]) }}" class="col-md-4 d-block">-->
+                        <!--    <div class="card card-blog">-->
+                        <!--        <div class="card-img">-->
+                    <!--            <img src="{{ $post->img }}" alt="{{ $post->title_en }}" class="img-fluid">-->
+                        <!--        </div>-->
+                        <!--        <div class="card-body news-main-text">-->
+                        <!--            <div class="card-category-box">-->
+                        <!--                <div class="card-category">-->
+                    <!--                    <h6 class="category">{{ $post->category->name_en }}</h6>-->
+                        <!--                </div>-->
+                        <!--            </div>-->
+                    <!--            <h3 class="card-title">{{ $post->title_en }}</h3>-->
+                        <!--            <p class="card-description">-->
+                    <!--                {{ $post->short_description_en }}-->
+                        <!--            </p>-->
+                        <!--        </div>-->
+                        <!--        <div class="card-footer">-->
+                        <!--            <div class="post-date">-->
+                    <!--                <span class="date">{{ $post->created_at->format('Y-m-d') }}</span>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</a>-->
+                        <a class="card-news-square" href="{{ route('user.blog.news.show', ['slug' => $post->slug]) }}">
+                            <img src="{{ $post->img }}" alt="{{ $post->title_en }}" class="img-fluid">
+                            <div class="card-news-square-2">
+                                <h3>{{ $post->title_en }}</h3>
+                                <div class="card-news-square-info">
+                                    <div class="card-news-btn-wrapper">
+                                        <div class="news-more text-uppercase">Show More</div>
                                     </div>
-                                    <div class="card-body news-main-text">
-                                        <div class="card-category-box">
-                                            <div class="card-category">
-                                                <h6 class="category">{{ $post->category->name_en }}</h6>
-                                            </div>
+                                </div>
+                            </div>
+                            <div class="card-news-footer">
+                                <div class="card-news-category">{{ $post->category->name_en }}</div>
+                                <div class="card-news-date">{{ $post->created_at->format('Y-m-d') }}</div>
+                            </div>
+                        </a>
+                @endif
+                @if(! empty($exhibitions) && $exhibitions->count() > 0)
+                    @foreach($exhibitions as $exhibition)
+                        <!--<a class="col-md-4 d-block" href="{{ route('user.exhibitions.news.show', ['slug' => $exhibition->slug]) }}">-->
+                            <!--    <div class="card card-blog">-->
+                            <!--        <div class="card-img">-->
+                        <!--            <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_en }}" class="img-fluid">-->
+                            <!--        </div>-->
+                            <!--        <div class="card-body news-main-text">-->
+                            <!--            <div class="card-category-box">-->
+                            <!--                <div class="card-category">-->
+                        <!--                    <h6 class="category">{{ $exhibition->category->name_en }}</h6>-->
+                            <!--                </div>-->
+                            <!--            </div>-->
+                        <!--            <h3 class="card-title">{{ $exhibition->title_en }}</h3>-->
+                            <!--            <p class="card-description">-->
+                        <!--                {{ $exhibition->short_description_en }}-->
+                            <!--            </p>-->
+                            <!--        </div>-->
+                            <!--        <div class="card-footer">-->
+                            <!--            <div class="post-date">-->
+                        <!--                <span class="date">{{ $exhibition->created_at->format('Y-m-d') }}</span>-->
+                            <!--            </div>-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</a>-->
+                            <a class="card-news-square" href="{{ route('user.exhibitions.news.show', ['slug' => $exhibition->slug]) }}">
+                                <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_en }}" class="img-fluid">
+                                <div class="card-news-square-2">
+                                    <h3>{{ $exhibition->title_en }}</h3>
+                                    <div class="card-news-square-info">
+                                        <div class="card-news-btn-wrapper">
+                                            <div class="news-more text-uppercase">Show More</div>
                                         </div>
-                                        <h3 class="card-title">{{ $post->title_en }}</h3>
-                                        <p class="card-description">
-                                            {{ $post->short_description_en }}
-                                        </p>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="post-date">
-                                            <span class="date">{{ $post->created_at->format('Y-m-d') }}</span>
-                                        </div>
+                                    <div class="card-news-footer">
+                                        <div class="card-news-category">{{ $exhibition->category->name_en }}</div>
+                                        <div class="card-news-date">{{ $exhibition->created_at->format('Y-m-d') }}</div>
                                     </div>
                                 </div>
                             </a>
-                        @endif
-                        @if(! empty($exhibitions) && $exhibitions->count() > 0)
-                            @foreach($exhibitions as $exhibition)
-                                <a class="col-md-4 d-block" href="{{ route('user.exhibitions.news.show', ['slug' => $exhibition->slug]) }}">
-                                    <div class="card card-blog">
-                                        <div class="card-img">
-                                            <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_en }}" class="img-fluid">
-                                        </div>
-                                        <div class="card-body news-main-text">
-                                            <div class="card-category-box">
-                                                <div class="card-category">
-                                                    <h6 class="category">{{ $exhibition->category->name_en }}</h6>
-                                                </div>
-                                            </div>
-                                            <h3 class="card-title">{{ $exhibition->title_en }}</h3>
-                                            <p class="card-description">
-                                                {{ $exhibition->short_description_en }}
-                                            </p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="post-date">
-                                                <span class="date">{{ $exhibition->created_at->format('Y-m-d') }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforeach
-                        @endif
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </section>
         @endif
@@ -291,7 +321,7 @@
                                                 </g>
                                                 <g>
                                                 </g>
-</svg><span class="contacts">Russia, Stavropol region, Kochubeev district, Novozelenchuksky, str. Gagarina, 1</span>
+</svg><span class="contacts"> 1 Gagarina, Novozelenchuksky, Kochubeevskyi area, Stavropol region, Russia</span>
                                         </li>
                                         <li><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">

@@ -21,10 +21,8 @@ class OrderController extends Controller
 
         $order = Order::createOrder($request->all());
         $machine = $order->machine;
-        $lang = $this->getLang();
-        $mailText = $lang === 'ru' ? $machine->mail_ru : $machine->mail_en;
-        $prefix = $lang === 'ru' ? 'ru.' : '';
-        $mailer->to($order->customer_email)->send(new ClientMail($mailText, $order->customer_name, $prefix));
+        $isEn = $this->getLang() === 'en';
+        $mailer->to($order->customer_email)->send(new ClientMail($machine, $order->customer_name, $isEn ? 'en' : 'ru'));
         $mailer->to(env('ADMIN_EMAIL'))->send(new AdminMail($order, $machine));
         return ['success' => $order->customer_name];
     }

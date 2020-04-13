@@ -100,60 +100,67 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        @if(! empty($post))
-                            <a class="col-md-4"  href="{{ route('ru.user.blog.news.show', ['slug' => $post->slug]) }}">
-                                <div class="card card-blog">
-                                    <div class="card-img">
-                                        <img src="{{ $post->img }}" alt="{{ $post->title_ru }}" class="img-fluid">
+                </div>
+                <div class="news-container">
+                @if(! empty($post))
+                    <!--<a class="col-md-4"  href="{{ route('ru.user.blog.news.show', ['slug' => $post->slug]) }}">-->
+                        <!--    <div class="card card-blog">-->
+                        <!--        <div class="card-img">-->
+                    <!--            <img src="{{ $post->img }}" alt="{{ $post->title_ru }}" class="img-fluid">-->
+                        <!--        </div>-->
+                        <!--        <div class="card-body news-main-text">-->
+                        <!--            <div class="card-category-box">-->
+                        <!--                <div class="card-category">-->
+                    <!--                    <h6 class="category">{{ $post->category->name_ru }}</h6>-->
+                        <!--                </div>-->
+                        <!--            </div>-->
+                    <!--            <h3 class="card-title">{{ $post->title_ru }}</h3>-->
+                        <!--            <p class="card-description">-->
+                    <!--                {{ $post->short_description_ru }}-->
+                        <!--            </p>-->
+                        <!--        </div>-->
+                        <!--        <div class="card-footer">-->
+                        <!--            <div class="post-date">-->
+                    <!--                <span class="date">{{ $post->created_at->format('Y-m-d') }}</span>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</a>-->
+                        <a class="card-news-square" href="{{ route('ru.user.blog.news.show', ['slug' => $post->slug]) }}">
+                            <img src="{{ $post->img }}" alt="{{ $post->title_ru }}" class="img-fluid">
+                            <div class="card-news-square-2">
+                                <h3>{{ $post->title_ru }}</h3>
+                                <div class="card-news-square-info">
+                                    <div class="card-news-btn-wrapper">
+                                        <div class="news-more text-uppercase">Подробнее</div>
                                     </div>
-                                    <div class="card-body news-main-text">
-                                        <div class="card-category-box">
-                                            <div class="card-category">
-                                                <h6 class="category">{{ $post->category->name_ru }}</h6>
-                                            </div>
+                                </div>
+                            </div>
+                            <div class="card-news-footer">
+                                <div class="card-news-category">{{ $post->category->name_ru }}</div>
+                                <div class="card-news-date">{{ $post->created_at->format('Y-m-d') }}</div>
+                            </div>
+                        </a>
+                    @endif
+                    @if(! empty($exhibitions) && $exhibitions->count() > 0)
+                        @foreach($exhibitions as $exhibition)
+                            <a class="card-news-square" href="{{ route('ru.user.exhibitions.news.show', ['slug' => $exhibition->slug]) }}">
+                                <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_ru }}" class="img-fluid">
+                                <div class="card-news-square-2">
+                                    <h3>{{ $exhibition->title_ru }}</h3>
+                                    <div class="card-news-square-info">
+                                        <div class="card-news-btn-wrapper">
+                                            <div class="news-more text-uppercase">Подробнее</div>
                                         </div>
-                                        <h3 class="card-title">{{ $post->title_ru }}</h3>
-                                        <p class="card-description">
-                                            {{ $post->short_description_ru }}
-                                        </p>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="post-date">
-                                            <span class="date">{{ $post->created_at->format('Y-m-d') }}</span>
-                                        </div>
+                                    <div class="card-news-footer">
+                                        <div class="card-news-category">{{ $exhibition->category->name_ru }}</div>
+                                        <div class="card-news-date">{{ $exhibition->created_at->format('Y-m-d') }}</div>
                                     </div>
                                 </div>
                             </a>
-                        @endif
-                        @if(! empty($exhibitions) && $exhibitions->count() > 0)
-                            @foreach($exhibitions as $exhibition)
-                                <a class="col-md-4" href="{{ route('ru.user.exhibitions.news.show', ['slug' => $exhibition->slug]) }}">
-                                    <div class="card card-blog">
-                                        <div class="card-img">
-                                            <img src="{{ $exhibition->img }}" alt="{{ $exhibition->title_ru }}" class="img-fluid">
-                                        </div>
-                                        <div class="card-body news-main-text">
-                                            <div class="card-category-box">
-                                                <div class="card-category">
-                                                    <h6 class="category">{{ $exhibition->category->name_ru }}</h6>
-                                                </div>
-                                            </div>
-                                            <h3 class="card-title">{{ $exhibition->title_ru }}</h3>
-                                            <p class="card-description">
-                                                {{ $exhibition->short_description_ru }}
-                                            </p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="post-date">
-                                                <span class="date">{{ $exhibition->created_at->format('Y-m-d') }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforeach
-                        @endif
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </section>
         @endif

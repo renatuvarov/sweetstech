@@ -25,12 +25,14 @@ class UpdateRequest extends FormRequest
             'properties' => [new PropertiesNotEmpty($this)],
             'properties.*.name' => ['nullable', 'integer', 'in:' . $props, new UniqueValues($this)],
             'properties.*.value' => 'nullable|string|min:1',
-            'name_ru' => 'nullable|string|min:3|unique:machines,name_ru,' . $this->machine . ',id',
-            'name_en' => 'nullable|string|min:3|unique:machines,name_en,' . $this->machine . ',id',
-            'short_name_ru' => 'required|string|min:3|unique:machines,short_name_ru,' . $this->machine . ',id',
-            'short_name_en' => 'required|string|min:3|unique:machines,short_name_en,' . $this->machine . ',id',
-            'slug' => 'nullable|string|min:3|unique:machines,slug,' . $this->machine . ',id',
+            'name_ru' => 'nullable|string|min:3|unique:machines,name_ru,' . $this->machine->id . ',id',
+            'name_en' => 'nullable|string|min:3|unique:machines,name_en,' . $this->machine->id . ',id',
+            'short_name_ru' => 'required|string|min:3|unique:machines,short_name_ru,' . $this->machine->id . ',id',
+            'short_name_en' => 'required|string|min:3|unique:machines,short_name_en,' . $this->machine->id . ',id',
+            'slug' => 'nullable|string|min:3|unique:machines,slug,' . $this->machine->id . ',id',
             'img' => 'nullable|file|max:1024|mimes:jpeg,jpg,png',
+            'pdf_en' => 'nullable|mimes:pdf|max:10000',
+            'pdf_ru' => 'nullable|mimes:pdf|max:10000',
             'short_description_en' => 'required|string|min:10',
             'short_description_ru' => 'required|string|min:10',
             'meta_description_en' => 'nullable|string|min:10|max:255',
@@ -108,6 +110,14 @@ class UpdateRequest extends FormRequest
             'img.file' => 'Некорректный формат изображения',
             'img.max' => 'Максимальный размер изображения - 1 мегабайт',
             'img.mimes' => 'Некорректный формат изображения',
+
+            'pdf_en.file' => 'Некорректный формат',
+            'pdf_en.max' => 'Максимальный размер изображения - 10 мегабайт',
+            'pdf_en.mimes' => 'Некорректный формат',
+
+            'pdf_ru.file' => 'Некорректный формат',
+            'pdf_ru.max' => 'Максимальный размер изображения - 10 мегабайт',
+            'pdf_ru.mimes' => 'Некорректный формат',
         ];
     }
 }

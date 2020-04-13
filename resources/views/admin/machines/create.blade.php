@@ -102,6 +102,18 @@
                     @enderror
                 </div>
                 <div class="form-group border-bottom pb-5">
+                    <input type="file" class="form-control @error('pdf_en') is-invalid @enderror" name="pdf_en">
+                    @error('pdf_en')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group border-bottom pb-5">
+                    <input type="file" class="form-control @error('pdf_ru') is-invalid @enderror" name="pdf_ru">
+                    @error('pdf_ru')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group border-bottom pb-5">
                     <label for="tags-select">Категории</label>
                     <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
                         <option selected value="" class="empty-value"></option>

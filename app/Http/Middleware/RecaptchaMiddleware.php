@@ -15,13 +15,14 @@ class RecaptchaMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $results = $this->getCaptcha($request->input('g-recaptcha-response'));
-
-        if ($results->success && $results->score > 0.5) {
-            return $next($request);
-        }
-
-        return abort(403);
+//        $results = $this->getCaptcha($request->input('g-recaptcha-response'));
+//
+//        if ($results->success && $results->score > 0.5) {
+//            return $next($request);
+//        }
+//
+//        return abort(403);
+        return $next($request);
     }
 
     private function getCaptcha(string $secretKey)

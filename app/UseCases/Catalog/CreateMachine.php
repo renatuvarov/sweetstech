@@ -6,6 +6,7 @@ namespace App\UseCases\Catalog;
 
 use App\Entities\Catalog\Machine;
 use App\Handlers\ImageManager;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Psr\SimpleCache\CacheInterface;
@@ -45,6 +46,8 @@ class CreateMachine
             'mail_ru' => $data['mail_ru'],
             'slug' => mb_strtolower($data['slug']) ?: Str::slug(mb_strtolower($data['name_en'])),
             'img' => $this->manager->load($data['img'], 'machines'),
+            'pdf_en' => $data['pdf_en']->store('machines/pdf', 'local'),
+            'pdf_ru' => $data['pdf_ru']->store('machines/pdf/ru', 'local'),
             'is_redirect' => isset($data['is_redirect']),
             'images' => empty($data['images']) ? null : $data['images'],
         ]);
