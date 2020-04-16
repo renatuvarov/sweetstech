@@ -2,6 +2,7 @@
 
 namespace App\Entities\Catalog;
 
+use App\Entities\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +30,11 @@ class Order extends Model
     public function machine()
     {
         return $this->belongsTo(Machine::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public static function createOrder(array $data): self
@@ -67,5 +73,14 @@ class Order extends Model
     private function isNotExpired(): bool
     {
         return $this->created_at->diffInMinutes(Carbon::now()) < config('site.user.order.interval');
+    }
+
+    public function makeViewed(User $user): void
+    {
+        if ( ! $this->viewed) {
+            $this->viewed = true;
+            $this->user()->associate($user);
+            $this->save();
+        }
     }
 }

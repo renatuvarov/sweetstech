@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function index(Request $request, ?string $type = null)
+    public function index(?string $type = null)
     {
         $posts = Post::query();
 

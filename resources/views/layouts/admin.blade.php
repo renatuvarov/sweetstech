@@ -34,11 +34,20 @@
                                     <a class="dropdown-item" href="{{ route('main') }}" target="_blank">Главная</a>
                                     <a class="dropdown-item" href="{{ route('user.catalog.index') }}" target="_blank">Каталог</a>
                                     <a class="dropdown-item" href="{{ route('user.blog.news.index') }}" target="_blank">Блог</a>
-                                    <a class="dropdown-item" href="{{ route('main') }}" target="_blank">Выставки</a>
-{{--                                    <a class="dropdown-item" href="{{ route('user.mmc-200') }}" target="_blank">ММС-200</a>--}}
-{{--                                    <a class="dropdown-item" href="#" target="_blank">РФМ</a>--}}
+                                    <a class="dropdown-item" href="{{ route('user.exhibitions.news.index') }}" target="_blank">Выставки</a>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Заказы
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('admin.manage.orders.index') }}">Все заказы</a>
+                                    <a class="dropdown-item" href="{{ route('admin.manage.orders.index', ['active' => 1]) }}">Новые заказы</a>
+                                </div>
+                            </li>
+
+                            @can('admin')
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Каталог
@@ -61,6 +70,8 @@
                                     <a class="dropdown-item font-weight-bold" href="{{ route('admin.blog.posts.index') }}">Посты</a>
                                 </div>
                             </li>
+                            @endcan
+
                             <li class="nav-item">
                                 <form action="{{route('logout')}}" method="post">
                                     @csrf

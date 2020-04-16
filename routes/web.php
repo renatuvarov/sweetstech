@@ -111,29 +111,41 @@ Route::group([
     Route::get('home', 'HomeController@index')->name('home');
 
     Route::group([
-        'namespace' => 'Catalog',
-        'prefix' => 'catalog',
+        'middleware' => ['can:manage'],
     ], function () {
-        Route::resource('tag', 'TagController')->except('show');
-        Route::resource('properties', 'PropertyController')->except('show');
-        Route::resource('machines', 'MachineController');
-
-        Route::post('blog-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
-        Route::post('blog-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
+        Route::get('manage-orders/{active?}', 'ManageOrdersController@index')->name('manage.orders.index');
+        Route::delete('manage-orders/{order}', 'ManageOrdersController@destroy')->name('manage.orders.destroy');
+        Route::put('manage-orders/{order}', 'ManageOrdersController@viewed')->name('manage.orders.viewed')->middleware(IsAjax::class);
     });
 
     Route::group([
-        'namespace' => 'Blog',
-        'as' => 'blog.',
-        'prefix' => 'blog',
+        'middleware' => ['can:admin'],
     ], function () {
-        Route::get('posts/index/{type?}', 'PostsController@index')->name('posts.index');
-        Route::resource('posts', 'PostsController')->except('index');
-        Route::resource('categories', 'CategoriesController')->except('show');
-        Route::resource('tags', 'TagsController')->except('show');
+        Route::group([
+            'namespace' => 'Catalog',
+            'prefix' => 'catalog',
+        ], function () {
+            Route::resource('tag', 'TagController')->except('show');
+            Route::resource('properties', 'PropertyController')->except('show');
+            Route::resource('machines', 'MachineController');
 
-        Route::post('post-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
-        Route::post('post-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
+            Route::post('blog-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
+            Route::post('blog-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
+        });
+
+        Route::group([
+            'namespace' => 'Blog',
+            'as' => 'blog.',
+            'prefix' => 'blog',
+        ], function () {
+            Route::get('posts/index/{type?}', 'PostsController@index')->name('posts.index');
+            Route::resource('posts', 'PostsController')->except('index');
+            Route::resource('categories', 'CategoriesController')->except('show');
+            Route::resource('tags', 'TagsController')->except('show');
+
+            Route::post('post-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
+            Route::post('post-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
+        });
     });
 });
 
