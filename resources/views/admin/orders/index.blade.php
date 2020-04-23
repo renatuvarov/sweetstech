@@ -136,7 +136,6 @@
                     $this.parent().html(response.user)
                 },
                 error: function (response) {
-                    // console.log(response)
                     if (response.status === 422) {
                         $('.new-modal').modal();
                         $this.parent().html(response.responseJSON.user)

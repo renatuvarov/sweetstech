@@ -15,15 +15,14 @@ class OrderController extends Controller
 {
     public function order(OrderRequest $request, \Illuminate\Contracts\Mail\Mailer $mailer)
     {
-        if (Order::isAlreadyOrdered($request->all())) {
-            return ['isAlreadyOrdered' => true];
-        }
-
-        $order = Order::createOrder($request->all());
-        $machine = $order->machine;
-        $isEn = $this->getLang() === 'en';
+        if ( ! Order::isAlreadyOrdered($request->all())) {
+            $order = Order::createOrder($request->all());
+            $machine = $order->machine;
+            $isEn = $this->getLang() === 'en';
 //        $mailer->to($order->customer_email)->send(new ClientMail($machine, $order->customer_name, $isEn ? 'en' : 'ru'));
 //        $mailer->to(env('ADMIN_EMAIL'))->send(new AdminMail($order, $machine));
-        return ['success' => $order->customer_name];
+        }
+
+        return $this->getView('user.catalog.order.thanks');
     }
 }

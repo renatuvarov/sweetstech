@@ -79,8 +79,8 @@ class OrderRequest extends FormRequest
             'st_id.in' => 'Fuck you.',
         ];
     }
-
-    public function failedValidation(Validator $validator) {
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
-    }
+//
+//    public function failedValidation(Validator $validator) {
+//        throw new HttpResponseException(response()->json($validator->errors(), 422));
+//    }
 }

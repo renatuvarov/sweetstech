@@ -80,23 +80,35 @@
                     <img src="{{ asset('assets/img/logo_footer.png') }}" alt="{{ config('site.user.app.name') }}">
                 </span>
             </h3>
-            <form class="order-form_body" action="{{ route('user.order') }}" method="post" enctype="multipart/form-data" id="form">
+            <form class="order-form_body" action="{{ route('user.order', ['slug' => $machine->slug]) }}" method="post" enctype="multipart/form-data" id="form">
                 @csrf
                 <div class="order-form_input-wrapper required">
                     <label for="st_nsp">Name</label>
                     <input type="text" name="st_nsp" class="form-equipment" id="st_nsp" autofocus>
+                    @error('st_nsp')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="order-form_input-wrapper required">
                     <label for="st_company">Company</label>
                     <input type="text" name="st_company" class="form-equipment" id="st_company">
+                    @error('st_company')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="order-form_input-wrapper required">
                     <label for="st_email">E-mail</label>
                     <input type="text" name="st_email" class="form-equipment" id="st_email">
+                    @error('st_email')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="order-form_input-wrapper">
                     <label for="st_phone">Phone</label>
                     <input type="text" name="st_phone" class="form-equipment" id="st_phone">
+                    @error('st_phone')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
                 </div>
                 <input type="hidden" name="st_id" value="{{ $machine->id }}" >
                 <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
@@ -166,50 +178,50 @@
         }
     });
 
-    $('#form').on('submit', function (e) {
-        e.preventDefault();
-
-        $(this).find('.invalid-feedback').remove();
-
-        if (! $('.js-form-accept').is(':checked')) {
-            return;
-        }
-
-        var $form = $(this);
-        var $btn = $('.js-button-neu');
-        $btn.attr('disabled', true);
-
-        $.ajax({
-            type: $form.attr('method'),
-            url: $form.attr('action'),
-            data: $form.serialize(),
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            success: function(response) {
-                $('.js-button-neu').removeAttr('disabled');
-                $('input.form-equipment').val('');
-                $('.js-order-form').addClass('hide');
-                $('.js-order-form_success').removeClass('hide');
-            },
-            error: function(response, textStatus, xhr) {
-                $btn.attr('disabled', false);
-                if (response.status === 422) {
-                    var errors = response.responseJSON;
-
-                    $.each(errors, function (key, value) {
-                        $('<p>', {
-                            class: 'invalid-feedback',
-                            text: value[0],
-                        }).insertAfter('input[name="' + key + '"]');
-                    });
-                } else {
-                    $('.js-order-form').addClass('hide');
-                    $('.js-order-form_error').removeClass('hide');
-                }
-            }
-        });
-    });
+    // $('#form').on('submit', function (e) {
+    //     e.preventDefault();
+    //
+    //     $(this).find('.invalid-feedback').remove();
+    //
+    //     if (! $('.js-form-accept').is(':checked')) {
+    //         return;
+    //     }
+    //
+    //     var $form = $(this);
+    //     var $btn = $('.js-button-neu');
+    //     $btn.attr('disabled', true);
+    //
+    //     $.ajax({
+    //         type: $form.attr('method'),
+    //         url: $form.attr('action'),
+    //         data: $form.serialize(),
+    //         headers: {
+    //             'X-Requested-With': 'XMLHttpRequest'
+    //         },
+    //         success: function(response) {
+    //             $('.js-button-neu').removeAttr('disabled');
+    //             $('input.form-equipment').val('');
+    //             $('.js-order-form').addClass('hide');
+    //             $('.js-order-form_success').removeClass('hide');
+    //         },
+    //         error: function(response, textStatus, xhr) {
+    //             $btn.attr('disabled', false);
+    //             if (response.status === 422) {
+    //                 var errors = response.responseJSON;
+    //
+    //                 $.each(errors, function (key, value) {
+    //                     $('<p>', {
+    //                         class: 'invalid-feedback',
+    //                         text: value[0],
+    //                     }).insertAfter('input[name="' + key + '"]');
+    //                 });
+    //             } else {
+    //                 $('.js-order-form').addClass('hide');
+    //                 $('.js-order-form_error').removeClass('hide');
+    //             }
+    //         }
+    //     });
+    // });
 
     $('.js-form-accept').on('change', function () {
         $('.js-button-neu').attr('disabled', ! $(this).is(':checked'));

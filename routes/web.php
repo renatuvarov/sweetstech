@@ -31,7 +31,7 @@ Route::group([
         Route::get('/', 'MachineController@index')->name('catalog.index');
         Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
         Route::get('category/{slug}', 'TagController@show')->name('tags.show');
-        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
+        Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
     });
 
     Route::group([
@@ -74,7 +74,7 @@ Route::group([
         Route::get('category/{slug}', 'TagController@show')->name('tags.show');
         Route::get('/', 'MachineController@index')->name('catalog.index');
         Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
-        Route::post('order', 'OrderController@order')->middleware([IsAjax::class, RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
+        Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
     });
 
     Route::group([
@@ -116,6 +116,10 @@ Route::group([
         Route::get('manage-orders/{active?}', 'ManageOrdersController@index')->name('manage.orders.index');
         Route::delete('manage-orders/{order}', 'ManageOrdersController@destroy')->name('manage.orders.destroy');
         Route::put('manage-orders/{order}', 'ManageOrdersController@viewed')->name('manage.orders.viewed')->middleware(IsAjax::class);
+        Route::get('corrections/{active?}', 'CorrectionsController@index')->name('corrections.index');
+        Route::post('corrections-create', 'CorrectionsController@create')->name('corrections.create')->middleware(IsAjax::class);
+        Route::get('corrections/{correction}/edit', 'CorrectionsController@edit')->name('corrections.edit');
+        Route::delete('corrections/{correction}', 'CorrectionsController@destroy')->name('corrections.destroy');
     });
 
     Route::group([

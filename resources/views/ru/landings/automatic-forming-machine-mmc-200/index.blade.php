@@ -1,5 +1,6 @@
 @extends('layouts.landings.ru-landing-layout')
 
+
 @section('landing-content')
     <div class="main-title_wrapper">
         <div class="w-75 mr-auto ml-auto title-header">

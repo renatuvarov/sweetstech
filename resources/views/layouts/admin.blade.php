@@ -46,6 +46,15 @@
                                     <a class="dropdown-item" href="{{ route('admin.manage.orders.index', ['active' => 1]) }}">Новые заказы</a>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Правки
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('admin.corrections.index') }}">Все правки</a>
+                                    <a class="dropdown-item" href="{{ route('admin.corrections.index', ['active' => 1]) }}">Новые правки</a>
+                                </div>
+                            </li>
 
                             @can('admin')
                             <li class="nav-item dropdown">
