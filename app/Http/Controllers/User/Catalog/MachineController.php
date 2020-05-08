@@ -22,6 +22,7 @@ class MachineController extends Controller
         }
         $categories = $machine->tags()->get();
         $properties = $machine->properties()->get();
-        return $this->getView('user.catalog.machines.show', compact('machine', 'categories', 'properties'));
+        $gallery = $machine->gallery()->first();
+        return $this->getView('user.catalog.machines.show', compact('machine', 'categories', 'properties', 'gallery'));
     }
 }

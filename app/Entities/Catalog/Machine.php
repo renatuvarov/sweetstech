@@ -6,6 +6,7 @@ use App\Entities\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use App\Entities\Common\Gallery;
 
 /**
  * Class Machine
@@ -30,6 +31,11 @@ class Machine extends Model
     protected $casts = [
         'images' => 'array',
     ];
+
+	public function gallery()
+    {
+        return $this->belongsTo(Gallery::class);
+    }
 
     public function orders()
     {

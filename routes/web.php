@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ImageExists;
 use App\Http\Middleware\IsAjax;
 use App\Http\Middleware\RecaptchaMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -149,6 +150,17 @@ Route::group([
 
             Route::post('post-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
             Route::post('post-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);
+        });
+
+        Route::group([
+            'namespace' => 'Common',
+            'as' => 'common.',
+            'prefix' => 'common',
+        ], function () {
+            Route::resource('galleries', 'GalleriesController');
+            Route::patch('gallery-photos-up', 'GalleryPhotosController@photoUp')->name('photo.up')->middleware([IsAjax::class, ImageExists::class]);
+            Route::patch('gallery-photos-down', 'GalleryPhotosController@photoDown')->name('photo.down')->middleware([IsAjax::class, ImageExists::class]);
+            Route::delete('gallery-photos-remove', 'GalleryPhotosController@removePhoto')->name('photo.remove')->middleware([IsAjax::class, ImageExists::class]);
         });
     });
 });

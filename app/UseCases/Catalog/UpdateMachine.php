@@ -34,6 +34,12 @@ class UpdateMachine implements UpdatesContentImages
     {
         $machine->newTags($data['tags'] ?? []);
         $machine->newProperties($data['properties'] ?? []);
+		
+		if (isset($data['gallery_id'])) {
+            $machine->gallery()->associate($data['gallery_id']);
+        } else {
+            $machine->gallery()->dissociate();
+        }
 
         $machine->update([
             'name_en' => $data['name_en'] ?: $machine->name_en,

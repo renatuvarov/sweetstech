@@ -101,6 +101,28 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
+				@if( ! empty($galleries) && $galleries->count() > 0)
+                    <div class="form-group border-bottom pb-5">
+                        <label for="gallery_id">Галерея</label>
+                        <select name="gallery_id" id="gallery_id" class="form-control">
+                            @if(empty(old('gallery_id')))
+                                <option value="" selected>---</option>
+                            @else
+                                <option value="">---</option>
+                            @endif
+                            @foreach($galleries as $gallery)
+                                @if(old('gallery_id') == $gallery->id)
+                                    <option value="{{ $gallery->id }}" selected>{{ $gallery->name }}</option>
+                                @else
+                                    <option value="{{ $gallery->id }}">{{ $gallery->name }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @error('gallery_id')
+                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                        @enderror
+                    </div>
+                @endif
                 <div class="form-group border-bottom pb-5">
                     <label for="pdf_en">PDF (английский)</label>
                     <input type="file" class="form-control @error('pdf_en') is-invalid @enderror" name="pdf_en" id="pdf_en">

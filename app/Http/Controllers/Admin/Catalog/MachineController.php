@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\Catalog\Machines\CreateRequest;
 use App\Http\Requests\Admin\Catalog\Machines\UpdateRequest;
 use App\UseCases\Catalog\CreateMachine;
 use App\UseCases\Catalog\UpdateMachine;
+use App\Entities\Common\Gallery;
 
 class MachineController extends Controller
 {
@@ -25,7 +26,8 @@ class MachineController extends Controller
     {
         $tags = Tag::all();
         $properties = Property::all();
-        return view('admin.machines.create', compact('tags', 'properties'));
+        $galleries = Gallery::all();
+        return view('admin.machines.create', compact('tags', 'properties', 'galleries'));
     }
 
     public function store(CreateRequest $request, CreateMachine $createMachine, TransactionManager $transactionManager)
@@ -48,7 +50,8 @@ class MachineController extends Controller
         $machine = Machine::getByIdWithPivots($id);
         $tags = Tag::all();
         $properties = Property::all();
-        return view('admin.machines.edit', compact('machine', 'tags', 'properties'));
+        $galleries = Gallery::all();
+        return view('admin.machines.edit', compact('machine', 'tags', 'properties', 'galleries'));
     }
 
     public function update(UpdateRequest $request, $id, UpdateMachine $updateMachine, TransactionManager $transactionManager)

@@ -11,6 +11,8 @@
         <title>{{ config('site.user.app.name') }}</title>
     @show
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @stack('css')
 {{--    <script>--}}
@@ -241,6 +243,7 @@
         @include('parts.corrections')
     @endauth
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     @stack('js')
 </div>

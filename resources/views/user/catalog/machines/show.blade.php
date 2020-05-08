@@ -55,8 +55,18 @@
                         </div>
                     </div>
                     <div class="col-md-6 img-equipment justify-content-center d-flex">
+                        @if($gallery && count($gallery->images) > 1)
+                            <div class="specifications-slider owl-carousel owl-theme">
+                                @foreach($gallery->images as $image)
+                                    <div><img src="{{ $image }}" alt="{{ $machine->name_en }}"></div>
+                                @endforeach
+                            </div>
+                        @else
                         <img src="{{ $machine->img }}"
-                             class="img-fluid" itemprop="image" alt="{{ $property->name_en }}">
+                             class="img-fluid"
+                             itemprop="image"
+                             alt="{{ $machine->name_en }}">
+                        @endif
                     </div>
                 </div>
                 <div class="row-custom">
@@ -153,6 +163,15 @@
     @include('parts.recaptcha')
 @endsection
 
+@push('css')
+    <style>
+        .img-equipment .owl-carousel img {
+            max-width: 100%;
+            width: 100% !important;
+        }
+    </style>
+@endpush
+
 @push('js')
 <script src="{{ asset('js/js-content.js') }}"></script>
 <script>
@@ -178,54 +197,17 @@
         }
     });
 
-    // $('#form').on('submit', function (e) {
-    //     e.preventDefault();
-    //
-    //     $(this).find('.invalid-feedback').remove();
-    //
-    //     if (! $('.js-form-accept').is(':checked')) {
-    //         return;
-    //     }
-    //
-    //     var $form = $(this);
-    //     var $btn = $('.js-button-neu');
-    //     $btn.attr('disabled', true);
-    //
-    //     $.ajax({
-    //         type: $form.attr('method'),
-    //         url: $form.attr('action'),
-    //         data: $form.serialize(),
-    //         headers: {
-    //             'X-Requested-With': 'XMLHttpRequest'
-    //         },
-    //         success: function(response) {
-    //             $('.js-button-neu').removeAttr('disabled');
-    //             $('input.form-equipment').val('');
-    //             $('.js-order-form').addClass('hide');
-    //             $('.js-order-form_success').removeClass('hide');
-    //         },
-    //         error: function(response, textStatus, xhr) {
-    //             $btn.attr('disabled', false);
-    //             if (response.status === 422) {
-    //                 var errors = response.responseJSON;
-    //
-    //                 $.each(errors, function (key, value) {
-    //                     $('<p>', {
-    //                         class: 'invalid-feedback',
-    //                         text: value[0],
-    //                     }).insertAfter('input[name="' + key + '"]');
-    //                 });
-    //             } else {
-    //                 $('.js-order-form').addClass('hide');
-    //                 $('.js-order-form_error').removeClass('hide');
-    //             }
-    //         }
-    //     });
-    // });
-
     $('.js-form-accept').on('change', function () {
         $('.js-button-neu').attr('disabled', ! $(this).is(':checked'));
     });
 
+    $('.owl-carousel').owlCarousel({
+        loop:true, //Зацикливаем слайдер
+        nav:false, //Отключение навигации
+        autoplay:true, //Автозапуск слайдера
+        smartSpeed:1000, //Время движения слайда
+        autoplayTimeout:4000, //Время смены слайда
+        items: 1,
+    });
 </script>
 @endpush

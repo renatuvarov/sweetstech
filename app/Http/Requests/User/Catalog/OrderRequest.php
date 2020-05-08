@@ -5,7 +5,6 @@ namespace App\Http\Requests\User\Catalog;
 use App\Entities\Catalog\Machine;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Contracts\Validation\Validator;
 
 class OrderRequest extends FormRequest
 {

@@ -46,13 +46,17 @@ class CreateMachine
             'mail_ru' => $data['mail_ru'],
             'slug' => mb_strtolower($data['slug']) ?: Str::slug(mb_strtolower($data['name_en'])),
             'img' => $this->manager->load($data['img'], 'machines'),
-            'pdf_en' => isset($data['pdf_en'])? $data['pdf_en']->store('machines/pdf', 'local') : null,
-            'pdf_ru' => isset($data['pdf_ru'])? $data['pdf_ru']->store('machines/pdf', 'local') : null,
+            'pdf_en' => isset($data['pdf_en']) ? $data['pdf_en']->store('machines/pdf', 'local') : null,
+            'pdf_ru' => isset($data['pdf_ru']) ? $data['pdf_ru']->store('machines/pdf', 'local') : null,
             'is_redirect' => isset($data['is_redirect']),
             'images' => empty($data['images']) ? null : $data['images'],
         ]);
 
         $this->cache->forget('categories');
+
+		if (isset($data['gallery_id'])) {
+            $machine->gallery()->associate($data['gallery_id']);
+        }
 
         $machine->save();
 
