@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateMachinesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('machines', function (Blueprint $table) {
@@ -22,15 +17,9 @@ class CreateMachinesTable extends Migration
             $table->string('slug')->unique();
             $table->string('img');
             $table->unsignedTinyInteger('type_id');
-//            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('machines');

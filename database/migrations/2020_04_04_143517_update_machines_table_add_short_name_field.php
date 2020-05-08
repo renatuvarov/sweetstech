@@ -9,8 +9,8 @@ class UpdateMachinesTableAddShortNameField extends Migration
     public function up()
     {
         Schema::table('machines', function (Blueprint $table) {
-            $table->string('short_name_en', 20);
-            $table->string('short_name_ru', 20);
+            $table->string('short_name_en', 100);
+            $table->string('short_name_ru', 100);
         });
     }
 
