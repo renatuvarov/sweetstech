@@ -68,7 +68,6 @@
                         </div>
                         @include('ru.parts.machines-categories')
                     </div>
-                    <hr>
                     {{ $machines->links('vendor.pagination.default') }}
                 </div>
             </div>

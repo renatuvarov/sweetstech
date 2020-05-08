@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ $machine->name_ru . ' | '. config('site.user.app.name')}}</title>
     <meta name="description" content="{{ $machine->meta_description_ru }}">
@@ -10,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landings.css') }}">
-    @stack('css')
+    <!-- Facebook Pixel Code -->
 {{--    <script>--}}
 {{--        !function(f,b,e,v,n,t,s)--}}
 {{--        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?--}}
@@ -23,6 +22,11 @@
 {{--        fbq('init', '230235861555723');--}}
 {{--        fbq('track', 'PageView');--}}
 {{--    </script>--}}
+{{--    <noscript><img height="1" width="1" style="display:none"--}}
+{{--                   src="https://www.facebook.com/tr?id=230235861555723&ev=PageView&noscript=1"--}}
+{{--        /></noscript>--}}
+    <!-- End Facebook Pixel Code -->
+    @stack('css')
 </head>
 <body>
 <header class="header js-header">

@@ -16,7 +16,7 @@
                     protein, etc. Sublimated fruits, berries, crushed waffles, it all depends on your imagination and
                     needs.</h4>
                 <h4>Syrup acts as a binder, and it is also possible to add honey, or condensed milk or chocolate, etc.
-                    Or the use of sublimated syrups such as Molda 13.</h4>
+                    Also you can use of sublimated syrups such as Molda 13.</h4>
             </div>
         </div>
     </div>
@@ -641,7 +641,7 @@
 
                         </div>
                         <hr>
-                        <p class="text-center">Staff training and equipment starting are included</p>
+                        <p class="text-center">Staff training and equipment launch</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -941,7 +941,7 @@
             <div class="profile-wrapper fadeInRight">
                 <div class="about">
                     <p class="about-txt">Forming machine for cereal mass MMC-200 is very easy to operate and service.
-                        You will no need large production areas and huge lines. Despite its small size, the forming
+                        You will not need large production areas and huge lines. Despite its small size, the forming
                         machine MMC-200 has capacity up to 5 400 bars per hour, with a working width of 200 mm.</p>
                     <p class="about-txt">The prepared mass (cereal mixed with syrup) is loaded into the hopper of the
                         forming machine manually or automatically using a transport system. Special feeding shafts in

@@ -101,7 +101,7 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
-				@if( ! empty($galleries) && $galleries->count() > 0)
+                @if( ! empty($galleries) && $galleries->count() > 0)
                     <div class="form-group border-bottom pb-5">
                         <label for="gallery_id">Галерея</label>
                         <select name="gallery_id" id="gallery_id" class="form-control">

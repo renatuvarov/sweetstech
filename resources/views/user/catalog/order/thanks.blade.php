@@ -9,6 +9,10 @@
 @endsection
 
 @section('content')
-    <h1>Thanks!</h1>
-    <a href="{{ route('user.catalog.index') }}">back</a>
+    <div class="mt-5 text-center">
+        <p><img src="img/logo.png" class="logo text-center" alt="">
+        <h2 class="thanks-title" style="margin-bottom: 20px;">Thanks!</h2>
+        <button class="col-12 button-neu"><a style="color: white" href="{{ route('user.catalog.index') }}">Comeback to site</a></button>
+        </p>
+    </div>
 @endsection

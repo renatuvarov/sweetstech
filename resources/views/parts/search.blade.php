@@ -15,11 +15,12 @@
             @if(! empty($categories))
                 <h4>Categories:</h4>
                 @foreach($categories  as $category)
-                <div class="mb-1">
-                    <label>
-                        <input type="checkbox" name="st_categories[]" class="" value="{{ $category['id'] }}"> {{ $category['name_en'] }}
-                    </label>
-                </div>
+                    <div class="control-group">
+                        <label class="control control-checkbox">
+                            <input type="checkbox" name="st_categories[]" value="{{ $category['id'] }}"> {{ $category['name_en'] }}
+                            <div class="control_indicator"></div>
+                        </label>
+                    </div>
                 @endforeach
             @endif
             <p class="order-form_wrapper text-center">

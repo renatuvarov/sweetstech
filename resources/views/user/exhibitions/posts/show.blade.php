@@ -53,7 +53,7 @@
     </div>
     <section class="mt-5">
         <div class="row-custom">
-            <div class="col-md-12 text-equipment ml-auto mr-auto" style="max-width:1140px">
+            <div class="col-md-12 text-equipment ml-auto mr-auto" style="max-width:1240px">
                 <div itemprop="description" class="text-about-equipment js-content">
                     <h4 class="content-blog">{{ $post->title_en }}</h4>
                     <img src="{{ $post->img }}" class="img-blog" alt="{{ $post->title_en }}">

@@ -851,58 +851,58 @@
         </div>
     </section>
 
-{{--    <section id="products" class="product">--}}
-{{--        <h2 class="section-title">The samples of products</h2>--}}
-{{--        <ul class="product-list">--}}
-{{--            <li class="product-item animated-item js-animated-item">--}}
-{{--                <div class="product-img_wrapper">--}}
-{{--                    <img src="{{ asset('assets/img/200/8r-png.png') }}" alt="" class="product-img">--}}
-{{--                </div>--}}
-{{--                <div class="product-info">--}}
-{{--                    <p class="product-description">Contains B-group vitamins, many macro- and microelements,--}}
-{{--                        polyunsaturated fat, is a real source of energy.</p>--}}
-{{--                    <p class="product-description"><span>Состав: </span>sunflower seeds, black sesame seeds, flax--}}
-{{--                        seeds, sublimated raspberries, corn flakes, raisins, syrup with add honey.</p>--}}
-{{--                </div>--}}
-{{--            </li>--}}
-{{--            <li class="product-item animated-item js-animated-item">--}}
-{{--                <div class="product-img_wrapper">--}}
-{{--                    <img src="{{ asset('assets/img/200/6r-png.png') }}" alt="" class="product-img">--}}
-{{--                </div>--}}
-{{--                <div class="product-info">--}}
-{{--                    <p class="product-description">The beneficial composition of this balls helps to reduce the acidity--}}
-{{--                        of the stomach, remove toxins from the body, and also restores energy, causes a surge of--}}
-{{--                        strength in the human body.</p>--}}
-{{--                    <p class="product-description"><span>Состав: </span>puffed rice, whole peanuts, raisins, dried--}}
-{{--                        chopped barberry, rye flakes.</p>--}}
-{{--                </div>--}}
-{{--            </li>--}}
-{{--            <li class="product-item animated-item js-animated-item">--}}
-{{--                <div class="product-img_wrapper">--}}
-{{--                    <img src="{{ asset('assets/img/200/11r-png.png') }}" alt="" class="product-img">--}}
-{{--                </div>--}}
-{{--                <div class="product-info">--}}
-{{--                    <p class="product-description">The bar is enriched with protein and fiber. This makes it ideal for--}}
-{{--                        those who want to always monitor the state of their figure. And those beneficial substances that--}}
-{{--                        are in its composition positively affect the body as a whole.</p>--}}
-{{--                    <p class="product-description"><span>Состав: </span>Rice balls, candied fruits (pineapple),--}}
-{{--                        pumpkin seeds, wheat flakes, dried cranberries, chocolate, crushed hazelnuts.</p>--}}
-{{--                </div>--}}
-{{--            </li>--}}
-{{--            <li class="product-item animated-item js-animated-item">--}}
-{{--                <div class="product-img_wrapper">--}}
-{{--                    <img src="{{ asset('assets/img/200/16r-png.png') }}" alt="" class="product-img">--}}
-{{--                </div>--}}
-{{--                <div class="product-info">--}}
-{{--                    <p class="product-description">It is rich in easily digestible protein, it contains dried--}}
-{{--                        blueberries - rich in vitamins, as well as sublimated strawberries, which prevents the formation--}}
-{{--                        of cancerous tumors and prevents the occurrence of anemia.</p>--}}
-{{--                    <p class="product-description"><span>Состав: </span>protein balls, oatmeal, dried blueberries,--}}
-{{--                        sublimated strawberries, raisins, Jerusalem artichoke syrup.</p>--}}
-{{--                </div>--}}
-{{--            </li>--}}
-{{--        </ul>--}}
-{{--    </section>--}}
+    {{--    <section id="products" class="product">--}}
+    {{--        <h2 class="section-title">The samples of products</h2>--}}
+    {{--        <ul class="product-list">--}}
+    {{--            <li class="product-item animated-item js-animated-item">--}}
+    {{--                <div class="product-img_wrapper">--}}
+    {{--                    <img src="{{ asset('assets/img/200/8r-png.png') }}" alt="" class="product-img">--}}
+    {{--                </div>--}}
+    {{--                <div class="product-info">--}}
+    {{--                    <p class="product-description">Contains B-group vitamins, many macro- and microelements,--}}
+    {{--                        polyunsaturated fat, is a real source of energy.</p>--}}
+    {{--                    <p class="product-description"><span>Состав: </span>sunflower seeds, black sesame seeds, flax--}}
+    {{--                        seeds, sublimated raspberries, corn flakes, raisins, syrup with add honey.</p>--}}
+    {{--                </div>--}}
+    {{--            </li>--}}
+    {{--            <li class="product-item animated-item js-animated-item">--}}
+    {{--                <div class="product-img_wrapper">--}}
+    {{--                    <img src="{{ asset('assets/img/200/6r-png.png') }}" alt="" class="product-img">--}}
+    {{--                </div>--}}
+    {{--                <div class="product-info">--}}
+    {{--                    <p class="product-description">The beneficial composition of this balls helps to reduce the acidity--}}
+    {{--                        of the stomach, remove toxins from the body, and also restores energy, causes a surge of--}}
+    {{--                        strength in the human body.</p>--}}
+    {{--                    <p class="product-description"><span>Состав: </span>puffed rice, whole peanuts, raisins, dried--}}
+    {{--                        chopped barberry, rye flakes.</p>--}}
+    {{--                </div>--}}
+    {{--            </li>--}}
+    {{--            <li class="product-item animated-item js-animated-item">--}}
+    {{--                <div class="product-img_wrapper">--}}
+    {{--                    <img src="{{ asset('assets/img/200/11r-png.png') }}" alt="" class="product-img">--}}
+    {{--                </div>--}}
+    {{--                <div class="product-info">--}}
+    {{--                    <p class="product-description">The bar is enriched with protein and fiber. This makes it ideal for--}}
+    {{--                        those who want to always monitor the state of their figure. And those beneficial substances that--}}
+    {{--                        are in its composition positively affect the body as a whole.</p>--}}
+    {{--                    <p class="product-description"><span>Состав: </span>Rice balls, candied fruits (pineapple),--}}
+    {{--                        pumpkin seeds, wheat flakes, dried cranberries, chocolate, crushed hazelnuts.</p>--}}
+    {{--                </div>--}}
+    {{--            </li>--}}
+    {{--            <li class="product-item animated-item js-animated-item">--}}
+    {{--                <div class="product-img_wrapper">--}}
+    {{--                    <img src="{{ asset('assets/img/200/16r-png.png') }}" alt="" class="product-img">--}}
+    {{--                </div>--}}
+    {{--                <div class="product-info">--}}
+    {{--                    <p class="product-description">It is rich in easily digestible protein, it contains dried--}}
+    {{--                        blueberries - rich in vitamins, as well as sublimated strawberries, which prevents the formation--}}
+    {{--                        of cancerous tumors and prevents the occurrence of anemia.</p>--}}
+    {{--                    <p class="product-description"><span>Состав: </span>protein balls, oatmeal, dried blueberries,--}}
+    {{--                        sublimated strawberries, raisins, Jerusalem artichoke syrup.</p>--}}
+    {{--                </div>--}}
+    {{--            </li>--}}
+    {{--        </ul>--}}
+    {{--    </section>--}}
     <section id="line" class="section-line">
         <h2 class="section-title process-title">The technological process of work the forming machine RFM-200</h2>
         <div class="line_wrapper">

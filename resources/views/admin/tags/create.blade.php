@@ -16,19 +16,19 @@
             <div class="form-group required">
                 <input value="{{ old('name_ru') }}" type="text" class="form-control @error('name_ru') is-invalid @enderror" placeholder="Наименование (ru)" name="name_ru">
                 @error('name_ru')
-                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group required">
                 <input value="{{ old('name_en') }}" type="text" class="form-control  @error('name_en') is-invalid @enderror" placeholder="Наименование (eng)" name="name_en">
                 @error('name_en')
-                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <input value="{{ old('slug') }}" type="text" class="form-control @error('slug') is-invalid @enderror" placeholder="Слаг" name="slug">
                 @error('slug')
-                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group required">

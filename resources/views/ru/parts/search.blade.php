@@ -14,9 +14,10 @@
             </div>
             <h4>Категории:</h4>
             @foreach($categories  as $category)
-                <div class="mb-1">
-                    <label>
-                        <input type="checkbox" name="st_categories[]" class="" value="{{ $category['id'] }}"> {{ $category['name_ru'] }}
+                <div class="control-group">
+                    <label class="control control-checkbox">
+                        <input type="checkbox" name="st_categories[]" value="{{ $category['id'] }}"> {{ $category['name_ru'] }}
+                        <div class="control_indicator"></div>
                     </label>
                 </div>
             @endforeach

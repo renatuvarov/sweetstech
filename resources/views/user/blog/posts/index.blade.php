@@ -35,45 +35,38 @@
     </div>
     <section>
         <div class="container all-news">
-            @if(! empty($posts) && $posts->count() > 0)
+            <div class="col-md-12 card-news">
                 <div class="row">
-                    @foreach($posts as $post)
-                        <div class="col-md-12 card-news">
-                            <div class="row">
-                                <div class="col-md-7 text-news">
-                                    <span class="date-news">{{ $post->created_at->format('Y m d') }}</span>
-                                    <span class="title-news">{{ $post->title_en }}</span>
-                                    <div class="description-news _hidden">
-                                        <div class="inner-text">
-                                            <p>
-                                                <span>
-                                                    {{ $post->short_description_en }}
-                                                </span>
-                                            </p>
+                    @if(! empty($posts) && $posts->count() > 0)
+                        @foreach($posts as $post)
+                            <a class="card-news-square card-news-square-all" href="{{ route('user.blog.news.show', ['slug' => $post->slug]) }}">
+                                <img src="{{ $post->img }}" alt="{{ $post->title_en }}" class="img-fluid">
+                                <div class="card-news-square-2">
+                                    <h3>{{ $post->title_en }}</h3>
+                                    <div class="card-news-square-info">
+                                        <div class="card-news-btn-wrapper">
+                                            <div class="news-more text-uppercase">Show More</div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('user.blog.news.show', ['slug' => $post->slug]) }}" class="news-button" aria-label="Читать полностью">
-                                        <span>Show More...</span>
-                                    </a>
                                 </div>
-                                <div class="col-md-5 main-img-news">
-                                    <img src="{{ $post->img }}" class="img-fluid" alt="{{ $post->title_en }}">
+                                <div class="card-news-footer">
+                                    <div class="card-news-category">{{ $post->category->name_en }}</div>
+                                    <div class="card-news-date">{{ $post->created_at->format('Y-m-d') }}</div>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
+                            </a>
+                        @endforeach
                 </div>
-                <hr>
-                {{ $posts->links('vendor.pagination.default') }}
-            @else
-                <div class="col-md-12 card-news text-center d-flex justify-content-center align-items-center" style="min-height: 300px">
-                    <div class="row">
-                        <div class="col-md-12 text-news m-0" style="font-size: 35px;">
-                            <p class="align-self-center">Nothing found.</p>
-                        </div>
+            </div>
+        </div>
+        {{ $posts->links('vendor.pagination.default') }}
+        @else
+            <div class="col-md-12 card-news text-center d-flex justify-content-center align-items-center" style="min-height: 300px">
+                <div class="row">
+                    <div class="col-md-12 text-news m-0" style="font-size: 35px;">
+                        <p class="align-self-center">Nothing found.</p>
                     </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
     </section>
 @endsection

@@ -28,9 +28,9 @@
                                 <h4 class="categories-single-title">Категории:</h4>
                                 <ul class="categories-single">
                                     @foreach($categories as $category)
-                                    <li class="categories-single-all">
-                                        <a href="{{ route('ru.user.tags.show', ['slug' => $category->slug]) }}">{{ $category->name_ru }}</a>
-                                    </li>
+                                        <li class="categories-single-all">
+                                            <a href="{{ route('ru.user.tags.show', ['slug' => $category->slug]) }}">{{ $category->name_ru }}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
 
@@ -42,33 +42,52 @@
         </div>
         <section class="photo-tech pt-5">
             <div class="container">
-                <div class="row-custom row-custom-top">
-                    <div class="col-md-6 product_features">
-                        <h2>Характеристики</h2>
-                        <div class="characteristics_group">
-                            @foreach($properties as $property)
-                                <p>
-                                    <span class="characteristic">{{ $property->name_ru }}:</span>
-                                    <span class="characteristic_value">{{ $property->pivot->value_ru }} {{ $property->measure_ru ?? '' }}</span>
-                                </p>
-                            @endforeach
+                <div class="background-equipment-single">
+                    <div class="row-custom row-custom-top">
+                        <div class="col-md-6 product_features">
+                            <h2>Характеристики</h2>
+                            <div class="characteristics_group">
+                                @foreach($properties as $property)
+                                    <p>
+                                        <span class="characteristic">{{ $property->name_ru }}:</span>
+                                        <span class="characteristic_value">{{ $property->pivot->value_ru }} {{ $property->measure_ru ?? '' }}</span>
+                                    </p>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-md-6 img-equipment justify-content-center d-flex">
+                            @if($gallery && count($gallery->images) > 0)
+                                @if(count($gallery->images) === 1 )
+                                    <img src="{{ $gallery->images[0] }}"
+                                         class="img-fluid"
+                                         itemprop="image"
+                                         alt="{{ $machine->name_en }}">
+                                @else
+                                    <div class="specifications-slider owl-carousel owl-theme">
+                                        @foreach($gallery->images as $image)
+                                            <div class="img-slider"><img src="{{ $image }}" alt="{{ $machine->name_en }}"></div>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            @else
+                                <img src="{{ $machine->img }}"
+                                     class="img-fluid"
+                                     itemprop="image"
+                                     alt="{{ $machine->name_ru }}">
+                            @endif
                         </div>
                     </div>
-                    <div class="col-md-6 img-equipment justify-content-center d-flex">
-                        <img src="{{ $machine->img }}"
-                             class="img-fluid" itemprop="image" alt="{{ $property->name_ru }}">
-                    </div>
-                </div>
-                <div class="row-custom">
-                    <div class="col-md-12 text-equipment">
-                        <h2>Подробнее</h2>
-                        <div itemprop="description" class="text-about-equipment js-content">
-                            {!! $machine->description_ru !!}
+                    <div class="row-custom">
+                        <div class="col-md-12 text-equipment">
+                            <h2>Подробнее</h2>
+                            <div itemprop="description" class="text-about-equipment js-content">
+                                {!! $machine->description_ru !!}
+                            </div>
                         </div>
                     </div>
                 </div>
+                <button type="button" class="show-form js-show-form">Узнать больше</button>
             </div>
-            <button type="button" class="show-form js-show-form">Узнать больше</button>
         </section>
     </div>
     <div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper">
@@ -86,7 +105,7 @@
                     <label for="st_nsp">Имя</label>
                     <input type="text" name="st_nsp" class="form-equipment" id="st_nsp" autofocus>
                     @error('st_nsp')
-                        <p class="invalid-feedback">{{ $message }}</p>
+                    <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="order-form_input-wrapper required">
@@ -117,7 +136,7 @@
                     <label style="cursor:pointer;"><input type="checkbox" class="js-form-accept" checked> Согласен на обработку персональных данных</label>
                     <button type="submit" class="button-neu js-button-neu">Отправить</button>
                     <br>
-                <span style="font-size: 8px; opacity: 0.5; margin: 3px auto; color: #cbcbcb;">
+                    <span style="font-size: 8px; opacity: 0.5; margin: 3px auto; color: #cbcbcb;">
                     Этот сайт использует reCAPTCHA от Google <a href="https://policies.google.com/privacy">Политика безопасности</a> и <a href="https://policies.google.com/terms">Условия использования</a>
                 </span>
                 </p>
@@ -143,9 +162,9 @@
                 </h3>
                 <div class="order-form_body text-center">
                     <p> Извините, что-то пошло не так. Попробуйте позже.</p>
-                <p class="text-center">
-                    <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
-                </p>
+                    <p class="text-center">
+                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
+                    </p>
                 </div>
             </div>
         </div>
@@ -153,79 +172,57 @@
     @include('parts.recaptcha')
 @endsection
 
+@push('css')
+    <style>
+
+        .img-equipment .owl-carousel img  {
+            max-width:100%;
+        }
+
+        .owl-carousel .owl-item img {
+            display: inline-block;
+            width: auto;
+        }
+    </style>
+@endpush
+
 @push('js')
-<script src="{{ asset('js/js-content.js') }}"></script>
-<script>
-    $('.js-show-form').on('click', function () {
-        $('.js-fixed-backdrop-wrapper').addClass('fixed-backdrop-wrapper-active');
-    });
+    <script src="{{ asset('js/js-content.js') }}"></script>
+    <script>
+        $('.js-show-form').on('click', function () {
+            $('.js-fixed-backdrop-wrapper').addClass('fixed-backdrop-wrapper-active');
+        });
 
-    $('.js-fixed-backdrop-wrapper_close').on('click', function () {
-        $('input.form-equipment').val('');
-        $('.js-order-form').removeClass('hide');
-        $('.js-order-form_success').addClass('hide');
-        $('.js-order-form_error').addClass('hide');
-        $('.js-fixed-backdrop-wrapper').removeClass('fixed-backdrop-wrapper-active');
-    });
-
-    $('.js-fixed-backdrop-wrapper').on('click', function (e) {
-        if (e.target === $(this)) {
+        $('.js-fixed-backdrop-wrapper_close').on('click', function () {
             $('input.form-equipment').val('');
             $('.js-order-form').removeClass('hide');
             $('.js-order-form_success').addClass('hide');
             $('.js-order-form_error').addClass('hide');
             $('.js-fixed-backdrop-wrapper').removeClass('fixed-backdrop-wrapper-active');
-        }
-    });
+        });
 
-    // $('#form').on('submit', function (e) {
-    //     e.preventDefault();
-    //
-    //     $(this).find('.invalid-feedback').remove();
-    //
-    //     if (! $('.js-form-accept').is(':checked')) {
-    //         return;
-    //     }
-    //
-    //     var $form = $(this);
-    //     var $btn = $('.js-button-neu');
-    //     $btn.attr('disabled', true);
-    //
-    //     $.ajax({
-    //         type: $form.attr('method'),
-    //         url: $form.attr('action'),
-    //         data: $form.serialize(),
-    //         headers: {
-    //             'X-Requested-With': 'XMLHttpRequest'
-    //         },
-    //         success: function(response) {
-    //             $('.js-button-neu').removeAttr('disabled');
-    //             $('input.form-equipment').val('');
-    //             $('.js-order-form').addClass('hide');
-    //             $('.js-order-form_success').removeClass('hide');
-    //         },
-    //         error: function(response, textStatus, xhr) {
-    //             $btn.attr('disabled', false);
-    //             if (response.status === 422) {
-    //                 var errors = response.responseJSON;
-    //
-    //                 $.each(errors, function (key, value) {
-    //                     $('<p>', {
-    //                         class: 'invalid-feedback',
-    //                         text: value[0],
-    //                     }).insertAfter('input[name="' + key + '"]');
-    //                 });
-    //             } else {
-    //                 $('.js-order-form').addClass('hide');
-    //                 $('.js-order-form_error').removeClass('hide');
-    //             }
-    //         }
-    //     });
-    // });
+        $('.js-fixed-backdrop-wrapper').on('click', function (e) {
+            if (e.target === $(this)) {
+                $('input.form-equipment').val('');
+                $('.js-order-form').removeClass('hide');
+                $('.js-order-form_success').addClass('hide');
+                $('.js-order-form_error').addClass('hide');
+                $('.js-fixed-backdrop-wrapper').removeClass('fixed-backdrop-wrapper-active');
+            }
+        });
 
-    $('.js-form-accept').on('change', function () {
-        $('.js-button-neu').attr('disabled', ! $(this).is(':checked'));
-    });
+        $('.js-form-accept').on('change', function () {
+            $('.js-button-neu').attr('disabled', ! $(this).is(':checked'));
+        });
 
-</script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            nav: false,
+            autoplay: true,
+            smartSpeed: 1000,
+            autoplayTimeout: 4000,
+            items: 1,
+        });
+
+    </script>
 @endpush

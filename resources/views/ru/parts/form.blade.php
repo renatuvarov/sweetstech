@@ -96,50 +96,6 @@
             $('html, body').css({'overflow-y': 'auto'});
         });
 
-        // $('#form').on('submit', function (e) {
-        //     e.preventDefault();
-        //
-        //     $(this).find('.invalid-feedback').remove();
-        //
-        //     if (! $('.js-form-accept').is(':checked')) {
-        //         return;
-        //     }
-        //
-        //     var $form = $(this);
-        //     var $btn = $('.js-button-neu');
-        //     $btn.attr('disabled', true);
-        //
-        //     $.ajax({
-        //         type: $form.attr('method'),
-        //         url: $form.attr('action'),
-        //         data: $form.serialize(),
-        //         headers: {
-        //             'X-Requested-With': 'XMLHttpRequest'
-        //         },
-        //         success: function(response) {
-        //             $('.js-button-neu').removeAttr('disabled');
-        //             $('input.form-equipment').val('');
-        //             $('.js-order-form').addClass('hide');
-        //             $('.js-order-form_success').removeClass('hide');
-        //         },
-        //         error: function(response, textStatus, xhr) {
-        //             $btn.attr('disabled', false);
-        //             if (response.status === 422) {
-        //                 var errors = response.responseJSON;
-        //                 $.each(errors, function (key, value) {
-        //                     $('<p>', {
-        //                         class: 'invalid-feedback',
-        //                         text: value[0],
-        //                     }).insertAfter('input[name="' + key + '"]');
-        //                 });
-        //             } else {
-        //                 $('.js-order-form').addClass('hide');
-        //                 $('.js-order-form_error').removeClass('hide');
-        //             }
-        //         }
-        //     });
-        // });
-
         $('.js-form-accept').on('change', function () {
             $('.js-button-neu').attr('disabled', ! $(this).is(':checked'));
         });

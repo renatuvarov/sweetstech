@@ -88,7 +88,7 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
-				@if( ! empty($galleries) && $galleries->count() > 0)
+                @if( ! empty($galleries) && $galleries->count() > 0)
                     <div class="form-group required border-bottom pb-5">
                         <label for="gallery_id">Галерея</label>
                         <select name="gallery_id" id="gallery_id">
@@ -160,87 +160,87 @@
                 @enderror
             </div>
             <div class="container w-50 m-auto">
-            <div class="form-group border-bottom pb-5 text-center">
-                <label for="tags-select">Категории</label>
-                <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
-                    @if($machine->tags->count() === 0)
-                        <option selected value=""></option>
-                    @endif
-                    @foreach($tags as $tag)
-                        @if(in_array($tag->id, array_column($machine->tags->toArray(), 'id')))
-                            <option selected value="{{ $tag->id }}">{{ $tag->name_ru }}</option>
-                        @else
-                            <option value="{{ $tag->id }}">{{ $tag->name_ru }}</option>
+                <div class="form-group border-bottom pb-5 text-center">
+                    <label for="tags-select">Категории</label>
+                    <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">
+                        @if($machine->tags->count() === 0)
+                            <option selected value=""></option>
                         @endif
-                    @endforeach
-                </select>
-                @error('tags.*')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <h6>Параметры</h6>
-            @foreach($machine->properties as $propertyNum => $propertyName)
-                <div class="form-row"  data-id="{{ $propertyNum }}">
-                    <div class="form-group required col-3">
-                        <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[{{ $propertyNum }}][name]">
-                            @foreach($properties as $property)
-                                @if($property->id === $propertyName->id)
-                                    <option selected value="{{ $propertyName->id }}">{{ $propertyName->name_ru }}</option>
-                                @else
-                                    <option value="{{ $property->id }}">{{ $property->name_ru }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                        @error('properties.*.name')
-                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group required col-3 ml-5">
-                        <input type="text"
-                               class="form-control js-prop-en @error('properties.*.value_en') is-invalid @enderror"
-                               placeholder="Значение"
-                               name="properties[{{ $propertyNum }}][value_en]"
-                               value="{{ old('properties.*.value_en', $propertyName->pivot->value_en) }}">
-                        @error('properties.*.value_en')
-                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group required col-3 ml-5">
-                        <input type="text"
-                               class="form-control js-prop-ru @error('properties.*.value_ru') is-invalid @enderror"
-                               placeholder="Значение"
-                               name="properties[{{ $propertyNum }}][value_ru]"
-                               value="{{ old('properties.*.value_ru', $propertyName->pivot->value_ru) }}">
-                        @error('properties.*.value_ru')
-                        <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col ml-1 del-property-wrapper">
-                        <button type="button" class="btn btn-danger del-property">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
+                        @foreach($tags as $tag)
+                            @if(in_array($tag->id, array_column($machine->tags->toArray(), 'id')))
+                                <option selected value="{{ $tag->id }}">{{ $tag->name_ru }}</option>
+                            @else
+                                <option value="{{ $tag->id }}">{{ $tag->name_ru }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('tags.*')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
                 </div>
-            @endforeach
-            <div class="form-group mb-3 mt-3">
-                <button type="button" class="btn btn-success btn-block w-50" id="add">Добавить параметр</button>
-            </div>
-            @error('properties')
-            <small class="form-text text-muted ml-2 border-bottom pb-3" style="color: #c82333 !important;">{{$message}}</small>
-            @enderror
-            <div class="form-group required">
-                <textarea id="mail_en" class="form-control  @error('mail_en') is-invalid @enderror" placeholder="Текст в письме (eng)" name="mail_en" rows="10">{{ old('mail_en', $machine->mail_en) }}</textarea>
-                @error('mail_en')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                <h6>Параметры</h6>
+                @foreach($machine->properties as $propertyNum => $propertyName)
+                    <div class="form-row"  data-id="{{ $propertyNum }}">
+                        <div class="form-group required col-3">
+                            <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[{{ $propertyNum }}][name]">
+                                @foreach($properties as $property)
+                                    @if($property->id === $propertyName->id)
+                                        <option selected value="{{ $propertyName->id }}">{{ $propertyName->name_ru }}</option>
+                                    @else
+                                        <option value="{{ $property->id }}">{{ $property->name_ru }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            @error('properties.*.name')
+                            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group required col-3 ml-5">
+                            <input type="text"
+                                   class="form-control js-prop-en @error('properties.*.value_en') is-invalid @enderror"
+                                   placeholder="Значение"
+                                   name="properties[{{ $propertyNum }}][value_en]"
+                                   value="{{ old('properties.*.value_en', $propertyName->pivot->value_en) }}">
+                            @error('properties.*.value_en')
+                            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group required col-3 ml-5">
+                            <input type="text"
+                                   class="form-control js-prop-ru @error('properties.*.value_ru') is-invalid @enderror"
+                                   placeholder="Значение"
+                                   name="properties[{{ $propertyNum }}][value_ru]"
+                                   value="{{ old('properties.*.value_ru', $propertyName->pivot->value_ru) }}">
+                            @error('properties.*.value_ru')
+                            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group col ml-1 del-property-wrapper">
+                            <button type="button" class="btn btn-danger del-property">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="form-group mb-3 mt-3">
+                    <button type="button" class="btn btn-success btn-block w-50" id="add">Добавить параметр</button>
+                </div>
+                @error('properties')
+                <small class="form-text text-muted ml-2 border-bottom pb-3" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
-            </div>
-            <div class="form-group required">
-                <textarea id="mail_ru" class="form-control  @error('mail_ru') is-invalid @enderror" placeholder="Текст в письме (ru)" name="mail_ru" rows="10">{{ old('mail_ru', $machine->mail_ru) }}</textarea>
-                @error('mail_ru')
-                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
-                @enderror
-            </div>
-            <p class="text-left font-weight-bold mt-3"><span class="text-danger">*</span> - обязательные поля</p>
+                <div class="form-group required">
+                    <textarea id="mail_en" class="form-control  @error('mail_en') is-invalid @enderror" placeholder="Текст в письме (eng)" name="mail_en" rows="10">{{ old('mail_en', $machine->mail_en) }}</textarea>
+                    @error('mail_en')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="form-group required">
+                    <textarea id="mail_ru" class="form-control  @error('mail_ru') is-invalid @enderror" placeholder="Текст в письме (ru)" name="mail_ru" rows="10">{{ old('mail_ru', $machine->mail_ru) }}</textarea>
+                    @error('mail_ru')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
+                <p class="text-left font-weight-bold mt-3"><span class="text-danger">*</span> - обязательные поля</p>
             </div>
             @if(! empty($machine->images))
                 @foreach($machine->images as $image)
