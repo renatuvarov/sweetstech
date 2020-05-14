@@ -62,6 +62,11 @@ class Machine extends Model
         )->withPivot('value_en', 'value_ru');
     }
 
+    public function manufacturers()
+    {
+        return $this->belongsTo(Manufacturer::class);
+    }
+
     public static function getByIdWithPivots($id): self
     {
         if (empty($machine = self::where('id', $id)->with('properties', 'tags')->first())) {
