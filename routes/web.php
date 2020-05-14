@@ -139,6 +139,7 @@ Route::group([
             Route::resource('tag', 'TagController')->except('show');
             Route::resource('properties', 'PropertyController')->except('show');
             Route::resource('machines', 'MachineController');
+            Route::resource('manufacturer', 'ManufacturerController')->except('show');
 
             Route::post('blog-images', 'ImagesController@upload')->name('images.upload')->middleware(IsAjax::class);
             Route::post('blog-images-delete', 'ImagesController@destroy')->name('images.delete')->middleware(IsAjax::class);

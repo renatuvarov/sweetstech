@@ -60,6 +60,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.tag.index') }}">Категории</a>
+                                <a class="dropdown-item" href="{{ route('admin.manufacturer.index') }}">Производители</a>
                                 <a class="dropdown-item" href="{{ route('admin.properties.index') }}">Параметры</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item font-weight-bold" href="{{ route('admin.machines.index') }}">Оборудование</a>
