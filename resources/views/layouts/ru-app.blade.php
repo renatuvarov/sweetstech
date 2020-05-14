@@ -121,7 +121,11 @@
             <div class="lang_search right">
                 <ul class="navbar-nav navbar-nav-lang">
                     <li class="nav-item">
-                        <a href="{{ substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) ?: '/' }}" class="nav-link-lang">
+                        @php
+                            $path = substr(request()->getRequestUri(), strlen('/' . config('site.user.routes.prefix.path'))) ?: '/';
+                            $path = empty(request()->getQueryString()) ? $path . '?lang=true' : $path . '&lang=true';
+                        @endphp
+                        <a href="{{ $path }}" class="nav-link-lang">
                             <img width="18pt" height="18pt" src="{{ asset('assets/img/en_flag.png') }}" alt="language-en"><span
                                 class="language">EN</span></a>
                     </li>

@@ -125,7 +125,11 @@
                                 class="language">EN</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link-lang" href="/{{ config('site.user.routes.prefix.path') }}{{ request()->getRequestUri() }}">
+                        @php
+                            $path = '/' . config('site.user.routes.prefix.path') . request()->getRequestUri();
+                            $path = empty(request()->getQueryString()) ? $path . '?lang=true' : $path . '&lang=true';
+                        @endphp
+                        <a class="nav-link-lang" href="{{ $path }}">
                             <img width="18pt" height="18pt" src="{{ asset('assets/img/ru_flag.png') }}" alt="language-ru"><span
                                 class="language">RU</span></a>
                     </li>

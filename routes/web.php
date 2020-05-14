@@ -2,13 +2,19 @@
 
 use App\Http\Middleware\ImageExists;
 use App\Http\Middleware\IsAjax;
+use App\Http\Middleware\PreferredLanguage;
 use App\Http\Middleware\RecaptchaMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'MainController@index')->name('main');
-Route::get('/ru', 'MainController@index')->name('ru.main');
+Route::group([
+    'middleware' => ['throttle:60,1', PreferredLanguage::class],
+], function () {
+    Route::get('/', 'MainController@index')->name('main');
+    Route::get('/ru', 'MainController@index')->name('ru.main');
 
-Route::redirect('category/the-new-equipment/', '/catalog')->name('redirect.new');
+    Route::redirect('category/the-new-equipment/', '/catalog')->name('redirect.new');
+    Route::redirect('ru/category/the-new-equipment/', '/catalog')->name('ru.redirect.new');
+});
 
 Route::get('secfggdfgret-login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('secfggdfgret-login', 'Auth\LoginController@login');
@@ -20,7 +26,7 @@ Route::post('ru/contact-form', 'ContactController@index')->name('ru.user.contact
 Route::group([
     'namespace' => 'User',
     'as' => 'user.',
-    'middleware' => ['throttle:60,1'],
+    'middleware' => ['throttle:60,1', PreferredLanguage::class],
 ], function () {
 
     Route::get('equipment/{slug}', 'LandingController@index')->name('landing');
@@ -62,7 +68,7 @@ Route::group([
 
 Route::group([
     'namespace' => 'User',
-    'middleware' => ['throttle:60,1'],
+    'middleware' => ['throttle:60,1', PreferredLanguage::class],
     'as' => config('site.user.routes.prefix.name') . 'user.',
     'prefix' => config('site.user.routes.prefix.path'),
 ], function () {
