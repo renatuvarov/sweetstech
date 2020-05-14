@@ -1,5 +1,9 @@
-$(document).on('mouseup', function () {
+$(document).on('mouseup', function (e) {
     var selection = window.getSelection().toString();
+
+    if (e.target.closest('.js-corrections')) {
+        return;
+    }
 
     if (selection.length > 0) {
         var modal = $('.js-corrections');
