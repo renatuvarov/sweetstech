@@ -86,9 +86,8 @@ class Machine extends Model
 
     public function newTags(array $tags): void
     {
-        $this->tags()->detach();
-
         if (! empty($tags)) {
+            $this->tags()->detach();
             $this->tags()->attach($tags);
         }
     }

@@ -149,6 +149,17 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
+                <div class="form-group w-50 ml-auto mr-auto mb-5 text-left d-flex">
+                    <label for="is_new" class="form-check-label font-weight-bold">Добавить в новые?</label>
+                    @if(old('is_new'))
+                        <input type="checkbox" name="is_new" style="width: 30px; height: 30px; margin-left: 30px;" id="is_new" checked>
+                    @else
+                        <input type="checkbox" name="is_new" style="width: 30px; height: 30px; margin-left: 30px;" id="is_new">
+                    @endif
+                    @error('is_new')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                </div>
                 @if( ! empty($manufacturers) && $manufacturers->count() > 0)
                     <div class="form-group border-bottom pb-5">
                         <label for="manufacturers-select">Производитель</label>

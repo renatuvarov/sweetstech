@@ -49,6 +49,7 @@ class CreateMachine
             'pdf_en' => isset($data['pdf_en']) ? $data['pdf_en']->store('machines/pdf', 'local') : null,
             'pdf_ru' => isset($data['pdf_ru']) ? $data['pdf_ru']->store('machines/pdf', 'local') : null,
             'is_redirect' => isset($data['is_redirect']),
+            'is_new' => isset($data['is_new']),
             'images' => empty($data['images']) ? null : $data['images'],
         ]);
 

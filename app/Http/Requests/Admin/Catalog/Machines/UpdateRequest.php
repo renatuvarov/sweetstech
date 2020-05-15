@@ -21,7 +21,7 @@ class UpdateRequest extends FormRequest
         $props = implode(',', Property::pluck('id')->toArray());
 
         return [
-            'tags.*' => ['nullable', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
+            'tags.*' => ['required', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
             'properties' => [new PropertiesNotEmpty($this)],
             'properties.*.name' => ['nullable', 'integer', 'in:' . $props, new UniqueValues($this)],
             'properties.*.value_en' => 'nullable|string|min:1',
@@ -60,6 +60,7 @@ class UpdateRequest extends FormRequest
             'properties.*.value_ru.string' => 'Значение этого поля должно быть строкой.',
             'properties.*.value_ru.min' => 'Длина не менее 1 символа',
 
+            'tags.*.required' => 'Это поле обязательно для заполнения.',
             'tags.*.integer' => 'Значение должно быть целым числом.',
             'tags.*.in' => 'Неизвестный тэг.',
 
