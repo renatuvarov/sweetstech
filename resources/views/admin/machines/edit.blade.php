@@ -100,7 +100,7 @@
                             @foreach($galleries as $gallery)
                                 @if(old('gallery_id') == $gallery->id)
                                     <option value="{{ $gallery->id }}" selected>{{ $gallery->name }}</option>
-                                @elseif($machine->gallery_id === $gallery->id)
+                                @elseif($machine->gallery_id == $gallery->id)
                                     <option value="{{ $gallery->id }}" selected>{{ $gallery->name }}</option>
                                 @else
                                     <option value="{{ $gallery->id }}">{{ $gallery->name }}</option>
@@ -190,7 +190,7 @@
                             @foreach($manufacturers as $manufacturer)
                                 @if(old('manufacturer_id') == $manufacturer->id)
                                     <option value="{{ $manufacturer->id }}" selected>{{ $manufacturer->name_ru }}</option>
-                                @elseif($machine->manufacturer_id === $manufacturer->id)
+                                @elseif($machine->manufacturer_id == $manufacturer->id)
                                     <option value="{{ $manufacturer->id }}" selected>{{ $manufacturer->name_ru }}</option>
                                 @else
                                     <option value="{{ $manufacturer->id }}">{{ $manufacturer->name_ru }}</option>
