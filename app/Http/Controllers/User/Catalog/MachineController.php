@@ -9,7 +9,7 @@ class MachineController extends Controller
 {
     public function index()
     {
-        $machines = Machine::query()->with('tags')->orderBy('id')->paginate(config('site.user.pagination'));
+        $machines = Machine::query()->with('tags')->isNew()->orderBy('id')->paginate(config('site.user.pagination'));
         return $this->getView('user.catalog.machines.index', compact('machines'));
     }
 

@@ -109,4 +109,9 @@ class Machine extends Model
             $this->properties()->attach($propsArray);
         }
     }
+
+    public function scopeIsNew($query)
+    {
+        return $query->orderByDesc('is_new');
+    }
 }

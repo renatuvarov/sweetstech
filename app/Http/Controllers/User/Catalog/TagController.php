@@ -10,7 +10,7 @@ class TagController extends Controller
     public function show($slug)
     {
         $tag = Tag::findBySlugOrFail($slug);
-        $machines = $tag->machines()->paginate(config('site.user.pagination'));
+        $machines = $tag->machines()->isNew()->paginate(config('site.user.pagination'));
         return $this->getView('user.catalog.tags.show', compact('tag', 'machines'));
     }
 }
