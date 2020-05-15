@@ -53,6 +53,14 @@
                                         <span class="characteristic_value">{{ $property->pivot->value_en }} {{ $property->measure_en ?? '' }}</span>
                                     </p>
                                 @endforeach
+                                @if( ! empty($manufacturer))
+                                    <p>
+                                        <span class="characteristic">Manufacturer: </span>
+                                        <span class="characteristic_value">
+                                            <a class="manufacturer-link" href="{{ route('user.manufacturer.show', ['slug' => $manufacturer->slug]) }}">{{ $manufacturer->name_en }}</a>
+                                        </span>
+                                    </p>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-6 img-equipment justify-content-center d-flex">

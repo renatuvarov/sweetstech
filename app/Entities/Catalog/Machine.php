@@ -62,7 +62,7 @@ class Machine extends Model
         )->withPivot('value_en', 'value_ru');
     }
 
-    public function manufacturers()
+    public function manufacturer()
     {
         return $this->belongsTo(Manufacturer::class);
     }

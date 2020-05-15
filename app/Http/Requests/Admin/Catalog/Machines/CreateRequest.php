@@ -44,6 +44,7 @@ class CreateRequest extends FormRequest
             'mail_ru' => 'required|string|min:3',
             'images.*' => 'nullable|string',
             'gallery_id' => 'nullable|integer|exists:galleries,id',
+            'manufacturer_id' => 'nullable|integer|exists:manufacturers,id',
         ];
     }
 
@@ -134,9 +135,12 @@ class CreateRequest extends FormRequest
             'pdf_ru.file' => 'Некорректный формат',
             'pdf_ru.max' => 'Максимальный размер изображения - 10 мегабайт',
             'pdf_ru.mimes' => 'Некорректный формат',
-			
+
 			'gallery_id.integer' => 'Значение должно быть целым числом.',
             'gallery_id.exists' => 'Неизвестная галлерея.',
+
+            'manufacturer_id.integer' => 'Значение должно быть целым числом.',
+            'manufacturer_id.exists' => 'Неизвестный производитель.',
         ];
     }
 }

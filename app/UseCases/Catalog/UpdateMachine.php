@@ -34,11 +34,17 @@ class UpdateMachine implements UpdatesContentImages
     {
         $machine->newTags($data['tags'] ?? []);
         $machine->newProperties($data['properties'] ?? []);
-		
+
 		if (isset($data['gallery_id'])) {
             $machine->gallery()->associate($data['gallery_id']);
         } else {
             $machine->gallery()->dissociate();
+        }
+
+		if (isset($data['manufacturer_id'])) {
+            $machine->manufacturer()->associate($data['manufacturer_id']);
+        } else {
+            $machine->manufacturer()->dissociate();
         }
 
         $machine->update([

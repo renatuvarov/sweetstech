@@ -58,6 +58,10 @@ class CreateMachine
             $machine->gallery()->associate($data['gallery_id']);
         }
 
+		if (isset($data['manufacturer_id'])) {
+            $machine->manufacturer()->associate($data['manufacturer_id']);
+        }
+
         $machine->save();
 
         $machine->newTags($data['tags'] ?? []);

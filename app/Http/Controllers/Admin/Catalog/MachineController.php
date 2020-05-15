@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Catalog;
 
 use App\Entities\Catalog\Machine;
+use App\Entities\Catalog\Manufacturer;
 use App\Entities\Catalog\Property;
 use App\Entities\Catalog\Tag;
 use App\Handlers\ImageManager;
@@ -27,7 +28,8 @@ class MachineController extends Controller
         $tags = Tag::all();
         $properties = Property::all();
         $galleries = Gallery::all();
-        return view('admin.machines.create', compact('tags', 'properties', 'galleries'));
+        $manufacturers = Manufacturer::all();
+        return view('admin.machines.create', compact('tags', 'properties', 'galleries', 'manufacturers'));
     }
 
     public function store(CreateRequest $request, CreateMachine $createMachine, TransactionManager $transactionManager)
@@ -51,7 +53,8 @@ class MachineController extends Controller
         $tags = Tag::all();
         $properties = Property::all();
         $galleries = Gallery::all();
-        return view('admin.machines.edit', compact('machine', 'tags', 'properties', 'galleries'));
+        $manufacturers = Manufacturer::all();
+        return view('admin.machines.edit', compact('machine', 'tags', 'properties', 'galleries', 'manufacturers'));
     }
 
     public function update(UpdateRequest $request, $id, UpdateMachine $updateMachine, TransactionManager $transactionManager)

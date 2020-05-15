@@ -178,6 +178,30 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
+                @if( ! empty($manufacturers) && $manufacturers->count() > 0)
+                    <div class="form-group border-bottom pb-5">
+                        <label for="manufacturers-select">Производитель</label>
+                        <select class="form-control" name="manufacturer_id" id="manufacturers-select">
+                            @if(empty(old('manufacturer_id')) && ! $machine->manufacturer_id)
+                                <option value="" selected>---</option>
+                            @else
+                                <option value="">---</option>
+                            @endif
+                            @foreach($manufacturers as $manufacturer)
+                                @if(old('manufacturer_id') == $manufacturer->id)
+                                    <option value="{{ $manufacturer->id }}" selected>{{ $manufacturer->name_ru }}</option>
+                                @elseif($machine->manufacturer_id === $manufacturer->id)
+                                    <option value="{{ $manufacturer->id }}" selected>{{ $manufacturer->name_ru }}</option>
+                                @else
+                                    <option value="{{ $manufacturer->id }}">{{ $manufacturer->name_ru }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @error('manufacturer')
+                            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                        @enderror
+                    </div>
+                @endif
                 <h6>Параметры</h6>
                 @foreach($machine->properties as $propertyNum => $propertyName)
                     <div class="form-row"  data-id="{{ $propertyNum }}">

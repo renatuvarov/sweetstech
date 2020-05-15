@@ -149,6 +149,28 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
+                @if( ! empty($manufacturers) && $manufacturers->count() > 0)
+                    <div class="form-group border-bottom pb-5">
+                        <label for="manufacturers-select">Производитель</label>
+                        <select class="form-control" name="manufacturer_id" id="manufacturers-select">
+                            @if(empty(old('manufacturer_id')))
+                                <option selected value="" class="empty-value">---</option>
+                            @else
+                                <option value="" class="empty-value">---</option>
+                            @endif
+                            @foreach($manufacturers as $manufacturer)
+                                @if(old('manufacturer_id') == $manufacturer->id)
+                                    <option selected value="{{ $manufacturer->id }}">{{ $manufacturer->name_ru }}</option>
+                                @else
+                                    <option value="{{ $manufacturer->id }}">{{ $manufacturer->name_ru }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @error('manufacturer_id')
+                            <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                        @enderror
+                    </div>
+                @endif
                 <div class="form-row"  data-id="0">
                     <div class="form-group required col-3">
                         <select class="form-control @error('properties.*.name') is-invalid @enderror" name="properties[0][name]">
