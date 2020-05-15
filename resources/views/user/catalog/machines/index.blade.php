@@ -42,6 +42,13 @@
                             <div class="row-equipment">
                                 @foreach($machines as $machine)
                                     <div itemscope itemtype="https://schema.org/Product" class="back-partners oborudovanie">
+                                        @if($machine->is_new)
+                                            <div class="new">
+                                                <div class="new-text">
+                                                    <span>New</span>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <a href="{{ route('user.catalog.show', ['slug' => $machine->slug]) }}" class="d-block">
                                             <div class="col-12 equipment-card">
                                                 <div class="d-flex flex-column">

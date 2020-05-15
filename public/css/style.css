@@ -1935,6 +1935,24 @@ button::-moz-focus-inner {
     0 2px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
+.new {
+    position: absolute;
+    z-index: 2;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: red;
+    width: 75px;
+}
+.new-text span {
+    color: white;
+    padding:7px;
+    display: block;
+    font-size: 16px;
+    line-height: 30px;
+    text-shadow: 1px 2px 3px #000000e6;
+}
+
 .oborudovanie {
     width: 46%;
     margin-left: 15px;

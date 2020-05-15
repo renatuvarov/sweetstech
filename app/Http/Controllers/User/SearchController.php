@@ -14,7 +14,6 @@ class SearchController extends Controller
     public function count(CountRequest $request)
     {
         $query = Machine::query();
-        dd($request->input('st_categories'));
         if (! empty($request->input('st_categories'))) {
             $query->whereIn('id', DB::table('machine_tag')
                 ->whereIn('tag_id', $request->input('st_categories'))
@@ -28,7 +27,7 @@ class SearchController extends Controller
                 ->orWhere('name_ru', 'like', '%' . $request->input('st_title') . '%');
         }
 
-        $machines = $query->paginate(config('site.user.pagination'));
+        $machines = $query->isNew()->paginate(config('site.user.pagination'));
         return $this->getView('user.search.search', compact('machines'));
     }
 }
