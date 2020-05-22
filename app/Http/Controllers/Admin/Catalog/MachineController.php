@@ -29,7 +29,8 @@ class MachineController extends Controller
         $properties = Property::all();
         $galleries = Gallery::all();
         $manufacturers = Manufacturer::all();
-        return view('admin.machines.create', compact('tags', 'properties', 'galleries', 'manufacturers'));
+        $types = Machine::getTypes();
+        return view('admin.machines.create', compact('tags', 'properties', 'galleries', 'manufacturers', 'types'));
     }
 
     public function store(CreateRequest $request, CreateMachine $createMachine, TransactionManager $transactionManager)
@@ -54,7 +55,8 @@ class MachineController extends Controller
         $properties = Property::all();
         $galleries = Gallery::all();
         $manufacturers = Manufacturer::all();
-        return view('admin.machines.edit', compact('machine', 'tags', 'properties', 'galleries', 'manufacturers'));
+        $types = Machine::getTypes();
+        return view('admin.machines.edit', compact('machine', 'tags', 'properties', 'galleries', 'manufacturers', 'types'));
     }
 
     public function update(UpdateRequest $request, $id, UpdateMachine $updateMachine, TransactionManager $transactionManager)
@@ -65,8 +67,8 @@ class MachineController extends Controller
             $updateMachine->action($machine, $request->all());
         });
 
-        return redirect()->route('admin.machines.show', [
-            'machine' => $machine->id,
+        return redirect()->route('user.catalog.show', [
+            'slug' => $machine->slug,
         ]);
     }
 

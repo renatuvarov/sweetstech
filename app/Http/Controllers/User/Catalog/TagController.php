@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
-    public function show($slug)
+    public function show(string $slug, string $type = '')
     {
         $tag = Tag::findBySlugOrFail($slug);
-        $machines = $tag->machines()->isNew()->paginate(config('site.user.pagination'));
+        $machines = $tag->machines()->getMachines($type)->paginate(config('site.user.pagination'));
         return $this->getView('user.catalog.tags.show', compact('tag', 'machines'));
     }
 }

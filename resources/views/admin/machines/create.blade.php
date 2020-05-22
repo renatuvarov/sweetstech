@@ -137,6 +137,26 @@
                     <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                     @enderror
                 </div>
+                <div class="form-group border-bottom pb-5 required">
+                    <label for="type-select">Тип</label>
+                    <select id='type-select' name="type" class="@error('type') is-invalid @enderror">
+                        @if(empty(old('type')))
+                            <option selected value="" class="empty-value">---</option>
+                        @else
+                            <option value="" class="empty-value">---</option>
+                        @endif
+                        @foreach($types as $typeKey => $typeValue)
+                            @if(old('type') === $typeKey)
+                                <option selected value="{{ $typeKey }}">{{ $typeValue['ru'] }}</option>
+                            @else
+                                <option value="{{ $typeKey }}">{{ $typeValue['ru'] }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('type')
+                    <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                    @enderror
+                </div>
                 <div class="form-group border-bottom pb-5">
                     <label for="tags-select">Категории</label>
                     <select id='tags-select' multiple='multiple' name="tags[]" class="@error('tags.*') is-invalid @enderror">

@@ -159,6 +159,23 @@
                 <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
                 @enderror
             </div>
+            <div class="form-group border-bottom pb-5 required">
+                <label for="type-select">Тип</label>
+                <select id='type-select' name="type" class="@error('type') is-invalid @enderror">
+                    @foreach($types as $typeKey => $typeValue)
+                        @if(old('type') === $typeKey)
+                            <option selected value="{{ $typeKey }}">{{ $typeValue['ru'] }}</option>
+                        @elseif($machine->type === $typeKey)
+                            <option selected value="{{ $typeKey }}">{{ $typeValue['ru'] }}</option>
+                        @else
+                            <option value="{{ $typeKey }}">{{ $typeValue['ru'] }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                @error('type')
+                <small class="form-text text-muted ml-2" style="color: #c82333 !important;">{{$message}}</small>
+                @enderror
+            </div>
             <div class="container w-50 m-auto">
                 <div class="form-group border-bottom pb-5 text-center">
                     <label for="tags-select">Категории</label>

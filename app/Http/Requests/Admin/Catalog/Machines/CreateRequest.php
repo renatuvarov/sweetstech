@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Catalog\Machines;
 
+use App\Entities\Catalog\Machine;
 use App\Entities\Catalog\Property;
 use App\Entities\Catalog\Tag;
 use App\Rules\PropertiesNotEmpty;
@@ -19,6 +20,7 @@ class CreateRequest extends FormRequest
     {
         $tags = implode(',', Tag::pluck('id')->toArray());
         $props = implode(',', Property::pluck('id')->toArray());
+        $types = implode(',', array_keys(Machine::getTypes()));
 
         return [
             'tags.*' => ['required', 'integer', 'in:' . $tags, new UniqueValues($this, 'tags')],
@@ -45,6 +47,7 @@ class CreateRequest extends FormRequest
             'images.*' => 'nullable|string',
             'gallery_id' => 'nullable|integer|exists:galleries,id',
             'manufacturer_id' => 'nullable|integer|exists:manufacturers,id',
+            'type' => 'required|string|in:' . $types,
         ];
     }
 
@@ -141,6 +144,11 @@ class CreateRequest extends FormRequest
 
             'manufacturer_id.integer' => 'Значение должно быть целым числом.',
             'manufacturer_id.exists' => 'Неизвестный производитель.',
+
+            'type.required' => 'Это поле обязательно для заполнения.',
+            'type.string' => 'Значение этого поля должно быть строкой.',
+            'type.in' => 'Неизвестный тип.',
+
         ];
     }
 }

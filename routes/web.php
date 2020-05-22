@@ -35,10 +35,10 @@ Route::group([
         'namespace' => 'Catalog',
         'prefix' => 'catalog',
     ], function () {
-        Route::get('/', 'MachineController@index')->name('catalog.index');
-        Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
-        Route::get('category/{slug}', 'TagController@show')->name('tags.show');
-        Route::get('manufacturer/{slug}', 'ManufacturerController@show')->name('manufacturer.show');
+        Route::get('/equipment/{slug}', 'MachineController@show')->name('catalog.show');
+        Route::get('/{type?}', 'MachineController@index')->name('catalog.index');
+        Route::get('category/{slug}/{type?}', 'TagController@show')->name('tags.show');
+        Route::get('manufacturer/{slug}/{type?}', 'ManufacturerController@show')->name('manufacturer.show');
         Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
     });
 
@@ -64,7 +64,7 @@ Route::group([
         Route::get('/{slug}', 'PostController@show')->name('news.show');
     });
 
-    Route::get('search', 'SearchController@count')->name('search.count');
+    Route::get('search/{type?}', 'SearchController@count')->name('search.count');
 });
 
 Route::group([
@@ -79,10 +79,10 @@ Route::group([
         'namespace' => 'Catalog',
         'prefix' => 'catalog',
     ], function () {
-        Route::get('category/{slug}', 'TagController@show')->name('tags.show');
-        Route::get('manufacturer/{slug}', 'ManufacturerController@show')->name('manufacturer.show');
-        Route::get('/', 'MachineController@index')->name('catalog.index');
-        Route::get('/{slug}', 'MachineController@show')->name('catalog.show');
+        Route::get('category/{slug}/{type?}', 'TagController@show')->name('tags.show');
+        Route::get('manufacturer/{slug}/{type?}', 'ManufacturerController@show')->name('manufacturer.show');
+        Route::get('/equipment/{slug}', 'MachineController@show')->name('catalog.show');
+        Route::get('/{type?}', 'MachineController@index')->name('catalog.index');
         Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
     });
 
@@ -108,7 +108,7 @@ Route::group([
         Route::get('/{slug}', 'PostController@show')->name('news.show');
     });
 
-    Route::get('search', 'SearchController@count')->name('search.count');
+    Route::get('search/{type?}', 'SearchController@count')->name('search.count');
 });
 
 Route::group([

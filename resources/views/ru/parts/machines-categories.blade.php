@@ -1,5 +1,15 @@
 <div class="last-element">
     <div class="widget-sidebar-cat categories-list">
+        <h5 class="sidebar-title">Тип</h5>
+        <ul class="list-sidebar-cat">
+            @foreach($routeArray as $routeKey => $routeValue)
+                <li>
+                    <a href="{{ route($routeValue['name'], $routeValue['params']) }}">
+                        <button class="categories-all">{{ $routeValue['lang']['ru'] }}</button>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
         <h5 class="sidebar-title">Kатегории</h5>
         <div class="sidebar-content">
             <ul class="list-sidebar-cat">

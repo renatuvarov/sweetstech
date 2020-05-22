@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 
 class MachineController extends Controller
 {
-    public function index()
+    public function index(string $type = '')
     {
-        $machines = Machine::query()->with('tags')->isNew()->orderBy('id')->paginate(config('site.user.pagination'));
+        $machines = Machine::query()->with('tags')->getMachines($type)->paginate(config('site.user.pagination'));
         return $this->getView('user.catalog.machines.index', compact('machines'));
     }
 
-    public function show($slug)
+    public function show(string $slug)
     {
         $machine = Machine::findBySlugOrFail($slug);
         if ($machine->is_redirect) {

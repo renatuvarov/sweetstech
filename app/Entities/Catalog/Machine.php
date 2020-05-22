@@ -25,12 +25,29 @@ use App\Entities\Common\Gallery;
  */
 class Machine extends Model
 {
+    public const TYPE_PROCESSING = 'processing';
+    public const TYPE_PACKING = 'packing';
+
     public $timestamps = false;
     protected $guarded = ['id'];
 
     protected $casts = [
         'images' => 'array',
     ];
+
+    public static function getTypes(): array
+    {
+        return [
+            self::TYPE_PROCESSING => [
+                'en' => 'processing',
+                'ru' => 'производство',
+            ],
+            self::TYPE_PACKING => [
+                'en' => 'packing',
+                'ru' => 'упаковка',
+            ],
+        ];
+    }
 
 	public function gallery()
     {
@@ -113,5 +130,19 @@ class Machine extends Model
     public function scopeIsNew($query)
     {
         return $query->orderByDesc('is_new');
+    }
+
+    public function scopeType($query, string $type)
+    {
+        return $query->where('type', $type);
+    }
+
+    public function scopeGetMachines($query, string $type = '')
+    {
+        if ( ! empty($type)) {
+            $query->type($type);
+        }
+
+        return $query->isNew()->orderBy('id');
     }
 }

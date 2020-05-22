@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    public function count(CountRequest $request)
+    public function count(CountRequest $request, string $type = '')
     {
         $query = Machine::query();
         if (! empty($request->input('st_categories'))) {
@@ -27,7 +27,7 @@ class SearchController extends Controller
                 ->orWhere('name_ru', 'like', '%' . $request->input('st_title') . '%');
         }
 
-        $machines = $query->isNew()->paginate(config('site.user.pagination'));
+        $machines = $query->getMachines($type)->paginate(config('site.user.pagination'));
         return $this->getView('user.search.search', compact('machines'));
     }
 }

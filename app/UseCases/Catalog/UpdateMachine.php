@@ -66,6 +66,7 @@ class UpdateMachine implements UpdatesContentImages
             'pdf_ru' => $this->pdf($machine->pdf_ru, $data['pdf_ru'] ?? null, $data['remove_pdf_ru'] ?? false),
             'is_redirect' => isset($data['is_redirect']),
             'is_new' => isset($data['is_new']),
+            'type' => $data['type'],
             'images' => empty(
                 $images = $this->updateImagesList($data['images'] ?? [], $data['for_removing'] ?? [])
             ) ? null : $images,
