@@ -98,7 +98,9 @@
         </nav>
     </div>
 </header>
-<div class="content-wrapper pt-5 mt-4"></div>
+<div class="content-wrapper pt-5 mt-4 w-25 ml-auto mr-auto text-center">
+    @include('parts.admin.flashes')
+</div>
 @yield('content')
 <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>

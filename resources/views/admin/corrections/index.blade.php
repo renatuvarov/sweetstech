@@ -55,9 +55,6 @@
                                     <i class="fas fa-check"></i>
                                 </button>
                             @endif
-                            {{--                            <a class="btn btn-info" href="{{ route('admin.corrections.edit', ['correction' => $correction->id]) }}">--}}
-                            {{--                                <i class="fas fa-edit"></i>--}}
-                            {{--                            </a>--}}
                             <button data-destroy="{{ route('admin.corrections.destroy', ['correction' => $correction->id]) }}" type="button" class="btn btn-danger btn-destroy">
                                 <i class="fas fa-trash"></i>
                             </button>

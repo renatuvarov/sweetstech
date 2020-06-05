@@ -35,11 +35,15 @@ class MachineController extends Controller
 
     public function store(CreateRequest $request, CreateMachine $createMachine, TransactionManager $transactionManager)
     {
-        $transactionManager->handle(function () use ($request, $createMachine) {
-            $createMachine->action($request->all());
+        $result = $transactionManager->handle(function () use ($request, $createMachine) {
+            return $createMachine->action($request->all());
         });
 
-        return redirect()->route('admin.machines.index');
+        if ($result) {
+            return redirect()->route('user.catalog.show', ['slug' => $result->slug]);
+        }
+
+        return redirect()->route('admin.machines.index')->with('error', 'При сохранении произошла ошибка.');
     }
 
     public function show($id)
@@ -63,9 +67,13 @@ class MachineController extends Controller
     {
         $machine = Machine::getByIdWithPivots($id);
 
-        $transactionManager->handle(function () use ($request, $updateMachine, $machine) {
-            $updateMachine->action($machine, $request->all());
+        $result = $transactionManager->handle(function () use ($request, $updateMachine, $machine) {
+            return $updateMachine->action($machine, $request->all());
         });
+
+        if ( ! $result) {
+            return redirect()->route('admin.machines.index')->with('error', 'При сохранении произошла ошибка.');
+        }
 
         return redirect()->route('user.catalog.show', [
             'slug' => $machine->slug,

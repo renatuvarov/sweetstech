@@ -178,6 +178,11 @@
             </div>
         </div>
     </div>
+
+    @can('admin')
+        <a class="to-admin btn btn-warning" href="{{ route('admin.machines.edit', ['machine' => $machine->id]) }}">Редактировать</a>
+    @endcan
+
     @include('parts.recaptcha')
 @endsection
 

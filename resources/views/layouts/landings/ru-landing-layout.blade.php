@@ -419,6 +419,11 @@
 
 <button type="button" class="show-form js-show-form">Узнать больше</button>
 
+@can('admin')
+    <a class="to-admin btn btn-warning" href="{{ route('admin.machines.edit', ['machine' => $machine->id]) }}">Редактировать</a>
+@endcan
+
+
 <div class="to-top js-to-top">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
         <path fill="none" d="M0 0h24v24H0V0z"></path>
