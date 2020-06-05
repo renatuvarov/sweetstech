@@ -21,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\Order\Accepted' => [
             'App\Listeners\Order\CreateBitrixLead',
+            'App\Listeners\Order\SendNotifications',
         ],
     ];
 

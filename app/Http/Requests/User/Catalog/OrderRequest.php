@@ -4,7 +4,6 @@ namespace App\Http\Requests\User\Catalog;
 
 use App\Entities\Catalog\Machine;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class OrderRequest extends FormRequest
 {
@@ -23,6 +22,7 @@ class OrderRequest extends FormRequest
             'st_email' => ['required', 'string', 'email', 'max:100'],
             'st_phone' => ['nullable', 'between:7,16'],
             'st_id' => ['required', 'integer', 'in:' . $ids],
+            'lang' => ['required', 'string', 'in:ru,en'],
         ];
     }
 
@@ -54,6 +54,9 @@ class OrderRequest extends FormRequest
             'st_id.required' => 'Оборудование не найдено.',
             'st_id.integer' => 'Оборудование не найдено.',
             'st_id.in' => 'Оборудование не найдено.',
+            'lang.required' => '',
+            'lang.string' => '',
+            'lang.in' => '',
         ];
     }
 
@@ -73,13 +76,12 @@ class OrderRequest extends FormRequest
             'st_email.email' => 'Invalid e-mail.',
             'st_email.max' => 'Invalid e-mail.',
             'st_phone.between' => 'Invalid phone number.',
-            'st_id.required' => 'Fuck you.',
-            'st_id.integer' => 'Fuck you.',
-            'st_id.in' => 'Fuck you.',
+            'st_id.required' => 'No equipment found.',
+            'st_id.integer' => 'No equipment found.',
+            'st_id.in' => 'No equipment found.',
+            'lang.required' => '',
+            'lang.string' => '',
+            'lang.in' => '',
         ];
     }
-//
-//    public function failedValidation(Validator $validator) {
-//        throw new HttpResponseException(response()->json($validator->errors(), 422));
-//    }
 }

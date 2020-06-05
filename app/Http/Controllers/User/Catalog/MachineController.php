@@ -16,14 +16,18 @@ class MachineController extends Controller
     public function show(string $slug)
     {
         $machine = Machine::findBySlugOrFail($slug);
+
         if ($machine->is_redirect) {
             $prefix = $this->getLang() === 'ru' ? 'ru.' : '';
             return redirect()->route($prefix . 'user.landing', ['slug' => $slug]);
         }
-        $categories = $machine->tags()->get();
-        $properties = $machine->properties()->get();
-        $gallery = $machine->gallery()->first();
-        $manufacturer = $machine->manufacturer()->first();
-        return $this->getView('user.catalog.machines.show', compact('machine', 'categories', 'properties', 'gallery', 'manufacturer'));
+
+        return $this->getView('user.catalog.machines.show', [
+            'machine' => $machine,
+            'categories' => $machine->tags()->get(),
+            'properties' => $machine->properties()->get(),
+            'gallery' => $machine->gallery()->first(),
+            'manufacturer' => $machine->manufacturer()->first(),
+        ]);
     }
 }

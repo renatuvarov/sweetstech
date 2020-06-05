@@ -3,6 +3,7 @@
 namespace App\Mail\User\Catalog\Order;
 
 use App\Entities\Catalog\Machine;
+use App\Entities\Catalog\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,41 +14,31 @@ class ClientMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $clientName;
     /**
-     * @var string
+     * @var Order
      */
-    private $lang;
-    /**
-     * @var Machine
-     */
-    private $machine;
+    private $order;
 
-    public function __construct(Machine $machine, $clientName, $lang)
+    public function __construct(Order $order)
     {
-        $this->clientName = $clientName;
-        $this->lang = $lang;
-        $this->machine = $machine;
+        $this->order = $order;
     }
 
     public function build()
     {
-        $mail = $this->markdown(($this->isEn() ? '' : 'ru.') . 'emails.user.catalog.order.client')->with([
-            'text' => $this->isEn() ? $this->machine->mail_en : $this->machine->mail_ru,
-            'name' => $this->clientName,
+        $isEn = $this->order->lang === 'en';
+
+        $mail = $this->markdown(($isEn ? '' : 'ru.') . 'emails.user.catalog.order.client')->with([
+            'text' => $isEn ? $this->order->machine->mail_en : $this->order->machine->mail_ru,
+            'name' => $this->order->customer_name,
         ])->subject('Sweets Technologies');
 
-        if ($this->isEn() && ! empty($this->machine->pdf_en)) {
-            $mail->attachFromStorageDisk('local', $this->machine->pdf_en);
-        } elseif(! $this->isEn() && ! empty($this->machine->pdf_ru)) {
-            $mail->attachFromStorageDisk('local', $this->machine->pdf_ru);
+        if ($isEn && ! empty($this->order->machine->pdf_en)) {
+            $mail->attachFromStorageDisk('local', $this->order->machine->pdf_en);
+        } elseif(! $isEn && ! empty($this->order->machine->pdf_ru)) {
+            $mail->attachFromStorageDisk('local', $this->order->machine->pdf_ru);
         }
 
         return $mail;
-    }
-
-    private function isEn()
-    {
-        return $this->lang === 'en';
     }
 }

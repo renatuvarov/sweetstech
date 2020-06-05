@@ -15,21 +15,15 @@ class AdminMail extends Mailable
      * @var Order
      */
     private $order;
-    /**
-     * @var Machine
-     */
-    private $machine;
 
     /**
      * Create a new message instance.
      *
      * @param Order $order
-     * @param Machine $machine
      */
-    public function __construct(Order $order, Machine $machine)
+    public function __construct(Order $order)
     {
         $this->order = $order;
-        $this->machine = $machine;
     }
 
     /**
@@ -41,7 +35,7 @@ class AdminMail extends Mailable
     {
         return $this->markdown('emails.user.catalog.order.admin')->with([
             'order' => $this->order,
-            'machine' => $this->machine,
-        ])->subject($this->machine->name_ru);
+            'machine' => $this->order->machine,
+        ])->subject($this->order->machine->name_ru);
     }
 }

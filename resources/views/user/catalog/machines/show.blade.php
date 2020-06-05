@@ -108,9 +108,10 @@
                 </span>
             </h3>
             <form class="order-form_body" action="{{ route('user.order', ['slug' => $machine->slug]) }}" method="post" enctype="multipart/form-data" id="form">
+                {{ session('lang') }}
                 @csrf
                 <div class="order-form_input-wrapper required">
-                    <label for="st_nsp">Name</label>
+                    <label for="st_nsp">Name {{ session('lang') }}</label>
                     <input type="text" name="st_nsp" class="form-equipment" id="st_nsp" autofocus>
                     @error('st_nsp')
                     <p class="invalid-feedback">{{ $message }}</p>
@@ -139,6 +140,7 @@
                 </div>
                 <input type="hidden" name="st_id" value="{{ $machine->id }}" >
                 <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                <input type="hidden" name="lang" value="en">
                 <p class="text-center"><span class="required"> - required fields</span></p>
                 <p class="order-form_wrapper text-center">
                     <label style="cursor:pointer;"><input type="checkbox" class="js-form-accept" checked> I agree to the processing of personal data</label>

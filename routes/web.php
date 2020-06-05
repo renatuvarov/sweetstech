@@ -39,7 +39,7 @@ Route::group([
         Route::get('/{type?}', 'MachineController@index')->name('catalog.index');
         Route::get('category/{slug}/{type?}', 'TagController@show')->name('tags.show');
         Route::get('manufacturer/{slug}/{type?}', 'ManufacturerController@show')->name('manufacturer.show');
-        Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
+        Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class])->name('order');
     });
 
     Route::group([
@@ -83,7 +83,7 @@ Route::group([
         Route::get('manufacturer/{slug}/{type?}', 'ManufacturerController@show')->name('manufacturer.show');
         Route::get('/equipment/{slug}', 'MachineController@show')->name('catalog.show');
         Route::get('/{type?}', 'MachineController@index')->name('catalog.index');
-        Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class, 'throttle:10,1'])->name('order');
+        Route::post('order/{slug}', 'OrderController@order')->middleware([RecaptchaMiddleware::class])->name('order');
     });
 
     Route::group([

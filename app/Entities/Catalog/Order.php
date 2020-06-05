@@ -45,6 +45,7 @@ class Order extends Model
             'customer_company' => $data['st_company'],
             'customer_email' => $data['st_email'],
             'customer_phone' => $data['st_phone'],
+            'lang' => $data['lang'],
         ]);
 
         $order->machine()->associate(Machine::findOrFail($data['st_id']));
