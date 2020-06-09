@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <div class="phone-none">
-                                <img class="logo-equipment" src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                                <a href="{{ route('main') }}"><img class="logo-equipment" src="{{ asset('assets/img/logo.png') }}" alt="logo"></a>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,16 @@
                         <hr>
                         {{ $machines->links('vendor.pagination.default') }}
                     @else
-                        <p class="text-center">Nothing found.</p>
+                    <div class="col-md-12 card-news">
+                            <div class="row">
+                    <div class="col-md-12 card-news-inside text-center d-flex justify-content-center align-items-center" style="min-height: 300px">
+                    <div class="row">
+                        <div class="col-md-12 text-news m-0" style="font-size: 35px;">
+                            <p class="align-self-center">Nothing found.</p>
+                        </div>
+                    </div>
+                </div>
+                </div></div>
                     @endif
                 </div>
             </div>

@@ -371,5 +371,49 @@
     font-weight: bolder;
 }
 
+.form-error-layout {
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(213, 213, 213, 0.87);
+    overflow-y: scroll;
+    display: none;
+}
+
+.form-error-layout {
+    overflow-y: auto;
+}
+
+@supports ((-webkit-backdrop-filter: blur(15px)) or (backdrop-filter: blur(15px))) {
+    .form-error-layout {
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        background-color: rgba(213, 213, 213, 0.77);
+    }
+}
+
+.form-error-layout {
+    display: block;
+}
+
+.order-form_error {
+    margin-top: 0;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999999999;
+}
+
+.order-form_error .order-form {
+    margin-top: 0;
+}
+
+.hide {
+    display: none;
+}
 
 

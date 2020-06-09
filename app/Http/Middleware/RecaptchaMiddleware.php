@@ -15,17 +15,20 @@ class RecaptchaMiddleware
      */
     public function handle($request, Closure $next)
     {
-//        $results = $this->getCaptcha($request->input('g-recaptcha-response'));
-//
-//        if ($results->success && $results->score > 0.5) {
-//            return $next($request);
-//        }
-//
-//        return abort(403);
+        if ( ! env('APP_DEBUG')) {
+            $results = $this->getCaptcha($request->input('g-recaptcha-response'));
+
+            if ($results->success && $results->score > 0.5) {
+                return $next($request);
+            }
+
+            return back()->with('error', 'error');
+        }
+
         return $next($request);
     }
 
-    private function getCaptcha(string $secretKey)
+    private function getCaptcha(string $secretKey = '')
     {
         $results = file_get_contents(
             'https://www.google.com/recaptcha/api/siteverify?secret='

@@ -16,18 +16,18 @@
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
                             <h1 class="single-news-title equipment-title-all mb-4">{{ $post->title_ru }}</h1>
-                            {{--                            <ul class="breadcrumb">--}}
-                            {{--                                <li class="breadcrumb-item">--}}
-                            {{--                                    <a href="{{ route('main') }}">Home</a>--}}
-                            {{--                                </li>--}}
-                            {{--                                <li class="breadcrumb-item"><a href="{{ route('user.blog.news.index') }}">News</a></li>--}}
-                            {{--                            </ul>--}}
+{{--                            <ul class="breadcrumb">--}}
+{{--                                <li class="breadcrumb-item">--}}
+{{--                                    <a href="{{ route('main') }}">Home</a>--}}
+{{--                                </li>--}}
+{{--                                <li class="breadcrumb-item"><a href="{{ route('user.blog.news.index') }}">News</a></li>--}}
+{{--                            </ul>--}}
                             <div class="d-flex justify-content-start">
                                 <ul class="categories-single mb-0">
                                     <h4 class="categories-single-title text-left">Категория:</h4>
-                                    <li class="categories-single-all">
-                                        <a href="{{ route('ru.user.blog.categories.show', ['slug' => $post->category->slug]) }}">{{ $post->category->name_ru }}</a>
-                                    </li>
+                                        <a href="{{ route('ru.user.blog.categories.show', ['slug' => $post->category->slug]) }}">
+                                    <li class="categories-single-all">{{ $post->category->name_ru }}</li>
+                                    </a>
                                 </ul>
                             </div>
                             @if(! empty($post->tags) && $post->tags->count() > 0)
@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <div class="phone-none">
-                                <img class="logo-equipment logo-news" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo">
+                                <a href="{{ route('ru.main') }}"><img class="logo-equipment logo-news" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo"></a>
                             </div>
                         </div>
                     </div>

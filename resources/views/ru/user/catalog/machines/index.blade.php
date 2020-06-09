@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <div class="phone-none">
-                                <img class="logo-equipment" src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                                <a href="{{ route('ru.main') }}"><img class="logo-equipment" src="{{ asset('assets/img/logo.png') }}" alt="logo"></a>
                             </div>
                         </div>
                     </div>
@@ -40,15 +40,15 @@
                     <div class="d-flex post-box post-box-cat">
                         <div class="row-equipment">
                             @foreach($machines as $machine)
-                                <div itemscope itemtype="https://schema.org/Product" class="back-partners oborudovanie">
+                                    <a href="{{ route('ru.user.catalog.show', ['slug' => $machine->slug]) }}" class="back-partners oborudovanie">
+                                <div itemscope itemtype="https://schema.org/Product">
                                     @if($machine->is_new)
                                         <div class="new">
                                             <div class="new-text">
-                                                <span>New</span>
+                                                <span>Новое</span>
                                             </div>
                                         </div>
                                     @endif
-                                    <a href="{{ route('ru.user.catalog.show', ['slug' => $machine->slug]) }}" class="d-block">
                                         <div class="col-12 equipment-card">
                                             <div class="d-flex flex-column">
                                                 <div class="img-equipment-card">
@@ -69,8 +69,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
                                 </div>
+                                    </a>
                             @endforeach
                         </div>
                         @include('ru.parts.machines-categories')

@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <div class="phone-none">
-                                <img class="logo-equipment" src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                                <a href="{{ route('ru.main') }}"><img class="logo-equipment" src="{{ asset('assets/img/logo.png') }}" alt="logo"></a>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                         @if($machine->is_new)
                                             <div class="new">
                                                 <div class="new-text">
-                                                    <span>New</span>
+                                                    <span>Новое</span>
                                                 </div>
                                             </div>
                                         @endif
@@ -76,10 +76,18 @@
                             </div>
                             @include('ru.parts.machines-categories')
                         </div>
-                        <hr>
                         {{ $machines->links('vendor.pagination.default') }}
                     @else
-                        <p class="text-center">Ничего не найдено.</p>
+                        <div class="col-md-12 card-news">
+                            <div class="row">
+                    <div class="col-md-12 card-news-inside text-center d-flex justify-content-center align-items-center" style="min-height: 300px">
+                    <div class="row">
+                        <div class="col-md-12 text-news m-0" style="font-size: 35px;">
+                            <p class="align-self-center">Ничего не найдено.</p>
+                        </div>
+                    </div>
+                </div>
+                </div></div>
                     @endif
                 </div>
             </div>

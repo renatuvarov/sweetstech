@@ -28,9 +28,9 @@
                                 <h4 class="categories-single-title">Категории:</h4>
                                 <ul class="categories-single">
                                     @foreach($categories as $category)
-                                        <li class="categories-single-all">
-                                            <a href="{{ route('ru.user.tags.show', ['slug' => $category->slug]) }}">{{ $category->name_ru }}</a>
-                                        </li>
+                                            <a href="{{ route('ru.user.tags.show', ['slug' => $category->slug]) }}">
+                                        <li class="categories-single-all">{{ $category->name_ru }}</li>
+                                        </a>
                                     @endforeach
                                 </ul>
 
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div class="row-custom">
-                        <div class="col-md-12 text-equipment">
+                        <div class="col-md-12 text-equipment text-about-back-equipment">
                             <h2>Подробнее</h2>
                             <div itemprop="description" class="text-about-equipment js-content">
                                 {!! $machine->description_ru !!}
@@ -98,7 +98,7 @@
             </div>
         </section>
     </div>
-    <div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper">
+    <div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper @if($errors->any()) fixed-backdrop-wrapper-active @endif">
         <button type="button" class="fixed-backdrop-wrapper_close js-fixed-backdrop-wrapper_close"></button>
         <div class="order-form js-order-form">
             <h3 class="order-form_title">
@@ -151,32 +151,32 @@
                 </p>
             </form>
         </div>
-        <div class="order-form_success js-order-form_success hide">
-            <div class="order-form">
-                <h3 class="order-form_title">
-                    <span class="equipment-title order-form_title-text">Успешно!</span>
-                </h3>
-                <div class="order-form_body text-center">
-                    <p>Спасибо! Ваше сообщение было доставлено! Ожидайте ответа по предоставленным контактным данным.</p>
-                    <p class="text-center">
-                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="order-form_error js-order-form_error hide">
-            <div class="order-form">
-                <h3 class="order-form_title">
-                    <span class="equipment-title order-form_title-text">Ошибка!</span>
-                </h3>
-                <div class="order-form_body text-center">
-                    <p> Извините, что-то пошло не так. Попробуйте позже.</p>
-                    <p class="text-center">
-                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
-                    </p>
-                </div>
-            </div>
-        </div>
+{{--        <div class="order-form_success js-order-form_success hide">--}}
+{{--            <div class="order-form">--}}
+{{--                <h3 class="order-form_title">--}}
+{{--                    <span class="equipment-title order-form_title-text">Успешно!</span>--}}
+{{--                </h3>--}}
+{{--                <div class="order-form_body text-center">--}}
+{{--                    <p>Спасибо! Ваше сообщение было доставлено! Ожидайте ответа по предоставленным контактным данным.</p>--}}
+{{--                    <p class="text-center">--}}
+{{--                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="order-form_error js-order-form_error hide">--}}
+{{--            <div class="order-form">--}}
+{{--                <h3 class="order-form_title">--}}
+{{--                    <span class="equipment-title order-form_title-text">Ошибка!</span>--}}
+{{--                </h3>--}}
+{{--                <div class="order-form_body text-center">--}}
+{{--                    <p> Извините, что-то пошло не так. Попробуйте позже.</p>--}}
+{{--                    <p class="text-center">--}}
+{{--                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 
     @can('admin')
@@ -184,6 +184,7 @@
     @endcan
 
     @include('parts.recaptcha')
+    @include('ru.parts.form-error')
 @endsection
 
 @push('css')

@@ -28,10 +28,10 @@
                                 <h4 class="categories-single-title">Categories:</h4>
                                 <ul class="categories-single">
                                     @foreach($categories as $category)
-                                        <li class="categories-single-all">
-                                            <a href="{{ route('user.tags.show', ['slug' => $category->slug]) }}">{{ $category->name_en }}</a>
-                                        </li>
-                                    @endforeach
+                                            <a href="{{ route('user.tags.show', ['slug' => $category->slug]) }}">
+                                        <li class="categories-single-all">{{ $category->name_en }}</li>
+                                    </a>
+                                        @endforeach
                                 </ul>
 
                             </div>
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div class="row-custom">
-                        <div class="col-md-12 text-equipment">
+                        <div class="col-md-12 text-equipment text-about-back-equipment">
                             <h2>About</h2>
                             <div itemprop="description" class="text-about-equipment js-content">
                                 {!! $machine->description_en !!}
@@ -98,7 +98,7 @@
             </div>
         </section>
     </div>
-    <div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper">
+    <div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper @if($errors->any()) fixed-backdrop-wrapper-active @endif">
         <button type="button" class="fixed-backdrop-wrapper_close js-fixed-backdrop-wrapper_close"></button>
         <div class="order-form js-order-form">
             <h3 class="order-form_title">
@@ -108,10 +108,9 @@
                 </span>
             </h3>
             <form class="order-form_body" action="{{ route('user.order', ['slug' => $machine->slug]) }}" method="post" enctype="multipart/form-data" id="form">
-                {{ session('lang') }}
                 @csrf
                 <div class="order-form_input-wrapper required">
-                    <label for="st_nsp">Name {{ session('lang') }}</label>
+                    <label for="st_nsp">Name</label>
                     <input type="text" name="st_nsp" class="form-equipment" id="st_nsp" autofocus>
                     @error('st_nsp')
                     <p class="invalid-feedback">{{ $message }}</p>
@@ -152,32 +151,32 @@
                 </p>
             </form>
         </div>
-        <div class="order-form_success js-order-form_success hide">
-            <div class="order-form">
-                <h3 class="order-form_title">
-                    <span class="equipment-title order-form_title-text">Success!</span>
-                </h3>
-                <div class="order-form_body text-center">
-                    <p>Thanks! Your application has been sent successfully! Expect feedback on the provided contact details.</p>
-                    <p class="text-center">
-                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="order-form_error js-order-form_error hide">
-            <div class="order-form">
-                <h3 class="order-form_title">
-                    <span class="equipment-title order-form_title-text">Error!</span>
-                </h3>
-                <div class="order-form_body text-center">
-                    <p> We're sorry, but something went wrong. Please, try again later</p>
-                    <p class="text-center">
-                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>
-                    </p>
-                </div>
-            </div>
-        </div>
+{{--        <div class="order-form_success js-order-form_success hide">--}}
+{{--            <div class="order-form">--}}
+{{--                <h3 class="order-form_title">--}}
+{{--                    <span class="equipment-title order-form_title-text">Success!</span>--}}
+{{--                </h3>--}}
+{{--                <div class="order-form_body text-center">--}}
+{{--                    <p>Thanks! Your application has been sent successfully! Expect feedback on the provided contact details.</p>--}}
+{{--                    <p class="text-center">--}}
+{{--                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="order-form_error js-order-form_error hide">--}}
+{{--            <div class="order-form">--}}
+{{--                <h3 class="order-form_title">--}}
+{{--                    <span class="equipment-title order-form_title-text">Error!</span>--}}
+{{--                </h3>--}}
+{{--                <div class="order-form_body text-center">--}}
+{{--                    <p> We're sorry, but something went wrong. Please, try again later</p>--}}
+{{--                    <p class="text-center">--}}
+{{--                        <button type="button" class="button-neu js-fixed-backdrop-wrapper_close">Ok</button>--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 
     @can('admin')
@@ -185,6 +184,7 @@
     @endcan
 
     @include('parts.recaptcha')
+    @include('parts.form-error')
 @endsection
 
 @push('css')

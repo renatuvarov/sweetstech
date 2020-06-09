@@ -16,34 +16,36 @@
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
                             <h1 class="single-news-title equipment-title-all mb-4">{{ $post->title_en }}</h1>
-                            {{--                            <ul class="breadcrumb">--}}
-                            {{--                                <li class="breadcrumb-item">--}}
-                            {{--                                    <a href="{{ route('main') }}">Home</a>--}}
-                            {{--                                </li>--}}
-                            {{--                                <li class="breadcrumb-item"><a href="{{ route('user.blog.news.index') }}">News</a></li>--}}
-                            {{--                            </ul>--}}
+{{--                            <ul class="breadcrumb">--}}
+{{--                                <li class="breadcrumb-item">--}}
+{{--                                    <a href="{{ route('main') }}">Home</a>--}}
+{{--                                </li>--}}
+{{--                                <li class="breadcrumb-item"><a href="{{ route('user.blog.news.index') }}">News</a></li>--}}
+{{--                            </ul>--}}
                             <div class="d-flex justify-content-start">
                                 <ul class="categories-single mb-0">
                                     <h4 class="categories-single-title text-left">Category:</h4>
+                                    <a href="{{ route('user.blog.categories.show', ['slug' => $post->category->slug]) }}">
                                     <li class="categories-single-all">
-                                        <a href="{{ route('user.blog.categories.show', ['slug' => $post->category->slug]) }}">{{ $post->category->name_en }}</a>
+                                        {{ $post->category->name_en }}
                                     </li>
+                                    </a>
                                 </ul>
                             </div>
                             @if(! empty($post->tags) && $post->tags->count() > 0)
                                 <h4 class="categories-single-title text-left">Tags:</h4>
                                 <ul class="categories-single">
                                     @foreach($post->tags as $tag)
-                                        <li class="categories-single-all">
-                                            <a href="{{ route('user.blog.tags.show', ['slug' => $tag->slug]) }}">{{ $tag->name_en }}</a>
-                                        </li>
-                                    @endforeach
+                                            <a href="{{ route('user.blog.tags.show', ['slug' => $tag->slug]) }}">
+                                        <li class="categories-single-all">{{ $tag->name_en }}</li>
+                                    </a>
+                                        @endforeach
                                 </ul>
                             @endif
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <div class="phone-none">
-                                <img class="logo-equipment logo-news" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo">
+                                <a href="https://sweetstech.com"><img class="logo-equipment logo-news" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo"></a>
                             </div>
                         </div>
                     </div>

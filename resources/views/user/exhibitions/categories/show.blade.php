@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <div class="phone-none">
-                                <img class="logo-equipment logo-news" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo">
+                                <a href="{{ route('main') }}"><img class="logo-equipment logo-news" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('site.user.app.name') }} logo"></a>
                             </div>
                         </div>
                     </div>
@@ -35,29 +35,29 @@
     </div>
     <section>
         <div class="container all-news">
-            <div class="col-md-12 card-news">
-                <div class="row">
-                    @if(! empty($posts) && $posts->count() > 0)
-                        @foreach($posts as $post)
-                            <a class="card-news-square card-news-square-all" href="{{ route('user.exhibitions.news.show', ['slug' => $post->slug]) }}">
-                                <img src="{{ $post->img }}" alt="{{ $post->title_en }}" class="img-fluid">
-                                <div class="card-news-square-2">
-                                    <h3>{{ $post->title_en }}</h3>
-                                    <div class="card-news-square-info">
-                                        <div class="card-news-btn-wrapper">
-                                            <div class="news-more text-uppercase">Show More</div>
+                        <div class="col-md-12 card-news">
+                            <div class="row">
+                                @if(! empty($posts) && $posts->count() > 0)
+                                        @foreach($posts as $post)
+                                <a class="card-news-square card-news-square-all" href="{{ route('user.exhibitions.news.show', ['slug' => $post->slug]) }}">
+                                    <img src="{{ $post->img }}" alt="{{ $post->title_en }}" class="img-fluid">
+                                    <div class="card-news-square-2">
+                                        <h3>{{ $post->title_en }}</h3>
+                                        <div class="card-news-square-info">
+                                            <div class="card-news-btn-wrapper">
+                                                <div class="news-more text-uppercase">Show More</div>
+                                            </div>
+                                        </div>
+                                        <div class="card-news-footer">
+                                            <div class="card-news-category">{{ $post->category->name_en }}</div>
+                                            <div class="card-news-date">{{ $post->created_at->format('Y-m-d') }}</div>
                                         </div>
                                     </div>
-                                    <div class="card-news-footer">
-                                        <div class="card-news-category">{{ $post->category->name_en }}</div>
-                                        <div class="card-news-date">{{ $post->created_at->format('Y-m-d') }}</div>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
+                                </a>
+                                @endforeach
+                        </div>
                 </div>
-            </div>
-            {{ $posts->links('vendor.pagination.default') }}
+                {{ $posts->links('vendor.pagination.default') }}
             @else
                 <div class="col-md-12 card-news text-center d-flex justify-content-center align-items-center" style="min-height: 300px">
                     <div class="row">

@@ -1,4 +1,4 @@
-<div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper">
+<div class="fixed-backdrop-wrapper js-fixed-backdrop-wrapper @if($errors->any()) fixed-backdrop-wrapper-active @endif">
     <button type="button" class="fixed-backdrop-wrapper_close js-fixed-backdrop-wrapper_close"></button>
     <div class="order-form js-order-form">
         <h3 class="order-form_title">
