@@ -7,7 +7,7 @@
                     <img src="{{ asset('assets/img/logo_footer.png') }}" alt="{{ config('site.user.app.name') }}">
                 </span>
         </h3>
-        <form class="order-form_body" action="{{ route('user.order', ['slug' => $machine->slug]) }}" method="post" enctype="multipart/form-data" id="form">
+        <form class="order-form_body js-form" action="{{ route('user.order', ['slug' => $machine->slug]) }}" method="post" enctype="multipart/form-data" id="form">
             @csrf
             <div class="order-form_input-wrapper required">
                 <label for="st_nsp">Name</label>
@@ -86,6 +86,10 @@
             $('.js-fixed-backdrop-wrapper').addClass('fixed-backdrop-wrapper-active');
             $('input.form-equipment')[0].focus();
             $('html, body').css({'overflow-y': 'hidden'});
+        });
+
+        $('.js-form').on('submit', function () {
+            $('.js-button-neu').prop('disabled', true);
         });
 
         $('.js-fixed-backdrop-wrapper_close').on('click', function () {
